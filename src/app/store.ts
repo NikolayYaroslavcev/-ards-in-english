@@ -1,9 +1,12 @@
+
 // объединяя reducer-ы с помощью combineReducers,
 // мы задаём структуру нашего единственного объекта-состояния
-import {AnyAction, applyMiddleware, combineReducers, legacy_createStore, ThunkDispatch} from '@reduxjs/toolkit';
+import {AnyAction, applyMiddleware, combineReducers, legacy_createStore, ThunkDispatch} from "@reduxjs/toolkit";
 import thunkMiddleware from 'redux-thunk'
 
-const rootReducer = combineReducers({})
+const rootReducer = combineReducers({
+
+})
 // непосредственно создаём store
 export const store = legacy_createStore(rootReducer, applyMiddleware(thunkMiddleware));
 // определить автоматически тип всего объекта состояния
