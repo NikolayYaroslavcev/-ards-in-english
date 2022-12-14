@@ -1,13 +1,12 @@
 import React from 'react';
 import './App.css';
-import {Registration} from "./features/auth/Registration";
+import {Registration} from './features/auth/Registration';
+import {Logging} from './features/auth/Logging';
 
 function App() {
     return (
         <div className="App">
-            <header>
-
-            </header>
+            <Logging/>
             <Registration/>
         </div>
     );
