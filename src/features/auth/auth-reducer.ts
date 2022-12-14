@@ -1,47 +1,46 @@
-<<<<<<< HEAD
-import {createSlice, Dispatch, PayloadAction} from '@reduxjs/toolkit';
-import {authAPI, LoginType} from './auth-api';
-import axios, {AxiosError} from 'axios';
-
-
-const initialState = {
-    isLogged: false
-
-}
-
-
-=======
 import {createSlice, Dispatch, PayloadAction} from "@reduxjs/toolkit";
-import {authAPI, RegisterType} from "./auth-api";
+import {authAPI, LoginType, RegisterType} from "./auth-api";
 import axios, {AxiosError} from "axios";
 
 
 const initialState = {
-    isRegisterdIn: false
+    isRegisterdIn: false,
+    isLogged: false
 }
 
->>>>>>> origin/registration
+
 const slice = createSlice({
     name: 'auth',
     initialState: initialState,
     reducers: {
-<<<<<<< HEAD
-        setIsLoggedInAC(state, action: PayloadAction<{ value: boolean }>) {
-            state.isLogged = action.payload.value
-=======
         setIsRegisterdInAC(state, action: PayloadAction<{ value: boolean }>) {
             state.isRegisterdIn = action.payload.value
->>>>>>> origin/registration
+        },
+        setIsLoggedInAC(state, action: PayloadAction<{ value: boolean }>) {
+            state.isLogged = action.payload.value
         }
     }
 })
 
-<<<<<<< HEAD
 
-export const authReducer = slice.reducer
-export const {setIsLoggedInAC} = slice.actions
-
-
+export const registerTC = (data: RegisterType) => async (dispatch: Dispatch) => {
+    try {
+        const res = await authAPI.register(data)
+        dispatch(setIsRegisterdInAC({value: true}))
+        console.log(res.data)
+    } catch (e) {
+        const err = e as Error | AxiosError
+        if (axios.isAxiosError(err)) {
+            const error = err.response?.data ? (err.response.data as ErrorResType).error : err.message
+            alert(error)
+            //console.log(error)
+            // dispatch(setAppErrorAC(error))
+        } else {
+            console.log(e)
+            //  dispatch(setAppErrorAC(`Native error ${err.message}`))
+        }
+    }
+}
 export const loginTC = (data: LoginType) => async (dispatch: Dispatch) => {
     try {
         const res = await authAPI.login(data)
@@ -58,25 +57,6 @@ export const loginTC = (data: LoginType) => async (dispatch: Dispatch) => {
         console.log('finally');
     }
 }
-=======
-export const registerTC = (data: RegisterType) => async (dispatch: Dispatch) => {
-    try {
-        const res = await authAPI.register(data)
-        dispatch(setIsRegisterdInAC({value: true}))
-        console.log(res.data)
-    } catch (e) {
-        const err = e as Error | AxiosError
-        if (axios.isAxiosError(err)) {
-            const error = err.response?.data ? (err.response.data as ErrorResType).error : err.message
-            alert(error)
-            //console.log(error)
-           // dispatch(setAppErrorAC(error))
-        } else {
-            console.log(e)
-          //  dispatch(setAppErrorAC(`Native error ${err.message}`))
-        }
-    }
-}
 
 
 type ErrorResType = {
@@ -87,7 +67,9 @@ type ErrorResType = {
 
 export const authReducer = slice.reducer
 export const {setIsRegisterdInAC} = slice.actions
+export const {setIsLoggedInAC} = slice.actions
 
 
 
->>>>>>> origin/registration
+
+
