@@ -1,7 +1,8 @@
 import React from 'react';
 import {useAppDispatch, useAppSelector} from "../../common/hooks/hook";
-import {registerTC} from "./auth-reducer";
 import {useFormik} from "formik";
+import {registerTC} from "./auth-reducer";
+import {NavLink} from "react-router-dom";
 
 type FormikErrorType = {
     email?: string,
@@ -13,7 +14,7 @@ export const Registration = () => {
     const isRegisterdIn = useAppSelector(state => state.auth.isRegisterdIn)
     const dispatch = useAppDispatch()
 
-    console.log(isRegisterdIn)
+    // console.log(isRegisterdIn)
 
     const formik = useFormik({
         initialValues: {
@@ -31,10 +32,13 @@ export const Registration = () => {
             if (values.password.length <= 3) {
                 errors.password = 'small'
             }
+            if (values.password !== values.repeatPassword) {
+                errors.repeatPassword = 'разные пароли'
+            }
             return errors
         },
         onSubmit: values => {
-            // console.log(formik.values)
+            console.log(formik.values)
             dispatch(registerTC(formik.values))
             formik.resetForm()
         }
@@ -49,6 +53,8 @@ export const Registration = () => {
                     type="email"
                     {...formik.getFieldProps('email')}
                 />
+                {formik.touched.email && formik.errors.email &&
+                    <div style={{color: "red"}}>{formik.errors.email}</div>}
                 <input
                     placeholder="Password"
                     type="password"
@@ -57,15 +63,17 @@ export const Registration = () => {
                 <input
                     placeholder="Confirm password"
                     type="password"
-                    {...formik.getFieldProps('password')}
+                    {...formik.getFieldProps('repeatPassword')}
                 />
+                {formik.touched.repeatPassword && formik.errors.repeatPassword &&
+                    <div style={{color: "red"}}>{formik.errors.repeatPassword}</div>}
                 <button
                     type={'submit'}
                 >Sign Up
                 </button>
             </form>
             <p>Already have an account?</p>
-            <button>Sign In</button>
+            <NavLink to="/login">Sign In</NavLink>
         </div>
     );
 };
