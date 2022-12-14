@@ -8,12 +8,8 @@ const initialState = {
     isLogged: false,
     age: 15,
     intens: false,
-    city: "Minsk",
-    name: "Васек"
 }
 
-//ЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙ
-//ЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙ
 
 const slice = createSlice({
     name: 'auth',
