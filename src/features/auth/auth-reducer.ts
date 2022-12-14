@@ -5,7 +5,8 @@ import axios, {AxiosError} from "axios";
 
 const initialState = {
     isRegisterdIn: false,
-    isLogged: false
+    isLogged: false,
+    intens: false,
 }
 
 //ЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙ
