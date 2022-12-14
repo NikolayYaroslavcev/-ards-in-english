@@ -1,12 +1,11 @@
 import React from 'react';
 import './App.css';
+import {Logging} from './features/auth/Logging';
 
 function App() {
     return (
         <div className="App">
-            <header>
-
-            </header>
+                <Logging/>
         </div>
     );
 }
