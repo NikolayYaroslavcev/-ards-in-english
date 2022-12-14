@@ -8,6 +8,7 @@ const initialState = {
     isLogged: false,
     age: 15,
     intens: false,
+    city: "Minsk",
 }
 
 //ЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙ
