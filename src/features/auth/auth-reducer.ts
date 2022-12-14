@@ -8,7 +8,7 @@ const initialState = {
     isLogged: false
 }
 
-
+//ЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙЙ
 const slice = createSlice({
     name: 'auth',
     initialState: initialState,
@@ -49,7 +49,6 @@ export const loginTC = (data: LoginType) => async (dispatch: Dispatch) => {
         const err = e as Error | AxiosError<{ error: string }>
         if (axios.isAxiosError(err)) {
             const error = err.response?.data ? err.response.data.error : err.message
-
         } else {
             // dispatch(setAppErrorAC(`Native error ${err.message}`))
         }
