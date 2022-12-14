@@ -6,8 +6,7 @@ import axios, {AxiosError} from "axios";
 const initialState = {
     isRegisterdIn: false,
     isLogged: false,
-    age: 15,
-    intens: false,
+
 }
 
 
