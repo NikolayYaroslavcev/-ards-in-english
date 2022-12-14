@@ -7,6 +7,8 @@ const instance = axios.create({
 })
 
 
+// изменения внесу по сценарию
+
 export const authAPI = {
     register(data: RegisterType) {
         return instance.post<RegisterType, AxiosResponse<ResponseType>>('auth/register', data)
