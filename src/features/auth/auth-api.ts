@@ -18,6 +18,8 @@ export const authAPI = {
         return instance.post<LoginType, AxiosResponse<ResponseType>>(`/auth/login`,data);
     },
 }
+
+/// types
 type MeResponse = {
     email: string,
     rememberMe: boolean,
@@ -46,5 +48,5 @@ export type LoginType = {
 }
 
 
-/// types
+
 

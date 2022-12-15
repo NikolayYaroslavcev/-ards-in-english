@@ -46,15 +46,34 @@ export const loginTC = (data: LoginType) => async (dispatch: Dispatch) => {
     try {
         const res = await authAPI.login(data)
         dispatch(setIsLoggedInAC({value: true}))
+        console.log(res)
     } catch (e) {
         const err = e as Error | AxiosError<{ error: string }>
         if (axios.isAxiosError(err)) {
             const error = err.response?.data ? err.response.data.error : err.message
+            console.log(error)
         } else {
             // dispatch(setAppErrorAC(`Native error ${err.message}`))
         }
     } finally {
-        console.log('finally');
+        console.log('finally LOGIN');
+    }
+}
+export const MeTC = () => async (dispatch: Dispatch) => {
+    try {
+        const res = await authAPI.me()
+        console.log(res)
+        //dispatch(setIsLoggedInAC({value: true}))
+    } catch (e) {
+        const err = e as Error | AxiosError<{ error: string }>
+        if (axios.isAxiosError(err)) {
+            const error = err.response?.data ? err.response.data.error : err.message
+            console.log(error)
+        } else {
+            // dispatch(setAppErrorAC(`Native error ${err.message}`))
+        }
+    } finally {
+        console.log('finally ME');
     }
 }
 
