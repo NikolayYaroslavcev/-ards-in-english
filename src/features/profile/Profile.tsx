@@ -1,8 +1,22 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import edit from '../../assets/img/Edit.svg'
-import {NavLink} from "react-router-dom";
+import {Navigate, NavLink} from 'react-router-dom';
+import {useAppSelector} from '../../common/hooks/hooks';
 
 export const Profile = () => {
+    const isLogged = useAppSelector<boolean>((state) => state.auth.isLogged)
+    // const dispatch = useAppDispatch()
+
+
+    useEffect(() => {
+        if (!isLogged) return
+    }, [])
+
+
+    if (isLogged) {
+        return <Navigate to={'/login'}/>
+    }
+
     return (
         <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
             <NavLink to="/">Back to Packs List</NavLink>

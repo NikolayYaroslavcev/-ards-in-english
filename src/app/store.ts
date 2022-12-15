@@ -2,11 +2,12 @@ import {combineReducers, configureStore} from '@reduxjs/toolkit'
 
 import thunkMiddleware from 'redux-thunk'
 import {authReducer} from "../features/auth/auth-reducer";
+import {appReducer} from './app-reducer';
 
 
 const rootReducer = combineReducers({
     auth: authReducer,
-
+    app: appReducer,
 })
 export const store = configureStore({
     reducer: rootReducer,

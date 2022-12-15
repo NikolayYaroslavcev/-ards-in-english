@@ -2,7 +2,7 @@ import React from 'react';
 import {useAppDispatch, useAppSelector} from '../../common/hooks/hooks';
 import {useFormik} from 'formik';
 import {loginTC, MeTC} from './auth-reducer';
-import {NavLink} from 'react-router-dom';
+import {NavLink, Navigate} from 'react-router-dom';
 
 
 type FormikErrorType = {
@@ -23,6 +23,7 @@ export const Logging = () => {
             password: '',
             rememberMe: false
         },
+
         validate: (values) => {
             const errors: FormikErrorType = {}
             if (!values.email) {
@@ -36,10 +37,13 @@ export const Logging = () => {
         },
         onSubmit: values => {
             dispatch(loginTC(formik.values))
-            dispatch(MeTC())
             formik.resetForm()
         },
     })
+
+    if (isLoggedIn) {
+        return <Navigate to={'/'}/>
+    }
 
 
     return (
