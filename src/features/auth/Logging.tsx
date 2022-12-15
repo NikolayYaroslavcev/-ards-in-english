@@ -1,7 +1,7 @@
 import React from 'react';
 import {useAppDispatch, useAppSelector} from '../../common/hooks/hooks';
 import {useFormik} from 'formik';
-import {loginTC} from './auth-reducer';
+import {loginTC, MeTC} from './auth-reducer';
 import {NavLink} from 'react-router-dom';
 
 
@@ -36,6 +36,7 @@ export const Logging = () => {
         },
         onSubmit: values => {
             dispatch(loginTC(formik.values))
+            dispatch(MeTC())
             formik.resetForm()
         },
     })

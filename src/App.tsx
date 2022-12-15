@@ -1,11 +1,16 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './App.css';
 import {Registration} from './features/auth/Registration';
 import {Logging} from './features/auth/Logging';
 import {Route, Routes} from 'react-router-dom';
 import {Profile} from "./features/profile/Profile";
+import {authAPI} from "./features/auth/auth-api";
 
 function App() {
+
+    useEffect(() => {
+
+    }, [])
     return (
         <div className="App">
             <Routes>

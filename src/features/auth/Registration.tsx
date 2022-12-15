@@ -1,5 +1,5 @@
 import React from 'react';
-import {useAppDispatch, useAppSelector} from "../../common/hooks/hook";
+import {useAppDispatch, useAppSelector} from "../../common/hooks/hooks";
 import {useFormik} from "formik";
 import {registerTC} from "./auth-reducer";
 import {NavLink} from "react-router-dom";
