@@ -2,7 +2,7 @@ import React from 'react';
 import {useAppDispatch, useAppSelector} from "../../common/hooks/hooks";
 import {useFormik} from "formik";
 import {registerTC} from "./auth-reducer";
-import {NavLink} from "react-router-dom";
+import {Navigate, NavLink} from 'react-router-dom';
 
 type FormikErrorType = {
     email?: string,
@@ -14,7 +14,8 @@ export const Registration = () => {
     const isRegisterdIn = useAppSelector(state => state.auth.isRegisterdIn)
     const dispatch = useAppDispatch()
 
-    // console.log(isRegisterdIn)
+
+
 
     const formik = useFormik({
         initialValues: {
@@ -43,6 +44,12 @@ export const Registration = () => {
             formik.resetForm()
         }
     })
+
+
+    if (isRegisterdIn) {
+        return <Navigate to={'/'}/>
+    }
+
 
     return (
         <div>
