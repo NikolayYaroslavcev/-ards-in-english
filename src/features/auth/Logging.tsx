@@ -1,8 +1,8 @@
 import React from 'react';
 import {useAppDispatch, useAppSelector} from '../../common/hooks/hooks';
 import {useFormik} from 'formik';
-import {loginTC, MeTC} from './auth-reducer';
-import {NavLink} from 'react-router-dom';
+import {loginTC, meTC} from './auth-reducer';
+import {NavLink, Navigate} from 'react-router-dom';
 
 
 type FormikErrorType = {
@@ -15,7 +15,6 @@ type FormikErrorType = {
 export const Logging = () => {
     const dispatch = useAppDispatch()
     const isLoggedIn = useAppSelector(state => state.auth.isLogged)
-
 
     const formik = useFormik({
         initialValues: {
@@ -36,11 +35,12 @@ export const Logging = () => {
         },
         onSubmit: values => {
             dispatch(loginTC(formik.values))
-            dispatch(MeTC())
             formik.resetForm()
         },
     })
-
+    if (isLoggedIn) {
+        return <Navigate to={'/'}/>
+    }
 
     return (
         <form onSubmit={formik.handleSubmit}>
