@@ -1,5 +1,5 @@
 import React from 'react';
-import edit from '../../image/Edit.svg'
+import edit from '../../assets/img/Edit.svg'
 import {NavLink} from "react-router-dom";
 
 export const Profile = () => {
