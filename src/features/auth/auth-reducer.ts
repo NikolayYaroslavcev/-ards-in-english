@@ -2,6 +2,7 @@ import {createSlice, Dispatch, PayloadAction} from "@reduxjs/toolkit";
 import {authAPI, LoginType, RegisterType} from "./auth-api";
 import axios, {AxiosError} from "axios";
 import {setIsInitializedAC} from "../../app/app-reducer";
+import {setUserDataValueAC} from "../profile/profile-reducer";
 
 
 const initialState = {
@@ -25,7 +26,6 @@ const slice = createSlice({
 
 
 export const registerTC = (data: RegisterType) => async (dispatch: Dispatch) => {
-
     try {
         const res = await authAPI.register(data)
         dispatch(setIsRegisterdInAC({value: true}))
@@ -33,10 +33,13 @@ export const registerTC = (data: RegisterType) => async (dispatch: Dispatch) => 
     } catch (e) {
         const err = e as Error | AxiosError
         if (axios.isAxiosError(err)) {
-            const error = err.response?.data ? (err.response.data as ErrorResType).error : err.message
-            alert(error)
-            //console.log(error)
-            // dispatch(setAppErrorAC(error))
+            const error = err.response?.data ? (err.response.data as ErrorResType).email : err.message
+            if (error === data.email) {
+                dispatch(setIsRegisterdInAC({value: true}))
+                alert("Вы зарестрированы. Введите логин и пароль")
+            } else {
+                alert(error)
+            }
         } else {
             console.log(e)
             //  dispatch(setAppErrorAC(`Native error ${err.message}`))
@@ -47,6 +50,8 @@ export const loginTC = (data: LoginType) => async (dispatch: Dispatch) => {
     try {
         const res = await authAPI.login(data)
         dispatch(setIsLoggedInAC({value: true}))
+        dispatch(setUserDataValueAC(res.data))
+
         //dispatch(setIsInitializedAC({value: true}))
         //console.log(res)
     } catch (e) {
@@ -65,7 +70,7 @@ export const meTC = () => async (dispatch: Dispatch) => {
     try {
         const res = await authAPI.me()
         dispatch(setIsLoggedInAC({value: true}))
-        //console.log(res)
+        dispatch(setUserDataValueAC(res.data))
 
     } catch (e) {
         const err = e as Error | AxiosError<{ error: string }>
@@ -96,7 +101,6 @@ export const logOutTC = () => async (dispatch: Dispatch) => {
         }
     }
 }
-
 
 
 type ErrorResType = {

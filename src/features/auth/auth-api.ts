@@ -1,5 +1,4 @@
 import axios, {AxiosResponse} from 'axios'
-import {logOutTC} from "./auth-reducer";
 
 
 const instance = axios.create({
@@ -13,15 +12,14 @@ export const authAPI = {
         return instance.post<RegisterType, AxiosResponse<ResponseType>>('auth/register', data)
     },
     me() {
-        return instance.post<MeResponse>(`auth/me`);
+        return instance.post<AxiosResponse<RegisterResType>>(`auth/me`);
     },
     logOut() {
-        return instance.delete<MeResponse>(`auth/me`);
+        return instance.delete<AxiosResponse<MeResponse>>(`auth/me`);
     },
     login(data:LoginType) {
-        return instance.post<LoginType, AxiosResponse<ResponseType>>(`/auth/login`,data);
+        return instance.post<LoginType, AxiosResponse<LoginResType>>(`/auth/login`,data);
     },
-
 }
 
 /// types
@@ -34,6 +32,9 @@ type MeResponse = {
     updated: Date,
     avatar: null
 }
+export type LoginResType = {
+    data: RegisterResType
+}
 
 export type RegisterType = {
     email: string,
@@ -41,10 +42,23 @@ export type RegisterType = {
 }
 
 type ResponseType = {
-    addedUser: {},
+    addedUser: RegisterResType,
     error?: {};
 }
-
+export type RegisterResType = {
+    created: string,
+    email: string,
+    isAdmin: boolean
+    name: string,
+    publicCardPacksCount: number,
+    rememberMe: boolean,
+    token: string,
+    tokenDeathTime: number,
+    updated: string,
+    verified: boolean,
+    __v: number,
+    _id: string,
+}
 
 export type LoginType = {
     email: string

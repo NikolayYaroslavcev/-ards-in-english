@@ -38,8 +38,10 @@ export const Logging = () => {
             formik.resetForm()
         },
     })
+
+
     if (isLoggedIn) {
-        return <Navigate to={'/'}/>
+        return <Navigate to={'/profile'}/>
     }
 
     return (
@@ -57,7 +59,7 @@ export const Logging = () => {
                 /> <span>Remember me</span>
                 <br/>
                 <a href="src/common/components#">Forgot Password?</a>
-                <button>Sign In</button>
+                <button type={'submit'}>Sign In</button>
                 <div>Already have an account?</div>
                 <NavLink to="/registration">Sign Up</NavLink>
             </div>
