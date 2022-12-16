@@ -56,7 +56,7 @@ export const Logging = () => {
                        checked={formik.values.rememberMe}
                 /> <span>Remember me</span>
                 <br/>
-                <a href="src/common/components#">Forgot Password?</a>
+                <NavLink to="/forgot">Forgot Password?</NavLink>
                 <button>Sign In</button>
                 <div>Already have an account?</div>
                 <NavLink to="/registration">Sign Up</NavLink>
