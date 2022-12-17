@@ -1,5 +1,5 @@
 import axios, {AxiosResponse} from 'axios'
-import {logOutTC} from "./auth-reducer";
+import {logOutTC} from './auth-reducer';
 
 
 const instance = axios.create({
@@ -26,10 +26,25 @@ export const authAPI = {
     },
     newPassword(data: NewPasswordType) {
         return instance.post<NewPasswordType, AxiosResponse<ResponseNewPasswordType>>(`/auth/set-new-password`, data)
+    },
+    newName(data: NewNaneType) {
+        return instance.put<NewNaneType, AxiosResponse<ResponseNewNaneType>>(`/auth/me`, data)
     }
 }
 
 /// types
+
+export type NewNaneType = {
+    name: string
+    avatar?: string
+}
+
+export type ResponseNewNaneType = {
+    updatedUser: RegisterResType
+    error?: string
+}
+
+
 export type NewPasswordType = {
     password: string
     resetPasswordToken: string | undefined

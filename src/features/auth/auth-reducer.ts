@@ -1,5 +1,5 @@
 import {createSlice, Dispatch, PayloadAction} from "@reduxjs/toolkit";
-import {authAPI, ForgotType, LoginType, NewPasswordType, RegisterType} from './auth-api';
+import {authAPI, ForgotType, LoginType, NewNaneType, NewPasswordType, RegisterType} from './auth-api';
 import axios, {AxiosError} from "axios";
 import {setIsInitializedAC} from "../../app/app-reducer";
 import {setUserDataValueAC} from "../profile/profile-reducer";
@@ -126,13 +126,31 @@ export const forgotTC = (data: ForgotType) => async (dispatch: Dispatch) => {
 }
 
 export const newPasswordTC = (data: NewPasswordType) => async (dispatch: Dispatch) => {
-    debugger
     dispatch(setIsInitializedAC({value: false}))
     try {
         const res = await authAPI.newPassword(data)
         dispatch(setForgotAC({value: true}))
         console.log(res)
 
+    } catch (e) {
+        const err = e as Error | AxiosError<{ error: string }>
+        if (axios.isAxiosError(err)) {
+            const error = err.response?.data ? err.response.data.error : err.message
+            console.log(error)
+        } else {
+            // dispatch(setAppErrorAC(`Native error ${err.message}`))
+        }
+    } finally {
+        dispatch(setIsInitializedAC({value: true}))
+    }
+}
+export const newNameTC = (data: NewNaneType) => async (dispatch: Dispatch) => {
+    dispatch(setIsInitializedAC({value: false}))
+    try {
+        const res = await authAPI.newName(data)
+        console.log(res)
+        dispatch(setUserDataValueAC(res.data.updatedUser))
+        // console.log(res)
     } catch (e) {
         const err = e as Error | AxiosError<{ error: string }>
         if (axios.isAxiosError(err)) {
