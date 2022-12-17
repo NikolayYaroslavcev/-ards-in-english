@@ -3,7 +3,6 @@ import {useAppDispatch, useAppSelector} from '../../common/hooks/hooks';
 import {useFormik} from 'formik';
 import {loginTC} from './auth-reducer';
 import {Navigate, NavLink} from 'react-router-dom';
-import {Simulate} from 'react-dom/test-utils';
 
 
 export type FormikErrorType = {
@@ -42,6 +41,7 @@ export const Logging = () => {
     if (isLoggedIn) {
         return <Navigate to={'/profile'}/>
     }
+    console.log(formik.errors)
 
     return (
         <form onSubmit={formik.handleSubmit}>
