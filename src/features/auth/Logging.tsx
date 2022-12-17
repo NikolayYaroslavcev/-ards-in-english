@@ -22,7 +22,6 @@ export const Logging = () => {
             password: '',
             rememberMe: false
         },
-
         validate: (values) => {
             const errors: FormikErrorType = {}
             if (!values.email) {
