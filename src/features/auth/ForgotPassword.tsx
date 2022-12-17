@@ -8,11 +8,13 @@ import {useFormik} from 'formik';
 type FormikErrorType = {
     email?: string
     from?: string;
-    message?:string
+    message?: string
 }
 
 export const ForgotPassword = () => {
     const dispatch = useAppDispatch()
+
+
     const onClickForgot = () => {
         dispatch(forgotTC(formik.values))
     }
@@ -38,7 +40,7 @@ export const ForgotPassword = () => {
         },
         onSubmit: values => {
             // console.log(formik.values)
-            dispatch(forgotTC())
+            dispatch(forgotTC(formik.values))
             formik.resetForm()
         }
     })

@@ -22,7 +22,7 @@ export const authAPI = {
         return instance.post<LoginType, AxiosResponse<ResponseType>>(`/auth/login`,data);
     },
     forgot(data:ForgotType) {
-        return instance.post<ForgotType,AxiosResponse<ResponseType>>(`/auth/forgot`)
+        return instance.post<ForgotType,AxiosResponse<ResponseType>>(`/auth/forgot`,data)
     }
 
 }
