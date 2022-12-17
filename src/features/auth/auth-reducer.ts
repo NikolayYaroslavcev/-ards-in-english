@@ -1,5 +1,5 @@
 import {createSlice, Dispatch, PayloadAction} from "@reduxjs/toolkit";
-import {authAPI, LoginType, RegisterType} from "./auth-api";
+import {authAPI, ForgotType, LoginType, RegisterType} from './auth-api';
 import axios, {AxiosError} from "axios";
 import {setIsInitializedAC} from "../../app/app-reducer";
 import {setUserDataValueAC} from "../profile/profile-reducer";
@@ -26,6 +26,7 @@ const slice = createSlice({
 
 
 export const registerTC = (data: RegisterType) => async (dispatch: Dispatch) => {
+
     try {
         const res = await authAPI.register(data)
         dispatch(setIsRegisterdInAC({value: true}))
@@ -70,7 +71,7 @@ export const meTC = () => async (dispatch: Dispatch) => {
     try {
         const res = await authAPI.me()
         dispatch(setIsLoggedInAC({value: true}))
-        dispatch(setUserDataValueAC(res.data))
+        //console.log(res)
 
     } catch (e) {
         const err = e as Error | AxiosError<{ error: string }>
@@ -99,8 +100,30 @@ export const logOutTC = () => async (dispatch: Dispatch) => {
         } else {
             // dispatch(setAppErrorAC(`Native error ${err.message}`))
         }
+    } finally {
+        dispatch(setIsInitializedAC({value: true}))
     }
 }
+export const forgotTC = (data:ForgotType) => async (dispatch: Dispatch) => {
+    try {
+        console.log()
+        const res = await authAPI.forgot(data)
+         dispatch(setIsLoggedInAC({value: false}))
+        console.log(res)
+
+    } catch (e) {
+        const err = e as Error | AxiosError<{ error: string }>
+        if (axios.isAxiosError(err)) {
+            const error = err.response?.data ? err.response.data.error : err.message
+            console.log(error)
+        } else {
+            // dispatch(setAppErrorAC(`Native error ${err.message}`))
+        }
+    }finally {
+        dispatch(setIsInitializedAC({value: true}))
+    }
+}
+
 
 
 type ErrorResType = {

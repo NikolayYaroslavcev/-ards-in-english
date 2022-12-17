@@ -1,8 +1,9 @@
 import React from 'react';
 import {useAppDispatch, useAppSelector} from '../../common/hooks/hooks';
 import {useFormik} from 'formik';
-import {loginTC, meTC} from './auth-reducer';
-import {NavLink, Navigate} from 'react-router-dom';
+import {loginTC} from './auth-reducer';
+import {Navigate, NavLink} from 'react-router-dom';
+import {Simulate} from 'react-dom/test-utils';
 
 
 type FormikErrorType = {
@@ -38,8 +39,6 @@ export const Logging = () => {
             formik.resetForm()
         },
     })
-
-
     if (isLoggedIn) {
         return <Navigate to={'/profile'}/>
     }
@@ -49,9 +48,14 @@ export const Logging = () => {
             <div>
                 <div>Sign in</div>
                 <input type="email"
-                       {...formik.getFieldProps('email')}/>
+                       {...formik.getFieldProps('email')}
+                       onBlur={formik.handleBlur}
+                       onChange={formik.handleChange}
+                /> <br/><br/>
                 <input type="password"
                        {...formik.getFieldProps('password')}
+                       onBlur={formik.handleBlur}
+                       onChange={formik.handleChange}
                 />
                 <input type="checkbox"
                        {...formik.getFieldProps('rememberMe')}
@@ -60,6 +64,7 @@ export const Logging = () => {
                 <br/>
                 <a href="src/common/components#">Forgot Password?</a>
                 <button type={'submit'}>Sign In</button>
+                <NavLink to="/forgot">Forgot Password?</NavLink>
                 <div>Already have an account?</div>
                 <NavLink to="/registration">Sign Up</NavLink>
             </div>

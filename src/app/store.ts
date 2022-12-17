@@ -21,7 +21,7 @@ export type AppDispatch = typeof store.dispatch
 
 // а это, чтобы можно было в консоли браузера обращаться к store в любой момент
 // @ts-ignore
-window.store = store;
+window.store = store; //for dev
 
 
 

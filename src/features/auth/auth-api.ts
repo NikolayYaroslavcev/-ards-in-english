@@ -1,4 +1,5 @@
 import axios, {AxiosResponse} from 'axios'
+import {logOutTC} from "./auth-reducer";
 
 
 const instance = axios.create({
@@ -20,6 +21,10 @@ export const authAPI = {
     login(data:LoginType) {
         return instance.post<LoginType, AxiosResponse<LoginResType>>(`/auth/login`,data);
     },
+    forgot(data:ForgotType) {
+        return instance.post<ForgotType,AxiosResponse<ResponseType>>(`/auth/forgot`,data)
+    }
+
 }
 
 /// types
@@ -64,6 +69,13 @@ export type LoginType = {
     email: string
     password: string
     rememberMe: boolean
+}
+
+
+export type ForgotType = {
+    email:string
+    from:string
+    message: string
 }
 
 
