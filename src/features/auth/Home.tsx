@@ -11,7 +11,7 @@ export const Home: React.FC = () => {
     }, [])
 
     if (!isLoggedIn) {
-        return <Navigate to={'/login/'}/>
+        return <Navigate to={'/login'}/>
     }
     return (
         <div>

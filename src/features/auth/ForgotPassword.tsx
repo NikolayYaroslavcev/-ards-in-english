@@ -1,7 +1,7 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
+import {Navigate, NavLink} from 'react-router-dom';
 import {forgotTC} from './auth-reducer';
-import {useAppDispatch} from '../../common/hooks/hooks';
+import {useAppDispatch, useAppSelector} from '../../common/hooks/hooks';
 import {useFormik} from 'formik';
 
 
@@ -12,12 +12,8 @@ type FormikErrorType = {
 }
 
 export const ForgotPassword = () => {
+    const isForgot = useAppSelector(state => state.auth.isForgot)
     const dispatch = useAppDispatch()
-
-
-    const onClickForgot = () => {
-        dispatch(forgotTC(formik.values))
-    }
 
     const formik = useFormik({
         initialValues: {
@@ -25,7 +21,7 @@ export const ForgotPassword = () => {
             from: 'test-front-admin <sweeterthanfurby@mail.ru>',
             message: `<div style="background-color: lime; padding: 15px">
                        password recovery link: 
-                       <a href='http://localhost:3000/#/set-new-password/$token$'>
+                       <a href='http://localhost:3000/newPassword/$token$'>
                        link</a>
                         </div>`,
         },
@@ -39,20 +35,25 @@ export const ForgotPassword = () => {
             return errors
         },
         onSubmit: values => {
-            // console.log(formik.values)
             dispatch(forgotTC(formik.values))
             formik.resetForm()
         }
     })
 
+    // if (!isForgot) {
+    //     return <Navigate to={'/check'}/>
+    // }
 
     return (
         <form onSubmit={formik.handleSubmit}>
             <div>
                 <div>Forgot your password?</div>
-                <input type="email" placeholder={'Email'} {...formik.getFieldProps('email')}/>
+                <input
+                    type="email"
+                    placeholder={'Email'}
+                    {...formik.getFieldProps('email')}/>
                 <div>Enter your email address and we will send you further instructions</div>
-                <button onClick={onClickForgot}>Send Instructions</button>
+                <button type={'submit'}>Send Instructions</button>
                 <div>Did you remember your password?</div>
                 <NavLink to="/login">Try logging in</NavLink>
             </div>

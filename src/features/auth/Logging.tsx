@@ -6,7 +6,7 @@ import {Navigate, NavLink} from 'react-router-dom';
 import {Simulate} from 'react-dom/test-utils';
 
 
-type FormikErrorType = {
+export type FormikErrorType = {
     email?: string
     password?: string
     rememberMe?: boolean
@@ -62,7 +62,6 @@ export const Logging = () => {
                        checked={formik.values.rememberMe}
                 /> <span>Remember me</span>
                 <br/>
-                <a href="src/common/components#">Forgot Password?</a>
                 <button type={'submit'}>Sign In</button>
                 <NavLink to="/forgot">Forgot Password?</NavLink>
                 <div>Already have an account?</div>

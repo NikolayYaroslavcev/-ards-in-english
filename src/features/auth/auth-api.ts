@@ -18,16 +18,26 @@ export const authAPI = {
     logOut() {
         return instance.delete<AxiosResponse<MeResponse>>(`auth/me`);
     },
-    login(data:LoginType) {
-        return instance.post<LoginType, AxiosResponse<LoginResType>>(`/auth/login`,data);
+    login(data: LoginType) {
+        return instance.post<LoginType, AxiosResponse<LoginResType>>(`/auth/login`, data);
     },
-    forgot(data:ForgotType) {
-        return instance.post<ForgotType,AxiosResponse<ResponseType>>(`/auth/forgot`,data)
+    forgot(data: ForgotType) {
+        return instance.post<ForgotType, AxiosResponse<ResponseType>>(`/auth/forgot`, data)
+    },
+    newPassword(data: NewPasswordType) {
+        return instance.post<NewPasswordType, AxiosResponse<ResponseNewPasswordType>>(`/auth/set-new-password`, data)
     }
-
 }
 
 /// types
+export type NewPasswordType = {
+    password: string
+    resetPasswordToken: string | undefined
+}
+type ResponseNewPasswordType = {
+    info: string
+    error: string
+}
 type MeResponse = {
     email: string,
     rememberMe: boolean,
@@ -73,8 +83,8 @@ export type LoginType = {
 
 
 export type ForgotType = {
-    email:string
-    from:string
+    email: string
+    from: string
     message: string
 }
 
