@@ -20,7 +20,7 @@ const slice = createSlice({
     name: 'profile',
     initialState: initialState,
     reducers: {
-        setUserDataValueAC(state, action: PayloadAction<{ data: RegisterResType }>) {
+        setUserDataValueAC(state, action: PayloadAction<{}>) {
             return {...state, ...action.payload}
             //  state.userData = {...action.payload}
         }
