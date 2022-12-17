@@ -1,8 +1,8 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import edit from '../../assets/img/Edit.svg'
-import {Navigate, NavLink} from "react-router-dom";
-import {useAppDispatch, useAppSelector} from "../../common/hooks/hooks";
-import {logOutTC} from "../auth/auth-reducer";
+import {NavLink} from 'react-router-dom';
+import {useAppDispatch} from '../../common/hooks/hooks';
+import {logOutTC} from '../auth/auth-reducer';
 
 export const Profile = () => {
 

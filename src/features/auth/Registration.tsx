@@ -14,9 +14,6 @@ export const Registration = () => {
     const isRegisterdIn = useAppSelector(state => state.auth.isRegisterdIn)
     const dispatch = useAppDispatch()
 
-
-
-
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -44,7 +41,6 @@ export const Registration = () => {
             formik.resetForm()
         }
     })
-
 
     if (isRegisterdIn) {
         return <Navigate to={'/'}/>

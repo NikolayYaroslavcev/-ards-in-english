@@ -6,17 +6,16 @@ export const Home = () => {
     const isLoggedIn = useAppSelector(state => state.auth.isLogged)
     const dispatch = useAppDispatch()
 
-       useEffect(() => {
+    useEffect(() => {
         if (!isLoggedIn) return
     }, [])
 
     if (!isLoggedIn) {
         return <Navigate to={'/login/'}/>
     }
-
     return (
         <div>
-            Главная старница
+            Главная страница
         </div>
     );
 };
