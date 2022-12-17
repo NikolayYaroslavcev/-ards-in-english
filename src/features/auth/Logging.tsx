@@ -20,7 +20,7 @@ export const Logging = () => {
         initialValues: {
             email: '',
             password: '',
-            rememberMe: false
+            rememberMe: false,
         },
         validate: (values) => {
             const errors: FormikErrorType = {}
@@ -48,9 +48,14 @@ export const Logging = () => {
             <div>
                 <div>Sign in</div>
                 <input type="email"
-                       {...formik.getFieldProps('email')}/>
+                       {...formik.getFieldProps('email')}
+                       onBlur={formik.handleBlur}
+                       onChange={formik.handleChange}
+                /> <br/><br/>
                 <input type="password"
                        {...formik.getFieldProps('password')}
+                       onBlur={formik.handleBlur}
+                       onChange={formik.handleChange}
                 />
                 <input type="checkbox"
                        {...formik.getFieldProps('rememberMe')}
