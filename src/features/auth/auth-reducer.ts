@@ -126,7 +126,6 @@ export const forgotTC = (data: ForgotType) => async (dispatch: Dispatch) => {
 }
 
 export const newPasswordTC = (data: NewPasswordType) => async (dispatch: Dispatch) => {
-    debugger
     dispatch(setIsInitializedAC({value: false}))
     try {
         const res = await authAPI.newPassword(data)

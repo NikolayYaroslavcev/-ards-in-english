@@ -25,7 +25,6 @@ export const NewPassword = () => {
             console.log(formik.values)
             dispatch(newPasswordTC(formik.values))
             formik.resetForm()
-
         },
     })
     return (
