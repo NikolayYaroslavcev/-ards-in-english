@@ -1,7 +1,6 @@
 import React from 'react';
-import {NavLink} from "react-router-dom";
+import {NavLink} from 'react-router-dom';
 import check from '../../assets/img/Check.svg'
-import {useAppSelector} from "../../common/hooks/hooks";
 
 export const CheckEmail = () => {
 
