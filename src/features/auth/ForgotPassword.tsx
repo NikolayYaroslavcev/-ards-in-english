@@ -12,7 +12,7 @@ type FormikErrorType = {
 }
 
 export const ForgotPassword = () => {
-    const isForgot = useAppSelector(state => state.auth.isForgot)
+    const isLoggedIn = useAppSelector(state => state.auth.isLogged)
     const dispatch = useAppDispatch()
 
     const formik = useFormik({
@@ -40,8 +40,8 @@ export const ForgotPassword = () => {
         }
     })
 
-    if (isForgot) {
-        return <Navigate to={'/check'}/>
+    if (isLoggedIn) {
+        return <Navigate to={'/profile'}/>
     }
 
     return (

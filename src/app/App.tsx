@@ -39,8 +39,8 @@ function App() {
                 <Route path="/forgot" element={<ForgotPassword/>}/>
                 <Route path="/check" element={<CheckEmail/>}/>
                 <Route path="/newPassword/:token" element={<NewPassword/>}/>
-                {/*<Route path="/404" element={<div>404. Page not found</div>}/>*/}
-                {/*<Route path={'*'} element={<Navigate to="/404"/>}/>*/}
+                <Route path="/404" element={<div>404. Page not found</div>}/>
+                <Route path={'*'} element={<Navigate to="/404"/>}/>
             </Routes>
         </div>
     );

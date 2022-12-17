@@ -41,7 +41,7 @@ export const Logging = () => {
     if (isLoggedIn) {
         return <Navigate to={'/profile'}/>
     }
-    console.log(formik.errors)
+
 
     return (
         <form onSubmit={formik.handleSubmit}>

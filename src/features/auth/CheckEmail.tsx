@@ -1,10 +1,13 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
+import {Navigate, NavLink} from 'react-router-dom';
 import check from '../../assets/img/Check.svg'
+import {useAppSelector} from "../../common/hooks/hooks";
 
 export const CheckEmail = () => {
-
-
+    const isLoggedIn = useAppSelector(state => state.auth.isLogged)
+    if (isLoggedIn) {
+        return <Navigate to={'/profile'}/>
+    }
     return (
         <div>
             <div>Check Email</div>
