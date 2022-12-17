@@ -1,5 +1,4 @@
 import axios, {AxiosResponse} from 'axios'
-import {logOutTC} from './auth-reducer';
 
 
 const instance = axios.create({

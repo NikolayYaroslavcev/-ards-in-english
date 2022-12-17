@@ -1,13 +1,15 @@
 import React from 'react';
-import {useParams} from "react-router-dom";
+import {Navigate, useParams} from "react-router-dom";
 import {useFormik} from "formik";
 import {newPasswordTC} from "./auth-reducer";
 import {FormikErrorType} from "./Logging";
-import {useAppDispatch} from "../../common/hooks/hooks";
+import {useAppDispatch, useAppSelector} from "../../common/hooks/hooks";
 
 export const NewPassword = () => {
     const dispatch = useAppDispatch()
     const some = useParams<"token">()
+    const isNewPassword = useAppSelector(state => state.auth.isNewPassword)
+
 
     const formik = useFormik({
         initialValues: {
@@ -22,11 +24,15 @@ export const NewPassword = () => {
             return errors
         },
         onSubmit: values => {
-            console.log(formik.values)
             dispatch(newPasswordTC(formik.values))
             formik.resetForm()
         },
     })
+
+
+    if (isNewPassword) {
+        return <Navigate to={'/login'}/>
+    }
     return (
         <div>
             <div></div>

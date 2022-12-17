@@ -8,7 +8,8 @@ import {setUserDataValueAC} from "../profile/profile-reducer";
 const initialState = {
     isRegisterdIn: false,
     isLogged: false,
-    isForgot: false
+    isForgot: false,
+    isNewPassword: false
 }
 
 
@@ -24,6 +25,9 @@ const slice = createSlice({
         },
         setForgotAC(state, action: PayloadAction<{ value: boolean }>) {
             state.isForgot = action.payload.value
+        },
+        setNewPasswordAC(state, action: PayloadAction<{ value: boolean }>) {
+            state.isNewPassword = action.payload.value
         }
     }
 })
@@ -129,7 +133,8 @@ export const newPasswordTC = (data: NewPasswordType) => async (dispatch: Dispatc
     dispatch(setIsInitializedAC({value: false}))
     try {
         const res = await authAPI.newPassword(data)
-        dispatch(setForgotAC({value: true}))
+        dispatch(setNewPasswordAC({value: true}))
+
         console.log(res)
 
     } catch (e) {
@@ -148,9 +153,7 @@ export const newNameTC = (data: NewNaneType) => async (dispatch: Dispatch) => {
     dispatch(setIsInitializedAC({value: false}))
     try {
         const res = await authAPI.newName(data)
-        console.log(res)
         dispatch(setUserDataValueAC(res.data.updatedUser))
-        // console.log(res)
     } catch (e) {
         const err = e as Error | AxiosError<{ error: string }>
         if (axios.isAxiosError(err)) {
@@ -172,7 +175,7 @@ type ErrorResType = {
 }
 
 export const authReducer = slice.reducer
-export const {setIsRegisterdInAC, setIsLoggedInAC, setForgotAC} = slice.actions
+export const {setIsRegisterdInAC, setIsLoggedInAC, setForgotAC, setNewPasswordAC} = slice.actions
 
 
 

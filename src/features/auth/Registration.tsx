@@ -12,6 +12,7 @@ type FormikErrorType = {
 }
 export const Registration = () => {
     const isRegisterdIn = useAppSelector(state => state.auth.isRegisterdIn)
+    const isLoggedIn = useAppSelector(state => state.auth.isLogged)
     const dispatch = useAppDispatch()
 
     const formik = useFormik({
@@ -42,7 +43,7 @@ export const Registration = () => {
         }
     })
 
-    if (isRegisterdIn) {
+    if (isRegisterdIn || isLoggedIn) {
         return <Navigate to={'/login'}/>
     }
 

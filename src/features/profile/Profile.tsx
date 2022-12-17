@@ -6,7 +6,7 @@ import {logOutTC, newNameTC} from '../auth/auth-reducer';
 import {RegisterResType} from "../auth/auth-api";
 
 export const Profile = () => {
-    const [value, setValue]= useState<string>("")
+    const [value, setValue] = useState<string>("")
     const isLoggedIn = useAppSelector(state => state.auth.isLogged)
     const userData = useAppSelector<RegisterResType>(state => state.profile)
     const dispatch = useAppDispatch()
@@ -19,14 +19,14 @@ export const Profile = () => {
         return <Navigate to={'/login'}/>
     }
 
-const onChangeHandler =(e:ChangeEvent<HTMLInputElement>)=> {
+    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setValue(e.currentTarget.value)
-}
-    const onClickHandler = ()=> {
-        dispatch(newNameTC({name:value}))
+    }
+    const onClickHandler = () => {
+        dispatch(newNameTC({name: value}))
     }
 
-       return (
+    return (
         <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
             <NavLink to="/">Back to Packs List</NavLink>
             <h3>Personal Information</h3>
@@ -44,7 +44,8 @@ const onChangeHandler =(e:ChangeEvent<HTMLInputElement>)=> {
                 {userData.email}
             </div>
             <button onClick={onClickLogOut}>Log out</button>
-            <input value={value} onChange={onChangeHandler} type="text"/> <button onClick={onClickHandler}>+</button>
+            <input value={value} onChange={onChangeHandler} type="text"/>
+            <button onClick={onClickHandler}>+</button>
         </div>
     );
 };

@@ -40,9 +40,9 @@ export const ForgotPassword = () => {
         }
     })
 
-    // if (!isForgot) {
-    //     return <Navigate to={'/check'}/>
-    // }
+    if (isForgot) {
+        return <Navigate to={'/check'}/>
+    }
 
     return (
         <form onSubmit={formik.handleSubmit}>

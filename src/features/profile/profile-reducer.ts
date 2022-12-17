@@ -20,9 +20,8 @@ const slice = createSlice({
     name: 'profile',
     initialState: initialState,
     reducers: {
-        setUserDataValueAC(state, action: PayloadAction<{ data: RegisterResType }>) {
+        setUserDataValueAC(state, action: PayloadAction<{}>) {
             return {...state, ...action.payload}
-            //  state.userData = {...action.payload}
         }
     }
 })
@@ -32,19 +31,5 @@ const slice = createSlice({
 
 type InitialStateType = RegisterResType
 
-// export type UserDataType = {
-//     created: string,
-//     email: string,
-//     isAdmin: boolean
-//     name: string,
-//     publicCardPacksCount: number,
-//     rememberMe: boolean,
-//     token: string,
-//     tokenDeathTime: number,
-//     updated: string,
-//     verified: boolean,
-//     __v: number,
-//     _id: string,
-// }
 export const profileReducer = slice.reducer
 export const {setUserDataValueAC} = slice.actions
