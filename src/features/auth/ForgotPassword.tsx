@@ -3,6 +3,7 @@ import {Navigate, NavLink} from 'react-router-dom';
 import {forgotTC} from './auth-reducer';
 import {useAppDispatch, useAppSelector} from '../../common/hooks/hooks';
 import {useFormik} from 'formik';
+import {isLoggedSelector} from "./authSelectors";
 
 
 type FormikErrorType = {
@@ -12,7 +13,7 @@ type FormikErrorType = {
 }
 
 export const ForgotPassword = () => {
-    const isLoggedIn = useAppSelector(state => state.auth.isLogged)
+    const isLoggedIn = useAppSelector(isLoggedSelector)
     const dispatch = useAppDispatch()
 
     const formik = useFormik({

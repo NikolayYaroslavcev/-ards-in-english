@@ -1,38 +1,39 @@
 import axios, {AxiosResponse} from 'axios'
 
-
-const instance = axios.create({
-    baseURL: 'https://neko-back.herokuapp.com/2.0/',
+export const instance = axios.create({
+    // baseURL: process.env.REACT_APP_BACK_URL || 'http://localhost:7542/2.0/',
+    baseURL:
+        process.env.NODE_ENV === 'development'
+            ? 'http://localhost:7542/2.0/'
+            : 'https://neko-back.herokuapp.com/2.0/',
     withCredentials: true,
 })
 
-
 export const authAPI = {
     register(data: RegisterType) {
-        return instance.post<RegisterType, AxiosResponse<ResponseType>>('auth/register', data)
+        return instance.post<'', AxiosResponse<ResponseType>, RegisterType>('auth/register', data)
     },
     me() {
-        return instance.post<AxiosResponse<RegisterResType>>(`auth/me`);
+        return instance.post<RegisterResType>(`auth/me`);
     },
     logOut() {
-        return instance.delete<AxiosResponse<MeResponse>>(`auth/me`);
+        return instance.delete<MeResponse>(`auth/me`);
     },
     login(data: LoginType) {
-        return instance.post<LoginType, AxiosResponse<LoginResType>>(`/auth/login`, data);
+        return instance.post<'', AxiosResponse<LoginResType>, LoginType>(`/auth/login`, data);
     },
     forgot(data: ForgotType) {
-        return instance.post<ForgotType, AxiosResponse<ResponseType>>(`/auth/forgot`, data)
+        return instance.post<'', AxiosResponse<ResponseType>, ForgotType>(`/auth/forgot`, data)
     },
     newPassword(data: NewPasswordType) {
-        return instance.post<NewPasswordType, AxiosResponse<ResponseNewPasswordType>>(`/auth/set-new-password`, data)
+        return instance.post<'', AxiosResponse<ResponseNewPasswordType>, NewPasswordType>(`/auth/set-new-password`, data)
     },
     newName(data: NewNaneType) {
-        return instance.put<NewNaneType, AxiosResponse<ResponseNewNaneType>>(`/auth/me`, data)
+        return instance.put<'', AxiosResponse<ResponseNewNaneType>, NewNaneType>(`/auth/me`, data)
     }
 }
 
 /// types
-
 export type NewNaneType = {
     name: string
     avatar?: string
@@ -75,19 +76,22 @@ type ResponseType = {
     error?: {};
 }
 export type RegisterResType = {
-    created: string,
-    email: string,
+    avatar: string | null
+    created: string
+    email: string
     isAdmin: boolean
-    name: string,
-    publicCardPacksCount: number,
-    rememberMe: boolean,
-    token: string,
-    tokenDeathTime: number,
-    updated: string,
-    verified: boolean,
-    __v: number,
-    _id: string,
+    name: string
+    publicCardPacksCount: number
+    rememberMe: boolean
+    token: string
+    tokenDeathTime: number
+    updated: string
+    verified: boolean
+    __v: number
+    _id: string
 }
+
+export type ProfileType = Pick<RegisterResType, 'name' | 'email' | 'avatar'>
 
 export type LoginType = {
     email: string

@@ -3,6 +3,7 @@ import {useAppDispatch, useAppSelector} from '../../common/hooks/hooks';
 import {useFormik} from 'formik';
 import {loginTC} from './auth-reducer';
 import {Navigate, NavLink} from 'react-router-dom';
+import {isLoggedSelector} from "./authSelectors";
 
 
 export type FormikErrorType = {
@@ -14,7 +15,7 @@ export type FormikErrorType = {
 
 export const Logging = () => {
     const dispatch = useAppDispatch()
-    const isLoggedIn = useAppSelector(state => state.auth.isLogged)
+    const isLoggedIn = useAppSelector(isLoggedSelector)
 
     const formik = useFormik({
         initialValues: {
@@ -35,7 +36,6 @@ export const Logging = () => {
         },
         onSubmit: values => {
             dispatch(loginTC(formik.values))
-            formik.resetForm()
         },
     })
     if (isLoggedIn) {

@@ -10,16 +10,21 @@ import {Profile} from "../features/profile/Profile";
 import {ForgotPassword} from "../features/auth/ForgotPassword";
 import {CheckEmail} from "../features/auth/CheckEmail";
 import {NewPassword} from "../features/auth/NewPassword";
+import {isInitializedSelector} from "./appSelectors";
 
 
 function App() {
 
-    const isInitialized = useAppSelector<boolean>(state => state.app.isInitialized)
+    const isInitialized = useAppSelector(isInitializedSelector)
     const dispatch = useAppDispatch()
 
     useEffect(() => {
         dispatch(meTC())
-    }, [])
+    }, [dispatch])
+
+    // useEffect(() => {
+    //     dispatch(isInitializedTC())
+    // }, [])
 
     if (!isInitialized) {
         return (

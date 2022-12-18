@@ -2,9 +2,10 @@ import React, {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from '../../common/hooks/hooks';
 import {Navigate} from 'react-router-dom';
 import {logOutTC} from "./auth-reducer";
+import {isLoggedSelector} from "./authSelectors";
 
 export const Home: React.FC = () => {
-    const isLoggedIn = useAppSelector(state => state.auth.isLogged)
+    const isLoggedIn = useAppSelector(isLoggedSelector)
     const dispatch = useAppDispatch()
     const onClickLogOut = () => {
         dispatch(logOutTC())

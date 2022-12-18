@@ -2,9 +2,10 @@ import React from 'react';
 import {Navigate, NavLink} from 'react-router-dom';
 import check from '../../assets/img/Check.svg'
 import {useAppSelector} from "../../common/hooks/hooks";
+import {isLoggedSelector} from "./authSelectors";
 
 export const CheckEmail = () => {
-    const isLoggedIn = useAppSelector(state => state.auth.isLogged)
+    const isLoggedIn = useAppSelector(isLoggedSelector)
     if (isLoggedIn) {
         return <Navigate to={'/profile'}/>
     }

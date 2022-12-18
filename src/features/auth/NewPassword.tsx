@@ -4,11 +4,12 @@ import {useFormik} from "formik";
 import {newPasswordTC} from "./auth-reducer";
 import {FormikErrorType} from "./Logging";
 import {useAppDispatch, useAppSelector} from "../../common/hooks/hooks";
+import {isNewPasswordSelector} from "./authSelectors";
 
 export const NewPassword = () => {
     const dispatch = useAppDispatch()
     const some = useParams<"token">()
-    const isNewPassword = useAppSelector(state => state.auth.isNewPassword)
+    const isNewPassword = useAppSelector(isNewPasswordSelector)
 
 
     const formik = useFormik({

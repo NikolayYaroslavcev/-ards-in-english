@@ -3,12 +3,12 @@ import editImg from '../../assets/img/Edit.svg'
 import {Navigate, NavLink} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '../../common/hooks/hooks';
 import {logOutTC, newNameTC} from '../auth/auth-reducer';
-import {RegisterResType} from '../auth/auth-api';
+import {isLoggedSelector} from "../auth/authSelectors";
 
 export const Profile = () => {
 
-    const isLoggedIn = useAppSelector(state => state.auth.isLogged)
-    const userData = useAppSelector<RegisterResType>(state => state.profile)
+    const isLoggedIn = useAppSelector(isLoggedSelector)
+    const userData = useAppSelector(state => state.profile)
     const dispatch = useAppDispatch()
 
     const [edit, setEdit] = useState<boolean>(false)

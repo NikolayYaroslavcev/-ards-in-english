@@ -1,14 +1,14 @@
 import {createSlice, Dispatch, PayloadAction} from "@reduxjs/toolkit";
-import {authAPI, ForgotType, LoginType, NewNaneType, NewPasswordType, RegisterType} from './auth-api';
+import {authAPI, ForgotType, LoginType, NewNaneType, NewPasswordType, ProfileType, RegisterType} from './auth-api';
 import axios, {AxiosError} from "axios";
 import {setIsInitializedAC} from "../../app/app-reducer";
 import {setUserDataValueAC} from "../profile/profile-reducer";
+import {AppThunk} from "../../app/store";
 
 
 const initialState = {
     isRegisterdIn: false,
     isLogged: false,
-    isForgot: false,
     isNewPassword: false
 }
 
@@ -23,9 +23,9 @@ const slice = createSlice({
         setIsLoggedInAC(state, action: PayloadAction<{ value: boolean }>) {
             state.isLogged = action.payload.value
         },
-        setForgotAC(state, action: PayloadAction<{ value: boolean }>) {
-            state.isForgot = action.payload.value
-        },
+        // setForgotAC(state, action: PayloadAction<{ value: boolean }>) {
+        //     state.isForgot = action.payload.value
+        // },
         setNewPasswordAC(state, action: PayloadAction<{ value: boolean }>) {
             state.isNewPassword = action.payload.value
         }
@@ -33,7 +33,7 @@ const slice = createSlice({
 })
 
 
-export const registerTC = (data: RegisterType) => async (dispatch: Dispatch) => {
+export const registerTC = (data: RegisterType): AppThunk => async (dispatch) => {
 
     try {
         const res = await authAPI.register(data)
@@ -55,7 +55,7 @@ export const registerTC = (data: RegisterType) => async (dispatch: Dispatch) => 
         }
     }
 }
-export const loginTC = (data: LoginType) => async (dispatch: Dispatch) => {
+export const loginTC = (data: LoginType): AppThunk => async (dispatch) => {
     try {
         const res = await authAPI.login(data)
         dispatch(setIsLoggedInAC({value: true}))
@@ -65,7 +65,7 @@ export const loginTC = (data: LoginType) => async (dispatch: Dispatch) => {
         const err = e as Error | AxiosError<{ error: string }>
         if (axios.isAxiosError(err)) {
             const error = err.response?.data ? err.response.data.error : err.message
-            console.log(error)
+            alert(error)
         } else {
             // dispatch(setAppErrorAC(`Native error ${err.message}`))
         }
@@ -73,13 +73,17 @@ export const loginTC = (data: LoginType) => async (dispatch: Dispatch) => {
         console.log('finally LOGIN');
     }
 }
-export const meTC = () => async (dispatch: Dispatch) => {
+export const meTC = (): AppThunk => async (dispatch) => {
     try {
         const res = await authAPI.me()
+        const {name, email, avatar} = res.data
+        const model: ProfileType = {
+            name: name,
+            avatar: avatar,
+            email: email,
+        }
         dispatch(setIsLoggedInAC({value: true}))
-        dispatch(setUserDataValueAC(res.data))
-        //console.log(res)
-
+        dispatch(setUserDataValueAC(model))
     } catch (e) {
         const err = e as Error | AxiosError<{ error: string }>
         if (axios.isAxiosError(err)) {
@@ -92,7 +96,7 @@ export const meTC = () => async (dispatch: Dispatch) => {
         dispatch(setIsInitializedAC({value: true}))
     }
 }
-export const logOutTC = () => async (dispatch: Dispatch) => {
+export const logOutTC = (): AppThunk => async (dispatch) => {
     try {
         const res = await authAPI.logOut()
         dispatch(setIsLoggedInAC({value: false}))
@@ -110,10 +114,10 @@ export const logOutTC = () => async (dispatch: Dispatch) => {
         dispatch(setIsInitializedAC({value: true}))
     }
 }
-export const forgotTC = (data: ForgotType) => async (dispatch: Dispatch) => {
+export const forgotTC = (data: ForgotType): AppThunk => async (dispatch) => {
     try {
         const res = await authAPI.forgot(data)
-        dispatch(setForgotAC({value: true}))
+      //  dispatch(setForgotAC({value: true}))
         console.log(res)
 
     } catch (e) {
@@ -129,7 +133,7 @@ export const forgotTC = (data: ForgotType) => async (dispatch: Dispatch) => {
     }
 }
 
-export const newPasswordTC = (data: NewPasswordType) => async (dispatch: Dispatch) => {
+export const newPasswordTC = (data: NewPasswordType): AppThunk => async (dispatch) => {
     dispatch(setIsInitializedAC({value: false}))
     try {
         const res = await authAPI.newPassword(data)
@@ -149,7 +153,7 @@ export const newPasswordTC = (data: NewPasswordType) => async (dispatch: Dispatc
         dispatch(setIsInitializedAC({value: true}))
     }
 }
-export const newNameTC = (data: NewNaneType) => async (dispatch: Dispatch) => {
+export const newNameTC = (data: NewNaneType): AppThunk => async (dispatch) => {
     dispatch(setIsInitializedAC({value: false}))
     try {
         const res = await authAPI.newName(data)
@@ -175,7 +179,7 @@ type ErrorResType = {
 }
 
 export const authReducer = slice.reducer
-export const {setIsRegisterdInAC, setIsLoggedInAC, setForgotAC, setNewPasswordAC} = slice.actions
+export const {setIsRegisterdInAC, setIsLoggedInAC, setNewPasswordAC} = slice.actions
 
 
 

@@ -1,19 +1,10 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {RegisterResType} from "../auth/auth-api";
+import {ProfileType, RegisterResType} from "../auth/auth-api";
 
-const initialState: InitialStateType = {
-    _id: '',
+const initialState: ProfileType  = {
     email: '',
-    rememberMe: false,
-    isAdmin: false,
     name: '',
-    verified: false,
-    publicCardPacksCount: 0,
-    created: '',
-    updated: '',
-    __v: 0,
-    token: '',
-    tokenDeathTime: 0,
+    avatar: ''
 }
 
 const slice = createSlice({
@@ -26,10 +17,9 @@ const slice = createSlice({
     }
 })
 
-
 // types
 
-type InitialStateType = RegisterResType
+// type InitialStateType = RegisterResType
 
 export const profileReducer = slice.reducer
 export const {setUserDataValueAC} = slice.actions
