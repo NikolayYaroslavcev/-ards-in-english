@@ -3,6 +3,8 @@ import {useAppDispatch, useAppSelector} from '../../common/hooks/hooks';
 import {useFormik} from 'formik';
 import {loginTC} from './auth-reducer';
 import {Navigate, NavLink} from 'react-router-dom';
+import {Button} from '../../common/components/style/Button/Button';
+import {StyleTitle} from '../../common/components/style/сartStyled';
 
 
 export type FormikErrorType = {
@@ -46,7 +48,8 @@ export const Logging = () => {
     return (
         <form onSubmit={formik.handleSubmit}>
             <div>
-                <div>Sign in</div>
+                {/*<div>Sign in</div>*/}
+                <StyleTitle>Sign in</StyleTitle>
                 <input type="email"
                        {...formik.getFieldProps('email')}
                        onBlur={formik.handleBlur}
@@ -62,7 +65,9 @@ export const Logging = () => {
                        checked={formik.values.rememberMe}
                 /> <span>Remember me</span>
                 <br/>
-                <button type={'submit'}>Sign In</button>
+                {/*<button type={'submit'}>Sign In</button>*/}
+                <Button type={"submit"} margin={"20px 0 0 0"}>Sign In</Button>
+
                 <NavLink to="/forgot">Forgot Password?</NavLink>
                 <div>Already have an account?</div>
                 <NavLink to="/registration">Sign Up</NavLink>
