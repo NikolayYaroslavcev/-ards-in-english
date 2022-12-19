@@ -9,7 +9,6 @@ import {Profile} from '../features/profile/Profile';
 import {ForgotPassword} from '../features/auth/ForgotPassword';
 import {CheckEmail} from '../features/auth/CheckEmail';
 import {NewPassword} from '../features/auth/NewPassword';
-import {StyledWrapper} from '../common/components/style/сartStyled';
 
 
 function App() {
@@ -31,19 +30,17 @@ function App() {
     }
 
     return (
-            <StyledWrapper>
-                <Routes>
-                    <Route path="/" element={<Home/>}/>
-                    <Route path="/login" element={<Logging/>}/>
-                    <Route path="/registration" element={<Registration/>}/>
-                    <Route path="/profile" element={<Profile/>}/>
-                    <Route path="/forgot" element={<ForgotPassword/>}/>
-                    <Route path="/check" element={<CheckEmail/>}/>
-                    <Route path="/newPassword/:token" element={<NewPassword/>}/>
-                    <Route path="/404" element={<div>404. Page not found</div>}/>
-                    <Route path={'*'} element={<Navigate to="/404"/>}/>
-                </Routes>
-            </StyledWrapper>
+        <Routes>
+            <Route path="/" element={<Home/>}/>
+            <Route path="/login" element={<Logging/>}/>
+            <Route path="/registration" element={<Registration/>}/>
+            <Route path="/profile" element={<Profile/>}/>
+            <Route path="/forgot" element={<ForgotPassword/>}/>
+            <Route path="/check" element={<CheckEmail/>}/>
+            <Route path="/newPassword/:token" element={<NewPassword/>}/>
+            <Route path="/404" element={<div>404. Page not found</div>}/>
+            <Route path={'*'} element={<Navigate to="/404"/>}/>
+        </Routes>
     );
 }
 
