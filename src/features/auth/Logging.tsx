@@ -4,7 +4,7 @@ import {useFormik} from 'formik';
 import {loginTC} from './auth-reducer';
 import {Navigate, NavLink} from 'react-router-dom';
 import {Button} from '../../common/components/style/Button/Button';
-import { Login, LoginTitle, StyledContainer } from '../../common/components/style/сartStyled';
+import { Login, LoginTitle, StyledContainer, StyleInputWpap, StyleLabel } from '../../common/components/style/сartStyled';
 
 
 export type FormikErrorType = {
@@ -46,42 +46,42 @@ export const Logging = () => {
 
 
     return (
-        <StyledContainer>
             <Login>
                 <form onSubmit={formik.handleSubmit}>
-                    <div>
-                        {/*<div>Sign in</div>*/}
                         <LoginTitle>Sign in</LoginTitle>
-                        <input type="email"
-                               {...formik.getFieldProps('email')}
-                               onBlur={formik.handleBlur}
-                               onChange={formik.handleChange}
-                        />
-                        <input type="password"
+                        <StyleInputWpap>
+                            <input type="email" 
+                                {...formik.getFieldProps('email')}
+                                onBlur={formik.handleBlur}
+                                onChange={formik.handleChange}
+                            />
+                            <label>Email</label>
+                        </StyleInputWpap>
+                        <StyleInputWpap>
+                            <input type="password" 
                                {...formik.getFieldProps('password')}
                                onBlur={formik.handleBlur}
                                onChange={formik.handleChange}
-                        />
+                            />
+                            <label>password</label>
+                        </StyleInputWpap>
+                       
                         <input type="checkbox"
                                {...formik.getFieldProps('rememberMe')}
                                checked={formik.values.rememberMe}
                         /> <span>Remember me</span>
-
+                        <input className='field' type="text" name="" id="1" />
+                        <label htmlFor="1">qwe</label>
                         {/*<button type={'submit'}>Sign In</button>*/}
                         <Button type={"submit"} margin={"20px 0 0 0"}>Sign In</Button>
 
                         <NavLink to="/forgot">Forgot Password?</NavLink>
                         <div>Already have an account?</div>
                         <NavLink to="/registration">Sign Up</NavLink>
-                    </div>
+                    
                 </form>
+                <div>sdg</div>
             </Login>
-
-
-
-        </StyledContainer>
-
-
     );
 };
 

@@ -9,6 +9,7 @@ import {Profile} from '../features/profile/Profile';
 import {ForgotPassword} from '../features/auth/ForgotPassword';
 import {CheckEmail} from '../features/auth/CheckEmail';
 import {NewPassword} from '../features/auth/NewPassword';
+import { StyledContainer } from '../common/components/style/сartStyled';
 
 
 function App() {
