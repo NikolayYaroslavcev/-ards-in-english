@@ -1,17 +1,17 @@
 import React from 'react';
-import {Container, HeaderBlock, HeaderLgo, HeaderWrap} from "../style/style";
+import { StyledContainer , StyledHeader, HeaderBlock, HeaderLogo } from '../style/сartStyled';
 import {StyledButton} from "../style/Button/StyledButton";
 
 export const Header = () => {
     return (
-        <HeaderWrap>
-            <Container>
+        <StyledHeader>
+            <StyledContainer>
                 <HeaderBlock>
-                    <HeaderLgo>LOGO</HeaderLgo>
+                    <HeaderLogo>LOGO</HeaderLogo>
                     <StyledButton>Sign in</StyledButton>
                 </HeaderBlock>
-            </Container>
-        </HeaderWrap>
+            </StyledContainer>
+        </StyledHeader>
     );
 };
 

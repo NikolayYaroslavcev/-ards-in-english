@@ -1,11 +1,11 @@
 import React from 'react';
-import {Container} from "../style/style";
+import { StyledContainer } from '../style/сartStyled';
 
 export const Footer = () => {
     return (
-        <Container>
+        <StyledContainer>
             FOOTER
-        </Container>
+        </StyledContainer>
     );
 };
 

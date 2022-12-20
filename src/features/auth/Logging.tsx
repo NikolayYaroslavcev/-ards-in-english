@@ -4,8 +4,7 @@ import {useFormik} from 'formik';
 import {loginTC} from './auth-reducer';
 import {Navigate, NavLink} from 'react-router-dom';
 import {Button} from '../../common/components/style/Button/Button';
-import {StyleTitle} from '../../common/components/style/сartStyled';
-import {Container, Login} from "../../common/components/style/style";
+import { Login, LoginTitle, StyledContainer } from '../../common/components/style/сartStyled';
 
 
 export type FormikErrorType = {
@@ -47,12 +46,12 @@ export const Logging = () => {
 
 
     return (
-        <Container>
+        <StyledContainer>
             <Login>
                 <form onSubmit={formik.handleSubmit}>
                     <div>
                         {/*<div>Sign in</div>*/}
-                        <StyleTitle>Sign in</StyleTitle>
+                        <LoginTitle>Sign in</LoginTitle>
                         <input type="email"
                                {...formik.getFieldProps('email')}
                                onBlur={formik.handleBlur}
@@ -80,7 +79,7 @@ export const Logging = () => {
 
 
 
-        </Container>
+        </StyledContainer>
 
 
     );
