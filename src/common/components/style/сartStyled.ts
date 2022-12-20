@@ -29,13 +29,17 @@ display: flex;
 flex-direction: column;
 `
 export const LoginTitle = styled.div`
-font-size: 30px;
+  font-size: 30px;
   color: red;
+  
 `
 
 
 export const HeaderBlock = styled.div`
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
 `
 export const HeaderLogo = styled.p`
   font-size: 30px;
