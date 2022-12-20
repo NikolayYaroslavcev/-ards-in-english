@@ -4,7 +4,8 @@ import {useFormik} from 'formik';
 import {loginTC} from './auth-reducer';
 import {Navigate, NavLink} from 'react-router-dom';
 import {Button} from '../../common/components/style/Button/Button';
-import { Login, LoginTitle, StyledContainer, StyleInputWpap, StyleLabel } from '../../common/components/style/сartStyled';
+import {Login, LoginTitle, StyledContainer, StyleInputWpap, StyleLabel} from '../../common/components/style/сartStyled';
+import {CastomInput} from "../../common/components/CastomInput";
 
 
 export type FormikErrorType = {
@@ -36,7 +37,8 @@ export const Logging = () => {
             return errors
         },
         onSubmit: values => {
-            dispatch(loginTC(formik.values))
+            console.log(formik.values)
+            //dispatch(loginTC(formik.values))
             formik.resetForm()
         },
     })
@@ -46,42 +48,55 @@ export const Logging = () => {
 
 
     return (
-            <Login>
-                <form onSubmit={formik.handleSubmit}>
-                        <LoginTitle>Sign in</LoginTitle>
-                        <StyleInputWpap>
-                            <input type="email" 
-                                {...formik.getFieldProps('email')}
-                                onBlur={formik.handleBlur}
-                                onChange={formik.handleChange}
-                            />
-                            <label>Email</label>
-                        </StyleInputWpap>
-                        <StyleInputWpap>
-                            <input type="password" 
-                               {...formik.getFieldProps('password')}
-                               onBlur={formik.handleBlur}
-                               onChange={formik.handleChange}
-                            />
-                            <label>password</label>
-                        </StyleInputWpap>
-                       
-                        <input type="checkbox"
-                               {...formik.getFieldProps('rememberMe')}
-                               checked={formik.values.rememberMe}
-                        /> <span>Remember me</span>
-                        <input className='field' type="text" name="" id="1" />
-                        <label htmlFor="1">qwe</label>
-                        {/*<button type={'submit'}>Sign In</button>*/}
-                        <Button type={"submit"} margin={"20px 0 0 0"}>Sign In</Button>
+        <Login>
+            <form onSubmit={formik.handleSubmit}>
+                <LoginTitle>Sign in</LoginTitle>
+                <CastomInput
+                    valueEmail={formik.values.email}
+                    onChange={formik.handleChange}
+                />
+                <input type="password"
+                       {...formik.getFieldProps('password')}
+                       onBlur={formik.handleBlur}
+                       onChange={formik.handleChange}
+                />
 
-                        <NavLink to="/forgot">Forgot Password?</NavLink>
-                        <div>Already have an account?</div>
-                        <NavLink to="/registration">Sign Up</NavLink>
-                    
-                </form>
-                <div>sdg</div>
-            </Login>
+
+                {/*<StyleInputWpap>*/}
+
+                {/*    <input type="email" */}
+                {/*        {...formik.getFieldProps('email')}*/}
+                {/*        onBlur={formik.handleBlur}*/}
+                {/*        onChange={formik.handleChange}*/}
+                {/*    />*/}
+                {/*    <label>Email</label>*/}
+                {/*</StyleInputWpap>*/}
+                {/*<StyleInputWpap>*/}
+                {/*    <input type="password" */}
+                {/*       {...formik.getFieldProps('password')}*/}
+                {/*       onBlur={formik.handleBlur}*/}
+                {/*       onChange={formik.handleChange}*/}
+                {/*    />*/}
+                {/*    <label>password</label>*/}
+                {/*</StyleInputWpap>*/}
+
+                <input type="checkbox"
+                       {...formik.getFieldProps('rememberMe')}
+                       checked={formik.values.rememberMe}
+                /> <span>Remember me</span>
+                <input className='field' type="text" name="" id="1"/>
+                <label htmlFor="1">qwe</label>
+                <button type={'submit'}>Sign In</button>
+                <Button type={"submit"} margin={"20px 0 0 0"}>Sign In</Button>
+
+                <NavLink to="/forgot">Forgot Password?</NavLink>
+                <div>Already have an account?</div>
+                <NavLink to="/registration">Sign Up</NavLink>
+
+            </form>
+            <div>sdg</div>
+
+        </Login>
     );
 };
 
