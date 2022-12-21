@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './app/App';
 import {BrowserRouter} from 'react-router-dom';
-import reportWebVitals from './reportWebVitals';
 import {Provider} from "react-redux";
 import {store} from "./app/store";
+import {Header} from "./common/components/header/Header";
+import {Main} from "./common/components/main/Main";
+import {Footer} from "./common/components/footer/Footer";
+import {CastomInput} from "./common/components/CastomInput";
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
@@ -13,11 +15,12 @@ const root = ReactDOM.createRoot(
 root.render(
     <Provider store={store}>
         <BrowserRouter>
-            <App/>
+            <Header/>
+            <Main/>
+
+            <Footer/>
         </BrowserRouter>
     </Provider>
 );
 
-
-//   ВАРИАНТ 3
 
