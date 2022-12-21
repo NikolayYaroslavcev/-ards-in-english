@@ -10,12 +10,14 @@ import {ForgotPassword} from '../features/auth/ForgotPassword';
 import {CheckEmail} from '../features/auth/CheckEmail';
 import {NewPassword} from '../features/auth/NewPassword';
 import {StyledWrapper} from '../common/components/style/сartStyled';
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function App() {
-
     const isInitialized = useAppSelector<boolean>(state => state.app.isInitialized)
     const dispatch = useAppDispatch()
+
 
 
     useEffect(() => {
@@ -43,6 +45,7 @@ function App() {
                     <Route path="/404" element={<div>404. Page not found</div>}/>
                     <Route path={'*'} element={<Navigate to="/404"/>}/>
                 </Routes>
+                <ToastContainer />
             </StyledWrapper>
     );
 }

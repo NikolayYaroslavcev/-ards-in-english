@@ -33,6 +33,7 @@ export const NewPassword = () => {
     if (isNewPassword) {
         return <Navigate to={'/login'}/>
     }
+
     return (
         <div>
             <div></div>
