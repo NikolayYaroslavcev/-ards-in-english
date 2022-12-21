@@ -3,7 +3,17 @@ import {useAppDispatch, useAppSelector} from '../../common/hooks/hooks';
 import {useFormik} from 'formik';
 import {loginTC} from './auth-reducer';
 import {Navigate, NavLink} from 'react-router-dom';
-import {isLoggedSelector} from "./authSelectors";
+import {Button} from '../../common/components/style/Button/Button';
+import {
+    StyledForgotPassword,
+    StyledInputPosition,
+    StyledRememberMe,
+    StyledSignUpBlock,
+    StyledWrapperForm,
+    StyledWrapperInput,
+    StyleTitle
+} from '../../common/components/style/сartStyled';
+import {Input} from '../../common/components/style/Input/Input';
 
 
 export type FormikErrorType = {
@@ -15,7 +25,7 @@ export type FormikErrorType = {
 
 export const Logging = () => {
     const dispatch = useAppDispatch()
-    const isLoggedIn = useAppSelector(isLoggedSelector)
+    const isLoggedIn = useAppSelector(state => state.auth.isLogged)
 
     const formik = useFormik({
         initialValues: {
@@ -36,6 +46,7 @@ export const Logging = () => {
         },
         onSubmit: values => {
             dispatch(loginTC(formik.values))
+            formik.resetForm()
         },
     })
     if (isLoggedIn) {
@@ -45,29 +56,74 @@ export const Logging = () => {
 
     return (
         <form onSubmit={formik.handleSubmit}>
-            <div>
-                <div>Sign in</div>
-                <input type="email"
-                       {...formik.getFieldProps('email')}
-                       onBlur={formik.handleBlur}
-                       onChange={formik.handleChange}
-                /> <br/><br/>
-                <input type="password"
-                       {...formik.getFieldProps('password')}
-                       onBlur={formik.handleBlur}
-                       onChange={formik.handleChange}
-                />
-                <input type="checkbox"
-                       {...formik.getFieldProps('rememberMe')}
-                       checked={formik.values.rememberMe}
-                /> <span>Remember me</span>
-                <br/>
-                <button type={'submit'}>Sign In</button>
-                <NavLink to="/forgot">Forgot Password?</NavLink>
-                <div>Already have an account?</div>
-                <NavLink to="/registration">Sign Up</NavLink>
-            </div>
+            <StyledWrapperForm>
+                <StyleTitle>Sign in</StyleTitle>
+                <StyledWrapperInput>
+                    <StyledInputPosition>
+                      <label>Email</label>
+                        <Input type={'email'}
+                               {...formik.getFieldProps('email')}
+                               onChange={formik.handleChange}
+                        />
+                    </StyledInputPosition>
+                    <StyledInputPosition>
+                       <label>Password</label>
+                        <Input type={'password'}
+                               {...formik.getFieldProps('password')}
+                               onChange={formik.handleChange}
+
+                        />
+                    </StyledInputPosition>
+                </StyledWrapperInput>
+                <StyledRememberMe>
+                    <input type="checkbox"
+                           {...formik.getFieldProps('rememberMe')}
+                           checked={formik.values.rememberMe}/> <span>Remember me</span>
+                </StyledRememberMe>
+                <StyledForgotPassword>
+                    <NavLink to="/forgot">Forgot Password?</NavLink>
+                </StyledForgotPassword>
+                <Button type={'submit'}>Sign In</Button>
+                <StyledSignUpBlock>
+                    <div>Already have an account?</div>
+                    <NavLink to="/registration">Sign Up</NavLink>
+                </StyledSignUpBlock>
+            </StyledWrapperForm>
         </form>
     );
 };
 
+{/*<input type="password"*/
+}
+{/*       {...formik.getFieldProps('password')}*/
+}
+{/*       onBlur={formik.handleBlur}*/
+}
+{/*       onChange={formik.handleChange}*/
+}
+{/*       placeholder="Enter your password"*/
+}
+{/*/>*/
+}
+
+{/*<input type="email"*/
+}
+{/*       {...formik.getFieldProps('email')}*/
+}
+{/*       onBlur={formik.handleBlur}*/
+}
+{/*       onChange={formik.handleChange}*/
+}
+{/*       placeholder="Enter your email"*/
+}
+{/*/> <br/><br/>*/
+}
+
+{/*<input type="checkbox"*/
+}
+{/*       {...formik.getFieldProps('rememberMe')}*/
+}
+{/*       checked={formik.values.rememberMe}*/
+}
+{/*/> <span>Remember me</span>*/
+}
