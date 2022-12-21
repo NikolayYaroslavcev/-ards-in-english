@@ -15,6 +15,7 @@ type StyledButton = {
     maxWidth: string,
     margin: string
     padding: string
+    width:string
 }
 
 

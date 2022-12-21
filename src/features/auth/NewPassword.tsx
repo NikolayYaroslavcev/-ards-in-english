@@ -2,9 +2,9 @@ import React from 'react';
 import {Navigate, useParams} from "react-router-dom";
 import {useFormik} from "formik";
 import {newPasswordTC} from "./auth-reducer";
-import {FormikErrorType} from "./Logging";
 import {useAppDispatch, useAppSelector} from "../../common/hooks/hooks";
 import {isNewPasswordSelector} from "./authSelectors";
+import {FormikErrorType} from "./Loggin";
 
 export const NewPassword = () => {
     const dispatch = useAppDispatch()

@@ -3,89 +3,30 @@ import styled from 'styled-components';
 export const StyledHeader = styled.div`
   background-color: #EBE0E9;
   box-shadow: 0px 2px 10px rgba(109, 109, 109, 0.25), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
-  min-height: 60px;
-  padding: 20px 0;
+  min-height: 30px;
   overflow: hidden;
-  position: relative;
   font-family: 'Roboto', sans-serif;
   align-items: center;
+  
 `
-
 
 export const StyledContainer = styled.div`
   max-width: 1100px;
   box-sizing: content-box;
-export const StyledWrapperForm = styled.div`
-  width: 413px;
   margin: 0 auto;
   padding: 0 15px;
 `
+
 export const MainWrap = styled.div`
-  background: linear-gradient(180deg, #E6D4DE 0%, #9890C7 100%);
-  display: flex;
+  padding: 60px 0;
   flex: 1 1 auto;
-
-  height: 552px;
-  background: #FFFFFF;
-  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1);
-  border-radius: 2px;
-  justify-content: center;
-  align-items: center;
-  padding: 33px;
+  background: linear-gradient(180deg, #E6D4DE 0%, #9890C7 100%);
 `
 
 
-export const Login = styled.div`
-display: flex;
-flex-direction: column;
- width: 420px;
- align-items: center;
-// justify-content: center;
-background: #FFFFFF;
-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1);
-border-radius: 2px;
-`
-
-// export const StyleInputWpap = styled.div`
-// position: relative;
-
-// input {
-//   height: calc(3.5rem + 2px);
-//   line-height: 1.25;
-//   padding: 1rem 0.75rem;
-//   background-color: #fff;
-//   padding-top: 1.625rem;
-//     padding-bottom: .625rem;
-
-//   &:placeholder {
-//     color: #fff;
-//   };
-
-//   &:focus:not(:placeholder-shown) {
-
-//     }
-// }
-
-// label {
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-//   height: 100%;
-//   padding: 1rem .75rem;
-//   pointer-events: none;
-//   border: 1px solid transparent;
-//   transform-origin: 0 0;
-//   transition: opacity .15s ease-in-out, transform .15s ease-in-out;
-//    opacity: .65;
-//   transform: scale(.85) translateY(-.75rem) translateX(.15rem);
-// }
-
-
-
-// `
 export const StyleInputWpap = styled.div`
 
-position: relative;
+  position: relative;
   width: 20rem;
   height: 3rem;
 
@@ -130,48 +71,33 @@ position: relative;
   }
 
   input:focus ~ input:not(:placeholder-shown) input:not(:focus) ~ label {
-  top: -0.5rem;
-  font-size: 0.8rem;
-  left: 0.8rem;
-}
-//   input:focus ~ label {
-//   top: -0.5rem;
-//   font-size: 0.8rem;
-//   left: 0.8rem;
-// }
-// input:not(:focus) ~ label {
-//   top: -0.5rem;
-//   font-size: 0.8rem;
-//   left: 0.8rem;
-// }
-  
+    top: -0.5rem;
+    font-size: 0.8rem;
+    left: 0.8rem;
+  }
 
 
 `
-export const StyleLabel = styled.label`
-  
-  
- 
+
+
+export const Form = styled.form`
+  background-color: #F9F9FE;
+  border-radius: 8px;
+  width: 413px;
+  padding: 20px;
 `
-
-
-
-export const LoginTitle = styled.div`
-  font-size: 26px;
-  color: #000000;                    
-
-`
-
 
 export const HeaderBlock = styled.div`
+  padding: 15px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
+
 `
 export const HeaderLogo = styled.p`
   font-size: 30px;
   color: red;
+`
 export const StyleTitle = styled.p`
   text-align: center;
   font-weight: 600;
@@ -180,7 +106,6 @@ export const StyleTitle = styled.p`
   color: #000000;
   margin-bottom: 41px;
 `
-
 
 export const StyledWrapperInput = styled.div`
   display: flex;
@@ -195,15 +120,20 @@ export const StyledRememberMe = styled.div`
   gap: 10px;
   padding-top: 24px;
   margin-bottom: 29px;
+  cursor: pointer;
 
-  span {
+  label {
     font-weight: 500;
     font-size: 14px;
     line-height: 17px;
     color: #000000;
+    cursor: pointer;
   }
 `
+export const imgWrapper = styled.image`
 
+
+`
 export const StyledInputPosition = styled.div`
   position: relative;
   width: 100%;
@@ -219,11 +149,18 @@ export const StyledInputPosition = styled.div`
     color: #000000;
     opacity: 0.5;
   }
+  img {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
 `
 
 export const StyledForgotPassword = styled.p`
   text-align: end;
-  margin-bottom: 66px;
+  margin-bottom: 60px;
 
   a {
     text-decoration: none;
@@ -233,6 +170,13 @@ export const StyledForgotPassword = styled.p`
     color: #000000;
   }
 
+`
+export const Login = styled.div`
+  display: flex;
+  //flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  //row-gap: 20px;
 `
 
 export const StyledSignUpBlock = styled.div`
@@ -255,8 +199,12 @@ export const StyledSignUpBlock = styled.div`
     font-size: 16px;
     line-height: 24px;
     text-decoration-line: underline;
-
+    align-self: center;
     color: #366EFF;
+
+    :hover {
+      color: #21268F
+    }
   }
 `
 

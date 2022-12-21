@@ -17,7 +17,6 @@ root.render(
         <BrowserRouter>
             <Header/>
             <Main/>
-
             <Footer/>
         </BrowserRouter>
     </Provider>
