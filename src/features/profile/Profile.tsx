@@ -48,25 +48,25 @@ export const Profile = () => {
     return (
         <div>
             <StyledNavigateProfile>
-            <NavLink to="/"><img src={arrow} alt="arrow"/>Back to Packs List</NavLink>
+                <NavLink to="/"><img src={arrow} alt="arrow"/>Back to Packs List</NavLink>
             </StyledNavigateProfile>
             <StyledWrapperProfile>
-                    <h2>Personal Information</h2>
-                    <StyledWrapperImageProfile>
-                        <img src={avatar}
-                             alt="avatar"/>
-                    </StyledWrapperImageProfile>
-                    <StyledWrapperEdit>
-                        {edit ? <input value={newValue} onChange={onChangeHandler} type="text"/> :
-                            <p>{userData.name}</p>}
-                        <div onClick={onClickHandler}>
-                            {edit ? <button onClick={onClickSaveHandler}> Save</button> :
-                                <img src={editImg} alt="editImg"/>}
-                        </div>
-                    </StyledWrapperEdit>
-                    <StyledEmailEdit>
-                        {userData.email}
-                    </StyledEmailEdit>
+                <h2>Personal Information</h2>
+                <StyledWrapperImageProfile>
+                    <img src={avatar}
+                         alt="avatar"/>
+                </StyledWrapperImageProfile>
+                <StyledWrapperEdit>
+                    {edit ? <input value={newValue} onChange={onChangeHandler} type="text"/> :
+                        <p>{userData.name}</p>}
+                    <div onClick={onClickHandler}>
+                        {edit ? <button onClick={onClickSaveHandler}> Save</button> :
+                            <img src={editImg} alt="editImg"/>}
+                    </div>
+                </StyledWrapperEdit>
+                <StyledEmailEdit>
+                    {userData.email}
+                </StyledEmailEdit>
                 <StyledButtonEdit>
                     <button onClick={onClickLogOut}><img src={logout} alt="logout"/> Log out</button>
                 </StyledButtonEdit>

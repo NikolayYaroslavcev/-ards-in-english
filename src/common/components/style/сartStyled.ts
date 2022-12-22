@@ -318,15 +318,17 @@ padding-bottom: 37px;
   }
 `
 export const StyledNavigateProfile = styled.div`
-display: flex;
+  display: flex;
   gap: 12px;
+
   img {
     padding-right: 12px;
   }
-  a{
+
+  a {
     font-weight: 400;
     font-size: 14px;
-    line-height:  171%;
+    line-height: 171%;
     display: flex;
     align-items: center;
     color: #000000;
