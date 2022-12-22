@@ -3,12 +3,23 @@ import styled from 'styled-components';
 export const StyledHeader = styled.div`
   background-color: #EBE0E9;
   box-shadow: 0px 2px 10px rgba(109, 109, 109, 0.25), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
-  min-height: 30px;
+  min-height: 60px;
   overflow: hidden;
   font-family: 'Roboto', sans-serif;
   align-items: center;
-
 `
+export const StyledHeaderAuth = styled.div`
+  display: flex;
+  column-gap: 15px;
+  align-items: center;
+  justify-content: center;
+
+  p {
+    padding: 5px;
+    border-bottom: 1px dashed #000;
+  }
+`
+
 
 export const StyledContainer = styled.div`
   max-width: 1100px;
@@ -24,60 +35,6 @@ export const MainWrap = styled.div`
 `
 
 
-export const StyleInputWpap = styled.div`
-
-  position: relative;
-  width: 20rem;
-  height: 3rem;
-
-  input {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #000000;
-    opacity: 0.2;
-    border-bottom: 2px solid #000000;
-    transition: all 0.3s;
-    font-family: inherit;
-    font-size: inherit;
-    color: black;
-    outline: none;
-    padding: 1.25rem;
-    background: none;
-
-    &:hover {
-      border-color: #000000;
-    }
-
-    /* Change border when input focus*/
-
-    &:focus {
-      border-color: #000000;
-      opacity: 0.8;
-    }
-  }
-
-  label {
-    position: absolute;
-    left: 1rem;
-    top: 0.8rem;
-    padding: 0 0.5rem;
-    color: white;
-    cursor: text;
-    transition: top 200ms ease-in, left 200ms ease-in, font-size 200ms ease-in;
-    background-color: pink;
-  }
-
-  input:focus ~ input:not(:placeholder-shown) input:not(:focus) ~ label {
-    top: -0.5rem;
-    font-size: 0.8rem;
-    left: 0.8rem;
-  }
-
-
-`
 ////////////////////////Form///////////////////////////
 
 
@@ -86,44 +43,35 @@ export const StyledWrapperForm = styled.form`
   border-radius: 8px;
   width: 413px;
   padding: 33px;
+  text-align: center;
 
   p {
-    text-align: center;
     font-weight: 600;
     font-size: 26px;
     line-height: 32px;
     color: #000000;
     margin-bottom: 66px;
   }
-
 `
 
 export const HeaderBlock = styled.div`
-  padding: 15px 0;
+  padding: 10px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-
+  min-height: 60px;
 `
 export const HeaderLogo = styled.p`
   font-size: 30px;
   color: red;
 `
-// export const StyleTitle = styled.p`
-//   text-align: center;
-//   font-weight: 600;
-//   font-size: 26px;
-//   line-height: 32px;
-//   color: #000000;
-//   margin-bottom: 66px;
-// `
 
 export const StyledWrapperInput = styled.div`
   display: flex;
   flex-direction: column;
   gap: 34px;
   align-items: center;
-
+  position: relative;
 `
 
 export const StyledRememberMe = styled.div`
@@ -141,10 +89,7 @@ export const StyledRememberMe = styled.div`
     cursor: pointer;
   }
 `
-export const imgWrapper = styled.image`
 
-
-`
 export const StyledInputPosition = styled.div`
   position: relative;
   width: 100%;
@@ -185,10 +130,8 @@ export const StyledForgotPassword = styled.p`
 `
 export const StyledWrapperLogin = styled.div`
   display: flex;
-  //flex-direction: column;
   align-items: center;
   justify-content: center;
-  //row-gap: 20px;
 `
 
 export const StyledSignUpBlock = styled.div`
@@ -261,31 +204,7 @@ export const StyledWrapperProfile = styled.div`
     line-height: 27px;
     color: #000000;
   }
-
-
 `
-
-export const StyledWrapperImageProfile = styled.div`
-  text-align: center;
-  width: 96px;
-  height: 96px;
-  border-radius: 100%;
-
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 100%;
-    justify-content: center;
-  }
-`
-// export const StyledImageProfile = styled.img`
-//   width: 100%;
-//   height: 100%;
-//   object-fit: cover;
-//   border-radius: 100%;
-// `
 
 export const StyledWrapperEdit = styled.div`
   display: flex;
@@ -312,13 +231,11 @@ export const StyledEmailEdit = styled.div`
 export const StyledButtonEdit = styled.div`
   padding-bottom: 37px;
 
-
   button {
     padding: 8px 20px 8px 20px;
     background: #FCFCFC;
     box-shadow: 0px 2px 10px rgba(109, 109, 109, 0.25), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
     border-radius: 30px;
-    background: #FCFCFC;
   }
 `
 export const StyledNavigateProfile = styled.div`
@@ -338,10 +255,11 @@ export const StyledNavigateProfile = styled.div`
     align-items: center;
     color: #000000;
   }
-
 `
 ////////////////////////Errors///////////////////////////
 
 export const StyledErrors = styled.div`
+  position: absolute;
   color: red;
+  bottom: -30px;
 `

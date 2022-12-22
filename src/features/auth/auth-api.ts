@@ -68,12 +68,15 @@ export type LoginResType = {
 
 export type RegisterType = {
     email: string,
-    password: string
+    password: string,
+    repeatPassword?: string,
 }
 
 type ResponseType = {
     addedUser: RegisterResType,
     error?: {};
+    passwordRegExp?: string
+
 }
 export type RegisterResType = {
     avatar: string | null

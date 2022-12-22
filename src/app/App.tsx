@@ -17,7 +17,6 @@ function App() {
     const isInitialized = useAppSelector<boolean>(state => state.app.isInitialized)
     const dispatch = useAppDispatch()
 
-
     useEffect(() => {
         dispatch(meTC())
     }, [])
@@ -29,7 +28,6 @@ function App() {
             </div>
         )
     }
-
     return (
         <>
             <Routes>
@@ -47,6 +45,5 @@ function App() {
         </>
     );
 }
-
 
 export default App;

@@ -9,12 +9,12 @@ import logout from '../../assets/img/logout.svg'
 import arrow from '../../assets/img/arrow.svg'
 import {
     StyledButtonEdit,
-    StyledEmailEdit, StyledNavigateProfile,
+    StyledEmailEdit,
+    StyledNavigateProfile,
     StyledWrapperEdit,
-    StyledWrapperForm,
-    StyledWrapperImageProfile,
     StyledWrapperProfile
 } from '../../common/components/style/сartStyled';
+import {StyledWrapperImageProfile} from "../../common/components/style/inage/StyledWrapperImageProfile";
 
 export const Profile = () => {
     const isLoggedIn = useAppSelector(isLoggedSelector)

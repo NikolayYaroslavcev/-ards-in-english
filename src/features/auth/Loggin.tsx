@@ -52,7 +52,6 @@ export const Logging = () => {
         },
         onSubmit: values => {
             dispatch(loginTC(formik.values))
-            // formik.resetForm()
         },
     })
     if (isLoggedIn) {
@@ -71,7 +70,8 @@ export const Logging = () => {
                                {...formik.getFieldProps('email')}
                                onChange={formik.handleChange}
                         />
-                        {formik.errors.email ? <StyledErrors>{formik.errors.email}</StyledErrors> : null}
+                        {formik.touched.email && formik.errors.email &&
+                            <StyledErrors>{formik.errors.email}</StyledErrors>}
                     </StyledInputPosition>
                     <StyledInputPosition>
                         <label>Password</label>
@@ -79,7 +79,8 @@ export const Logging = () => {
                                {...formik.getFieldProps('password')}
                                onChange={formik.handleChange}
                         />
-                        {formik.errors.password ? <StyledErrors>{formik.errors.password}</StyledErrors> : null}
+                        {formik.touched.password && formik.errors.password &&
+                            <StyledErrors>{formik.errors.password}</StyledErrors>}
                         <img onClick={onClickHandler} src={eye} alt="eye"/>
                     </StyledInputPosition>
                 </StyledWrapperInput>

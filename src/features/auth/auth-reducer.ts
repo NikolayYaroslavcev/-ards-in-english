@@ -48,10 +48,10 @@ export const registerTC = (data: RegisterType) => async (dispatch: Dispatch) => 
                 dispatch(setIsRegisterdInAC({value: true}))
                 toast.error( 'You are registered. Enter your login and password')
             } else {
-                console.log(e)
+                toast.error(err.response?.data.passwordRegExp)
             }
         } else {
-            console.log(e)
+            console.log('registerTC: не обработанная ошибка')
         }
     }
 }

@@ -40,8 +40,9 @@ export const Registration = () => {
     const formik = useFormik({
         initialValues: {
             email: '',
+            repeatPassword: '',
             password: '',
-            repeatPassword: ''
+
         },
         validate: (values) => {
             const errors: FormikErrorType = {}
@@ -50,16 +51,12 @@ export const Registration = () => {
             } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
                 errors.email = 'Invalid email address'
             }
-            if (values.password.length <= 3) {
-                errors.password = 'password is less than three characters long'
-            }
-            if (values.password !== values.repeatPassword) {
-                errors.repeatPassword = 'different passwords'
+            if (values.repeatPassword !== values.password) {
+                errors.password = 'different passwords'
             }
             return errors
         },
         onSubmit: values => {
-            //console.log(formik.values)
             dispatch(registerTC(formik.values))
         }
     })
@@ -80,7 +77,8 @@ export const Registration = () => {
                                {...formik.getFieldProps('email')}
                                onChange={formik.handleChange}
                         />
-                        {formik.errors.email ? <StyledErrors>{formik.errors.email}</StyledErrors> : null}
+                        {formik.touched.email && formik.errors.email &&
+                            <StyledErrors>{formik.errors.email}</StyledErrors>}
                     </StyledInputPosition>
                     <StyledInputPosition>
                         <label>Password</label>
@@ -88,8 +86,6 @@ export const Registration = () => {
                                {...formik.getFieldProps('password')}
                                onChange={formik.handleChange}
                         />
-                        {formik.errors.password ? <StyledErrors>{formik.errors.repeatPassword}</StyledErrors> : null}
-                        {formik.errors.password ? <StyledErrors>{formik.errors.password}</StyledErrors> : null}
                         <img onClick={onClickPassHandler} src={eye} alt="eye"/>
                     </StyledInputPosition>
                     <StyledInputPosition>
@@ -98,14 +94,13 @@ export const Registration = () => {
                                {...formik.getFieldProps('repeatPassword')}
                                onChange={formik.handleChange}
                         />
-                        {formik.errors.password ? <StyledErrors>{formik.errors.repeatPassword}</StyledErrors> : null}
-                        {formik.errors.password ? <StyledErrors>{formik.errors.password}</StyledErrors> : null}
                         <img onClick={onClickHandler} src={eye} alt="eye"/>
                     </StyledInputPosition>
+                    {formik.touched.repeatPassword && formik.errors.password &&
+                        <StyledErrors>{formik.errors.password}</StyledErrors>}
                 </StyledWrapperInput>
                 <StyledWrapperButton>
-                    <Button type={'button'}>Cancel</Button>
-                    <Button type={'submit'}>Register</Button>
+                    <Button width={'100%'} type={'submit'}>Register</Button>
                 </StyledWrapperButton>
                 <StyledSignUpBlock>
                     <div>Already have an account?</div>
@@ -115,22 +110,3 @@ export const Registration = () => {
         </StyledWrapperLogin>
     );
 };
-
-
-{/*<input*/
-}
-{/*    placeholder="Confirm password"*/
-}
-{/*    type="password"*/
-}
-{/*    {...formik.getFieldProps('repeatPassword')}*/
-}
-{/*/>*/
-}
-
-// {formik.touched.email && formik.errors.email &&
-// <div style={{color: 'red'}}>{formik.errors.email}</div>}
-
-
-// {formik.touched.repeatPassword && formik.errors.repeatPassword &&
-// <div style={{color: 'red'}}>{formik.errors.repeatPassword}</div>}
