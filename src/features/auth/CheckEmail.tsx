@@ -1,8 +1,14 @@
 import React from 'react';
 import {Navigate, NavLink} from 'react-router-dom';
 import check from '../../assets/img/Check.svg'
-import {useAppSelector} from "../../common/hooks/hooks";
-import {isLoggedSelector} from "./authSelectors";
+import {useAppSelector} from '../../common/hooks/hooks';
+import {isLoggedSelector} from './authSelectors';
+import {
+    StyledSignUpBlock,
+    StyledWrapperForm,
+    StyledWrapperImage,
+    StyledWrapperLogin
+} from '../../common/components/style/сartStyled';
 
 export const CheckEmail = () => {
     const isLoggedIn = useAppSelector(isLoggedSelector)
@@ -10,14 +16,18 @@ export const CheckEmail = () => {
         return <Navigate to={'/profile'}/>
     }
     return (
-        <div>
-            <div>Check Email</div>
-            <div>
-                <img src={check} alt="check"/>
-            </div>
-            <p>We’ve sent an Email with instructions to example@mail.com</p>
-            <NavLink to="/login">Back to login</NavLink>
-        </div>
+        <StyledWrapperLogin>
+            <StyledWrapperForm>
+                <p>Check Email</p>
+                <StyledWrapperImage>
+                    <img src={check} alt="check"/>
+                </StyledWrapperImage>
+                <StyledSignUpBlock>
+                    <div>We’ve sent an Email with instructions to example@mail.com</div>
+                    <NavLink to="/login">Back to login</NavLink>
+                </StyledSignUpBlock>
+            </StyledWrapperForm>
+        </StyledWrapperLogin>
     );
 };
 

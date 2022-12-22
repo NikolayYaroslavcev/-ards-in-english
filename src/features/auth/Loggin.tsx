@@ -8,15 +8,14 @@ import eye from '../../assets/img/eye.svg'
 
 import {Input} from '../../common/components/style/Input/Input';
 import {
-    Form,
-    Login,
     StyledForgotPassword,
     StyledInputPosition,
     StyledRememberMe,
     StyledSignUpBlock,
+    StyledWrapperForm,
     StyledWrapperInput,
-    StyleTitle
-} from "../../common/components/style/сartStyled";
+    StyledWrapperLogin
+} from '../../common/components/style/сartStyled';
 
 
 export type FormikErrorType = {
@@ -60,9 +59,10 @@ export const Logging = () => {
     }
 
     return (
-        <Login>
-            <Form onSubmit={formik.handleSubmit}>
-                <StyleTitle>Sign in</StyleTitle>
+        <StyledWrapperLogin>
+            <StyledWrapperForm>
+            <form onSubmit={formik.handleSubmit}>
+                <p>Sign in</p>
                 <StyledWrapperInput>
                     <StyledInputPosition>
                         <label>Email</label>
@@ -86,7 +86,6 @@ export const Logging = () => {
                            {...formik.getFieldProps('rememberMe')}
                            checked={formik.values.rememberMe}/>
                     <label htmlFor="1">Remember me</label>
-                    {/*<span>Remember me</span>*/}
                 </StyledRememberMe>
                 <StyledForgotPassword>
                     <NavLink to="/forgot">Forgot Password?</NavLink>
@@ -96,7 +95,8 @@ export const Logging = () => {
                     <div>Already have an account?</div>
                     <NavLink to="/registration">Sign Up</NavLink>
                 </StyledSignUpBlock>
-            </Form>
-        </Login>
+            </form>
+            </StyledWrapperForm>
+        </StyledWrapperLogin>
     );
 };

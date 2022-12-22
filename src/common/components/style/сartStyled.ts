@@ -78,13 +78,25 @@ export const StyleInputWpap = styled.div`
 
 
 `
+////////////////////////Form///////////////////////////
 
 
-export const Form = styled.form`
+export const StyledWrapperForm = styled.form`
   background-color: #F9F9FE;
   border-radius: 8px;
   width: 413px;
-  padding: 20px;
+  padding: 33px;
+  
+  p {
+    text-align: center;
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 32px;
+    color: #000000;
+    margin-bottom: 66px;
+    padding-top: 35px;
+  }
+  
 `
 
 export const HeaderBlock = styled.div`
@@ -98,14 +110,14 @@ export const HeaderLogo = styled.p`
   font-size: 30px;
   color: red;
 `
-export const StyleTitle = styled.p`
-  text-align: center;
-  font-weight: 600;
-  font-size: 26px;
-  line-height: 32px;
-  color: #000000;
-  margin-bottom: 41px;
-`
+// export const StyleTitle = styled.p`
+//   text-align: center;
+//   font-weight: 600;
+//   font-size: 26px;
+//   line-height: 32px;
+//   color: #000000;
+//   margin-bottom: 66px;
+// `
 
 export const StyledWrapperInput = styled.div`
   display: flex;
@@ -141,7 +153,7 @@ export const StyledInputPosition = styled.div`
   label {
     position: absolute;
     padding: 0 5px;
-    top: -22px;
+    top: -9px;
     left: -5px;
     font-style: normal;
     font-size: 13px;
@@ -171,7 +183,7 @@ export const StyledForgotPassword = styled.p`
   }
 
 `
-export const Login = styled.div`
+export const StyledWrapperLogin = styled.div`
   display: flex;
   //flex-direction: column;
   align-items: center;
@@ -208,6 +220,26 @@ export const StyledSignUpBlock = styled.div`
   }
 `
 
+////////////////////////Sing Up///////////////////////////
 
+export const StyledWrapperButton = styled.div`
+  display: flex;
+  gap: 36px;
+  justify-content: center;
+  padding-top: 86px;
+`
+////////////////////////Check///////////////////////////
 
+export const StyledWrapperImage = styled.div`
+    text-align: center;
+`
 
+////////////////////////Password///////////////////////////
+export const StyledCreate = styled.div`
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  color: #000000;
+  opacity: 0.5;
+ margin: 30px 0 90px 0 ;
+`

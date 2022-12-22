@@ -3,7 +3,16 @@ import {Navigate, NavLink} from 'react-router-dom';
 import {forgotTC} from './auth-reducer';
 import {useAppDispatch, useAppSelector} from '../../common/hooks/hooks';
 import {useFormik} from 'formik';
-import {isLoggedSelector} from "./authSelectors";
+import {isLoggedSelector} from './authSelectors';
+import {
+    StyledInputPosition,
+    StyledSignUpBlock,
+    StyledWrapperForm,
+    StyledWrapperInput,
+    StyledWrapperLogin
+} from '../../common/components/style/сartStyled';
+import {Input} from '../../common/components/style/Input/Input';
+import {Button} from '../../common/components/style/Button/Button';
 
 
 type FormikErrorType = {
@@ -46,19 +55,31 @@ export const ForgotPassword = () => {
     }
 
     return (
-        <form onSubmit={formik.handleSubmit}>
-            <div>
-                <div>Forgot your password?</div>
-                <input
-                    type="email"
-                    placeholder={'Email'}
-                    {...formik.getFieldProps('email')}/>
-                <div>Enter your email address and we will send you further instructions</div>
-                <button type={'submit'}>Send Instructions</button>
-                <div>Did you remember your password?</div>
-                <NavLink to="/login">Try logging in</NavLink>
-            </div>
-        </form>
+        <StyledWrapperLogin>
+            <StyledWrapperForm>
+                <form onSubmit={formik.handleSubmit}>
+                    <p>Forgot your password?</p>
+                    <StyledWrapperInput>
+                        <StyledInputPosition>
+                            <label>Email</label>
+                            <Input bgColor="#ooo"
+                                   type={'email'}
+                                   {...formik.getFieldProps('email')}
+                                   onChange={formik.handleChange}
+                            />
+                        </StyledInputPosition>
+                    </StyledWrapperInput>
+                    <StyledSignUpBlock>
+                    <div>Enter your email address and we will send you further instructions</div>
+                    </StyledSignUpBlock>
+                    <Button type={'submit'} width={'100%'} margin={"90px 0 0 0"}>Send Instructions</Button>
+                    <StyledSignUpBlock>
+                        <div>Did you remember your password?</div>
+                        <NavLink to="/login">Try logging in</NavLink>
+                    </StyledSignUpBlock>
+                </form>
+            </StyledWrapperForm>
+        </StyledWrapperLogin>
     );
 };
 
