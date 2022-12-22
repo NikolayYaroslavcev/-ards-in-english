@@ -256,6 +256,10 @@ export const StyledWrapperProfile = styled.div`
 
   h2 {
     padding-bottom: 30px;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 27px;
+    color: #000000;
   }
 
 
