@@ -14,7 +14,7 @@ import {
     StyledWrapperEdit,
     StyledWrapperProfile
 } from '../../common/components/style/сartStyled';
-import {StyledWrapperImageProfile} from "../../common/components/style/inage/StyledWrapperImageProfile";
+import {StyledWrapperImageProfile} from "../../common/components/style/castomImage/StyledWrapperImageProfile";
 
 export const Profile = () => {
     const isLoggedIn = useAppSelector(isLoggedSelector)

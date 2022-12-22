@@ -23,7 +23,7 @@ function App() {
 
     if (!isInitialized) {
         return (
-            <div style={{position: 'fixed', top: '30%', width: '100%', textAlign: 'center'}}>
+            <div>
                 КРУТИЛКА
             </div>
         )

@@ -3,7 +3,7 @@ import {HeaderBlock, HeaderLogo, StyledContainer, StyledHeader, StyledHeaderAuth
 import {StyledButton} from "../style/Button/StyledButton";
 import {useAppSelector} from "../../hooks/hooks";
 import avatar from '../../../assets/img/minon.jpg'
-import {StyledWrapperImageProfile} from "../style/inage/StyledWrapperImageProfile";
+import {StyledWrapperImageProfile} from "../style/castomImage/StyledWrapperImageProfile";
 
 export const Header = () => {
     const isLoggedIn = useAppSelector(state => state.auth.isLogged)
