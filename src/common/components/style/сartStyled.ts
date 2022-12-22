@@ -310,9 +310,9 @@ export const StyledEmailEdit = styled.div`
   opacity: 0.5;
 `
 export const StyledButtonEdit = styled.div`
-padding-bottom: 37px;
-  
-  
+  padding-bottom: 37px;
+
+
   button {
     padding: 8px 20px 8px 20px;
     background: #FCFCFC;
@@ -324,6 +324,7 @@ padding-bottom: 37px;
 export const StyledNavigateProfile = styled.div`
   display: flex;
   gap: 12px;
+  margin-bottom: 12px;
 
   img {
     padding-right: 12px;
@@ -338,4 +339,9 @@ export const StyledNavigateProfile = styled.div`
     color: #000000;
   }
 
+`
+////////////////////////Errors///////////////////////////
+
+export const StyledErrors = styled.div`
+  color: red;
 `

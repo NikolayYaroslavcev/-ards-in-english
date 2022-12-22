@@ -5,6 +5,7 @@ import {registerTC} from './auth-reducer';
 import {Navigate, NavLink} from 'react-router-dom';
 import {isLoggedSelector, isRegisterSelector} from './authSelectors';
 import {
+    StyledErrors,
     StyledInputPosition,
     StyledSignUpBlock,
     StyledWrapperButton,
@@ -50,10 +51,10 @@ export const Registration = () => {
                 errors.email = 'Invalid email address'
             }
             if (values.password.length <= 3) {
-                errors.password = 'small'
+                errors.password = 'password is less than three characters long'
             }
             if (values.password !== values.repeatPassword) {
-                errors.repeatPassword = 'разные пароли'
+                errors.repeatPassword = 'different passwords'
             }
             return errors
         },
@@ -70,38 +71,42 @@ export const Registration = () => {
     return (
         <StyledWrapperLogin>
             <StyledWrapperForm onSubmit={formik.handleSubmit}>
-                    <p>Sign Up</p>
-                    <StyledWrapperInput>
-                        <StyledInputPosition>
-                            <label>Email</label>
-                            <Input bgColor="#ooo"
-                                   type={'email'}
-                                   {...formik.getFieldProps('email')}
-                                   onChange={formik.handleChange}
-                            />
-                        </StyledInputPosition>
-                        <StyledInputPosition>
-                            <label>Password</label>
-                            <Input type={showPass ? 'text' : 'password'}
-                                   {...formik.getFieldProps('password')}
-                                   onChange={formik.handleChange}
-                            />
-                            <img onClick={onClickPassHandler} src={eye} alt="eye"/>
-                        </StyledInputPosition>
-                        <StyledInputPosition>
-                            <label>Password</label>
-                            <Input type={showPassword ? 'text' : 'password'}
-                                   {...formik.getFieldProps('repeatPassword')}
-                                   onChange={formik.handleChange}
-                            />
-                            <img onClick={onClickHandler} src={eye} alt="eye"/>
-                        </StyledInputPosition>
-
-                    </StyledWrapperInput>
-                    <StyledWrapperButton>
-                        <Button type={'button'}>Cancel</Button>
-                        <Button type={'submit'}>Register</Button>
-                    </StyledWrapperButton>
+                <p>Sign Up</p>
+                <StyledWrapperInput>
+                    <StyledInputPosition>
+                        <label>Email</label>
+                        <Input bgColor="#ooo"
+                               type={'email'}
+                               {...formik.getFieldProps('email')}
+                               onChange={formik.handleChange}
+                        />
+                        {formik.errors.email ? <StyledErrors>{formik.errors.email}</StyledErrors> : null}
+                    </StyledInputPosition>
+                    <StyledInputPosition>
+                        <label>Password</label>
+                        <Input type={showPass ? 'text' : 'password'}
+                               {...formik.getFieldProps('password')}
+                               onChange={formik.handleChange}
+                        />
+                        {formik.errors.password ? <StyledErrors>{formik.errors.repeatPassword}</StyledErrors> : null}
+                        {formik.errors.password ? <StyledErrors>{formik.errors.password}</StyledErrors> : null}
+                        <img onClick={onClickPassHandler} src={eye} alt="eye"/>
+                    </StyledInputPosition>
+                    <StyledInputPosition>
+                        <label>Password</label>
+                        <Input type={showPassword ? 'text' : 'password'}
+                               {...formik.getFieldProps('repeatPassword')}
+                               onChange={formik.handleChange}
+                        />
+                        {formik.errors.password ? <StyledErrors>{formik.errors.repeatPassword}</StyledErrors> : null}
+                        {formik.errors.password ? <StyledErrors>{formik.errors.password}</StyledErrors> : null}
+                        <img onClick={onClickHandler} src={eye} alt="eye"/>
+                    </StyledInputPosition>
+                </StyledWrapperInput>
+                <StyledWrapperButton>
+                    <Button type={'button'}>Cancel</Button>
+                    <Button type={'submit'}>Register</Button>
+                </StyledWrapperButton>
                 <StyledSignUpBlock>
                     <div>Already have an account?</div>
                     <NavLink to="/login">Sign In</NavLink>

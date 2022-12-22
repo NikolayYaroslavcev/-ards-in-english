@@ -6,7 +6,7 @@ import {useAppDispatch, useAppSelector} from '../../common/hooks/hooks';
 import {isNewPasswordSelector} from './authSelectors';
 import {FormikErrorType} from './Loggin';
 import {
-    StyledCreate,
+    StyledCreate, StyledErrors,
     StyledInputPosition,
     StyledWrapperForm,
     StyledWrapperLogin
@@ -59,6 +59,7 @@ export const NewPassword = () => {
                                {...formik.getFieldProps('password')}
                                onChange={formik.handleChange}
                         />
+                        {formik.errors.password ? <StyledErrors>{formik.errors.password}</StyledErrors> : null}
                         <img onClick={onClickHandler} src={eye} alt="eye"/>
                     </StyledInputPosition>
                     <StyledCreate>

@@ -43,18 +43,15 @@ export const registerTC = (data: RegisterType) => async (dispatch: Dispatch) => 
         const err = e as Error | AxiosError
         if (axios.isAxiosError(err)) {
             const error = err.response?.data ? (err.response.data as ErrorResType).email : err.message
-            toast.error(err?.response?.data.error)
+            // toast.error(err?.response?.data.error)
             if (error === data.email) {
                 dispatch(setIsRegisterdInAC({value: true}))
-                toast.error( err?.response?.data.error)
-                alert('Вы зарестрированы. Введите логин и пароль')
+                toast.error( 'You are registered. Enter your login and password')
             } else {
-                toast.error(error)
+                console.log(e)
             }
         } else {
-            // console.log(e)
-            //  dispatch(setAppErrorAC(`Native error ${err.message}`))
-            toast.error(err.message)
+            console.log(e)
         }
     }
 }
@@ -86,7 +83,7 @@ export const meTC = () => async (dispatch: Dispatch) => {
         if (axios.isAxiosError(err)) {
             toast.error(err?.response?.data.error)
         } else {
-            toast.error(err.message)
+            // toast.error(err.message)
         }
     } finally {
         dispatch(setIsInitializedAC({value: true}))
@@ -119,8 +116,7 @@ export const forgotTC = (data: ForgotType) => async (dispatch: Dispatch) => {
         const err = e as Error | AxiosError<{ error: string }>
         if (axios.isAxiosError(err)) {
             toast.error(err?.response?.data.error)
-            // const error = err.response?.data ? err.response.data.error : err.message
-            // toast.error(error)
+
         } else {
             toast.error(err.message)
         }
@@ -134,6 +130,7 @@ export const newPasswordTC = (data: NewPasswordType) => async (dispatch: Dispatc
     try {
         const res = await authAPI.newPassword(data)
         dispatch(setNewPasswordAC({value: true}))
+        toast.success('Password changed');
     } catch (e) {
         const err = e as Error | AxiosError<{ error: string }>
         if (axios.isAxiosError(err)) {
