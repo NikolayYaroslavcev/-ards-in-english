@@ -56,8 +56,7 @@ export const ForgotPassword = () => {
 
     return (
         <StyledWrapperLogin>
-            <StyledWrapperForm>
-                <form onSubmit={formik.handleSubmit}>
+            <StyledWrapperForm onSubmit={formik.handleSubmit}>
                     <p>Forgot your password?</p>
                     <StyledWrapperInput>
                         <StyledInputPosition>
@@ -77,7 +76,6 @@ export const ForgotPassword = () => {
                         <div>Did you remember your password?</div>
                         <NavLink to="/login">Try logging in</NavLink>
                     </StyledSignUpBlock>
-                </form>
             </StyledWrapperForm>
         </StyledWrapperLogin>
     );

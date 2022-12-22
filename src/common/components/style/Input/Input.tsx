@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import {StyledInput} from './StyledInput';
 
 type PropsDefault = {
-    type: 'email' | 'password' | 'checkbox',
+    type: 'email' | 'password' | 'checkbox' | "text",
     children: string | undefined;
     onChange: any,
     checked:any,

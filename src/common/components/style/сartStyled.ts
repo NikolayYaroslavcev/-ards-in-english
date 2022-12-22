@@ -7,7 +7,7 @@ export const StyledHeader = styled.div`
   overflow: hidden;
   font-family: 'Roboto', sans-serif;
   align-items: center;
-  
+
 `
 
 export const StyledContainer = styled.div`
@@ -86,7 +86,7 @@ export const StyledWrapperForm = styled.form`
   border-radius: 8px;
   width: 413px;
   padding: 33px;
-  
+
   p {
     text-align: center;
     font-weight: 600;
@@ -94,9 +94,8 @@ export const StyledWrapperForm = styled.form`
     line-height: 32px;
     color: #000000;
     margin-bottom: 66px;
-    padding-top: 35px;
   }
-  
+
 `
 
 export const HeaderBlock = styled.div`
@@ -161,6 +160,7 @@ export const StyledInputPosition = styled.div`
     color: #000000;
     opacity: 0.5;
   }
+
   img {
     position: absolute;
     top: 50%;
@@ -231,7 +231,7 @@ export const StyledWrapperButton = styled.div`
 ////////////////////////Check///////////////////////////
 
 export const StyledWrapperImage = styled.div`
-    text-align: center;
+  text-align: center;
 `
 
 ////////////////////////Password///////////////////////////
@@ -241,5 +241,79 @@ export const StyledCreate = styled.div`
   line-height: 24px;
   color: #000000;
   opacity: 0.5;
- margin: 30px 0 90px 0 ;
+  margin: 30px 0 90px 0;
+`
+////////////////////////Profile///////////////////////////
+export const StyledWrapperProfile = styled.div`
+  width: 413px;
+  background-color: #F9F9FE;
+  border-radius: 8px;
+  padding: 33px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+
+  h2 {
+    padding-bottom: 30px;
+  }
+
+
+`
+
+export const StyledWrapperImageProfile = styled.div`
+  text-align: center;
+  width: 96px;
+  height: 96px;
+  border-radius: 100%;
+
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 100%;
+    justify-content: center;
+  }
+`
+// export const StyledImageProfile = styled.img`
+//   width: 100%;
+//   height: 100%;
+//   object-fit: cover;
+//   border-radius: 100%;
+// `
+
+export const StyledWrapperEdit = styled.div`
+  display: flex;
+  gap: 16px;
+  text-align: center;
+  justify-content: center;
+  align-items: baseline;
+  padding-top: 17px;
+
+  p {
+    font-weight: 500;
+    font-size: 20px;
+    color: #000000;
+  }
+`
+export const StyledEmailEdit = styled.div`
+  font-size: 14px;
+  line-height: 2.4;
+  display: flex;
+  align-items: center;
+  color: #000000;
+  opacity: 0.5;
+`
+export const StyledButtonEdit = styled.div`
+padding-bottom: 37px;
+  
+  
+  button {
+    padding: 8px 20px 8px 20px;
+    background: #FCFCFC;
+    box-shadow: 0px 2px 10px rgba(109, 109, 109, 0.25), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
+    border-radius: 30px;
+    background: #FCFCFC;
+  }
 `

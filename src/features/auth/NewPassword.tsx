@@ -51,8 +51,7 @@ export const NewPassword = () => {
 
     return (
         <StyledWrapperLogin>
-            <StyledWrapperForm>
-                <form onSubmit={formik.handleSubmit}>
+            <StyledWrapperForm onSubmit={formik.handleSubmit}>
                     <p>Create new password</p>
                     <StyledInputPosition>
                         <label>Password</label>
@@ -66,7 +65,6 @@ export const NewPassword = () => {
                         Create new password and we will send you further instructions to email
                     </StyledCreate>
                     <Button type={'submit'} width={'100%'}>Create new password</Button>
-                </form>
             </StyledWrapperForm>
         </StyledWrapperLogin>
     );

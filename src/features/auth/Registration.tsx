@@ -24,12 +24,16 @@ type FormikErrorType = {
 }
 export const Registration = () => {
     const [showPassword, setShowPassword] = useState<boolean>(false)
+    const [showPass, setShowPass] = useState<boolean>(false)
     const isRegisterdIn = useAppSelector(isRegisterSelector)
     const isLoggedIn = useAppSelector(isLoggedSelector)
     const dispatch = useAppDispatch()
 
     const onClickHandler = () => {
         setShowPassword(!showPassword)
+    }
+    const onClickPassHandler = () => {
+        setShowPass(!showPass)
     }
 
     const formik = useFormik({
@@ -65,8 +69,7 @@ export const Registration = () => {
 
     return (
         <StyledWrapperLogin>
-            <StyledWrapperForm>
-                <form onSubmit={formik.handleSubmit}>
+            <StyledWrapperForm onSubmit={formik.handleSubmit}>
                     <p>Sign Up</p>
                     <StyledWrapperInput>
                         <StyledInputPosition>
@@ -79,26 +82,26 @@ export const Registration = () => {
                         </StyledInputPosition>
                         <StyledInputPosition>
                             <label>Password</label>
-                            <Input type={showPassword ? 'email' : 'password'}
+                            <Input type={showPass ? 'text' : 'password'}
                                    {...formik.getFieldProps('password')}
                                    onChange={formik.handleChange}
                             />
-                            <img onClick={onClickHandler} src={eye} alt="eye"/>
+                            <img onClick={onClickPassHandler} src={eye} alt="eye"/>
                         </StyledInputPosition>
                         <StyledInputPosition>
                             <label>Password</label>
-                            <Input type={showPassword ? 'email' : 'password'}
+                            <Input type={showPassword ? 'text' : 'password'}
                                    {...formik.getFieldProps('repeatPassword')}
                                    onChange={formik.handleChange}
                             />
                             <img onClick={onClickHandler} src={eye} alt="eye"/>
                         </StyledInputPosition>
+
                     </StyledWrapperInput>
                     <StyledWrapperButton>
                         <Button type={'button'}>Cancel</Button>
                         <Button type={'submit'}>Register</Button>
                     </StyledWrapperButton>
-                </form>
                 <StyledSignUpBlock>
                     <div>Already have an account?</div>
                     <NavLink to="/login">Sign In</NavLink>

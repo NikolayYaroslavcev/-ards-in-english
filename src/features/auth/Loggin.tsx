@@ -60,8 +60,7 @@ export const Logging = () => {
 
     return (
         <StyledWrapperLogin>
-            <StyledWrapperForm>
-            <form onSubmit={formik.handleSubmit}>
+            <StyledWrapperForm onSubmit={formik.handleSubmit}>
                 <p>Sign in</p>
                 <StyledWrapperInput>
                     <StyledInputPosition>
@@ -71,13 +70,15 @@ export const Logging = () => {
                                {...formik.getFieldProps('email')}
                                onChange={formik.handleChange}
                         />
+
                     </StyledInputPosition>
                     <StyledInputPosition>
                         <label>Password</label>
-                        <Input type={showPassword ? 'email' : 'password'}
+                        <Input type={showPassword ? 'text' : 'password'}
                                {...formik.getFieldProps('password')}
                                onChange={formik.handleChange}
                         />
+
                         <img onClick={onClickHandler} src={eye} alt="eye"/>
                     </StyledInputPosition>
                 </StyledWrapperInput>
@@ -95,7 +96,6 @@ export const Logging = () => {
                     <div>Already have an account?</div>
                     <NavLink to="/registration">Sign Up</NavLink>
                 </StyledSignUpBlock>
-            </form>
             </StyledWrapperForm>
         </StyledWrapperLogin>
     );

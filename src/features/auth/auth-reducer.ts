@@ -46,7 +46,7 @@ export const registerTC = (data: RegisterType) => async (dispatch: Dispatch) => 
             toast.error(err?.response?.data.error)
             if (error === data.email) {
                 dispatch(setIsRegisterdInAC({value: true}))
-                toast.error(err?.response?.data.error)
+                toast.error( err?.response?.data.error)
                 alert('Вы зарестрированы. Введите логин и пароль')
             } else {
                 toast.error(error)
