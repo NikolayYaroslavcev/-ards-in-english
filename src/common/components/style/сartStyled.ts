@@ -317,3 +317,19 @@ padding-bottom: 37px;
     background: #FCFCFC;
   }
 `
+export const StyledNavigateProfile = styled.div`
+display: flex;
+  gap: 12px;
+  img {
+    padding-right: 12px;
+  }
+  a{
+    font-weight: 400;
+    font-size: 14px;
+    line-height:  171%;
+    display: flex;
+    align-items: center;
+    color: #000000;
+  }
+
+`

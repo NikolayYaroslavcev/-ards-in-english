@@ -6,9 +6,10 @@ import {logOutTC, newNameTC} from '../auth/auth-reducer';
 import {isLoggedSelector} from '../auth/authSelectors';
 import avatar from '../../assets/img/minon.jpg'
 import logout from '../../assets/img/logout.svg'
+import arrow from '../../assets/img/arrow.svg'
 import {
     StyledButtonEdit,
-    StyledEmailEdit,
+    StyledEmailEdit, StyledNavigateProfile,
     StyledWrapperEdit,
     StyledWrapperForm,
     StyledWrapperImageProfile,
@@ -46,7 +47,9 @@ export const Profile = () => {
 
     return (
         <div>
-            <NavLink to="/">Back to Packs List</NavLink>
+            <StyledNavigateProfile>
+            <NavLink to="/"><img src={arrow} alt="arrow"/>Back to Packs List</NavLink>
+            </StyledNavigateProfile>
             <StyledWrapperProfile>
                     <h2>Personal Information</h2>
                     <StyledWrapperImageProfile>
@@ -61,7 +64,6 @@ export const Profile = () => {
                                 <img src={editImg} alt="editImg"/>}
                         </div>
                     </StyledWrapperEdit>
-
                     <StyledEmailEdit>
                         {userData.email}
                     </StyledEmailEdit>
