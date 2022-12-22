@@ -8,15 +8,15 @@ import eye from '../../assets/img/eye.svg'
 
 import {Input} from '../../common/components/style/Input/Input';
 import {
-    Form,
-    Login,
+    StyledErrors,
     StyledForgotPassword,
     StyledInputPosition,
     StyledRememberMe,
     StyledSignUpBlock,
+    StyledWrapperForm,
     StyledWrapperInput,
-    StyleTitle
-} from "../../common/components/style/сartStyled";
+    StyledWrapperLogin
+} from '../../common/components/style/сartStyled';
 
 
 export type FormikErrorType = {
@@ -52,7 +52,7 @@ export const Logging = () => {
         },
         onSubmit: values => {
             dispatch(loginTC(formik.values))
-            formik.resetForm()
+            // formik.resetForm()
         },
     })
     if (isLoggedIn) {
@@ -60,9 +60,9 @@ export const Logging = () => {
     }
 
     return (
-        <Login>
-            <Form onSubmit={formik.handleSubmit}>
-                <StyleTitle>Sign in</StyleTitle>
+        <StyledWrapperLogin>
+            <StyledWrapperForm onSubmit={formik.handleSubmit}>
+                <p>Sign in</p>
                 <StyledWrapperInput>
                     <StyledInputPosition>
                         <label>Email</label>
@@ -71,13 +71,15 @@ export const Logging = () => {
                                {...formik.getFieldProps('email')}
                                onChange={formik.handleChange}
                         />
+                        {formik.errors.email ? <StyledErrors>{formik.errors.email}</StyledErrors> : null}
                     </StyledInputPosition>
                     <StyledInputPosition>
                         <label>Password</label>
-                        <Input type={showPassword ? 'email' : 'password'}
+                        <Input type={showPassword ? 'text' : 'password'}
                                {...formik.getFieldProps('password')}
                                onChange={formik.handleChange}
                         />
+                        {formik.errors.password ? <StyledErrors>{formik.errors.password}</StyledErrors> : null}
                         <img onClick={onClickHandler} src={eye} alt="eye"/>
                     </StyledInputPosition>
                 </StyledWrapperInput>
@@ -86,7 +88,6 @@ export const Logging = () => {
                            {...formik.getFieldProps('rememberMe')}
                            checked={formik.values.rememberMe}/>
                     <label htmlFor="1">Remember me</label>
-                    {/*<span>Remember me</span>*/}
                 </StyledRememberMe>
                 <StyledForgotPassword>
                     <NavLink to="/forgot">Forgot Password?</NavLink>
@@ -96,7 +97,7 @@ export const Logging = () => {
                     <div>Already have an account?</div>
                     <NavLink to="/registration">Sign Up</NavLink>
                 </StyledSignUpBlock>
-            </Form>
-        </Login>
+            </StyledWrapperForm>
+        </StyledWrapperLogin>
     );
 };

@@ -1,9 +1,21 @@
-import React from 'react';
-import {useAppDispatch, useAppSelector} from "../../common/hooks/hooks";
-import {useFormik} from "formik";
-import {registerTC} from "./auth-reducer";
-import {Navigate, NavLink} from "react-router-dom";
-import {isLoggedSelector, isRegisterSelector} from "./authSelectors";
+import React, {useState} from 'react';
+import {useAppDispatch, useAppSelector} from '../../common/hooks/hooks';
+import {useFormik} from 'formik';
+import {registerTC} from './auth-reducer';
+import {Navigate, NavLink} from 'react-router-dom';
+import {isLoggedSelector, isRegisterSelector} from './authSelectors';
+import {
+    StyledErrors,
+    StyledInputPosition,
+    StyledSignUpBlock,
+    StyledWrapperButton,
+    StyledWrapperForm,
+    StyledWrapperInput,
+    StyledWrapperLogin
+} from '../../common/components/style/сartStyled';
+import {Input} from '../../common/components/style/Input/Input';
+import eye from '../../assets/img/eye.svg';
+import {Button} from '../../common/components/style/Button/Button';
 
 type FormikErrorType = {
     email?: string,
@@ -12,9 +24,18 @@ type FormikErrorType = {
     rememberMe?: boolean
 }
 export const Registration = () => {
+    const [showPassword, setShowPassword] = useState<boolean>(false)
+    const [showPass, setShowPass] = useState<boolean>(false)
     const isRegisterdIn = useAppSelector(isRegisterSelector)
     const isLoggedIn = useAppSelector(isLoggedSelector)
     const dispatch = useAppDispatch()
+
+    const onClickHandler = () => {
+        setShowPassword(!showPassword)
+    }
+    const onClickPassHandler = () => {
+        setShowPass(!showPass)
+    }
 
     const formik = useFormik({
         initialValues: {
@@ -30,10 +51,10 @@ export const Registration = () => {
                 errors.email = 'Invalid email address'
             }
             if (values.password.length <= 3) {
-                errors.password = 'small'
+                errors.password = 'password is less than three characters long'
             }
             if (values.password !== values.repeatPassword) {
-                errors.repeatPassword = 'разные пароли'
+                errors.repeatPassword = 'different passwords'
             }
             return errors
         },
@@ -48,35 +69,68 @@ export const Registration = () => {
     }
 
     return (
-        <div>
-            <h2>Sign Up</h2>
-            <form onSubmit={formik.handleSubmit}>
-                <input
-                    placeholder="EMAIL"
-                    type="email"
-                    {...formik.getFieldProps('email')}
-                />
-                {formik.touched.email && formik.errors.email &&
-                    <div style={{color: "red"}}>{formik.errors.email}</div>}
-                <input
-                    placeholder="Password"
-                    type="password"
-                    {...formik.getFieldProps('password')}
-                />
-                <input
-                    placeholder="Confirm password"
-                    type="password"
-                    {...formik.getFieldProps('repeatPassword')}
-                />
-                {formik.touched.repeatPassword && formik.errors.repeatPassword &&
-                    <div style={{color: "red"}}>{formik.errors.repeatPassword}</div>}
-                <button
-                    type={'submit'}
-                >Sign Up
-                </button>
-            </form>
-            <p>Already have an account?</p>
-            <NavLink to="/login">Sign In</NavLink>
-        </div>
+        <StyledWrapperLogin>
+            <StyledWrapperForm onSubmit={formik.handleSubmit}>
+                <p>Sign Up</p>
+                <StyledWrapperInput>
+                    <StyledInputPosition>
+                        <label>Email</label>
+                        <Input bgColor="#ooo"
+                               type={'email'}
+                               {...formik.getFieldProps('email')}
+                               onChange={formik.handleChange}
+                        />
+                        {formik.errors.email ? <StyledErrors>{formik.errors.email}</StyledErrors> : null}
+                    </StyledInputPosition>
+                    <StyledInputPosition>
+                        <label>Password</label>
+                        <Input type={showPass ? 'text' : 'password'}
+                               {...formik.getFieldProps('password')}
+                               onChange={formik.handleChange}
+                        />
+                        {formik.errors.password ? <StyledErrors>{formik.errors.repeatPassword}</StyledErrors> : null}
+                        {formik.errors.password ? <StyledErrors>{formik.errors.password}</StyledErrors> : null}
+                        <img onClick={onClickPassHandler} src={eye} alt="eye"/>
+                    </StyledInputPosition>
+                    <StyledInputPosition>
+                        <label>Password</label>
+                        <Input type={showPassword ? 'text' : 'password'}
+                               {...formik.getFieldProps('repeatPassword')}
+                               onChange={formik.handleChange}
+                        />
+                        {formik.errors.password ? <StyledErrors>{formik.errors.repeatPassword}</StyledErrors> : null}
+                        {formik.errors.password ? <StyledErrors>{formik.errors.password}</StyledErrors> : null}
+                        <img onClick={onClickHandler} src={eye} alt="eye"/>
+                    </StyledInputPosition>
+                </StyledWrapperInput>
+                <StyledWrapperButton>
+                    <Button type={'button'}>Cancel</Button>
+                    <Button type={'submit'}>Register</Button>
+                </StyledWrapperButton>
+                <StyledSignUpBlock>
+                    <div>Already have an account?</div>
+                    <NavLink to="/login">Sign In</NavLink>
+                </StyledSignUpBlock>
+            </StyledWrapperForm>
+        </StyledWrapperLogin>
     );
 };
+
+
+{/*<input*/
+}
+{/*    placeholder="Confirm password"*/
+}
+{/*    type="password"*/
+}
+{/*    {...formik.getFieldProps('repeatPassword')}*/
+}
+{/*/>*/
+}
+
+// {formik.touched.email && formik.errors.email &&
+// <div style={{color: 'red'}}>{formik.errors.email}</div>}
+
+
+// {formik.touched.repeatPassword && formik.errors.repeatPassword &&
+// <div style={{color: 'red'}}>{formik.errors.repeatPassword}</div>}

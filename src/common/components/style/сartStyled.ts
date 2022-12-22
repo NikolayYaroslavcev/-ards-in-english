@@ -7,7 +7,7 @@ export const StyledHeader = styled.div`
   overflow: hidden;
   font-family: 'Roboto', sans-serif;
   align-items: center;
-  
+
 `
 
 export const StyledContainer = styled.div`
@@ -78,13 +78,24 @@ export const StyleInputWpap = styled.div`
 
 
 `
+////////////////////////Form///////////////////////////
 
 
-export const Form = styled.form`
+export const StyledWrapperForm = styled.form`
   background-color: #F9F9FE;
   border-radius: 8px;
   width: 413px;
-  padding: 20px;
+  padding: 33px;
+
+  p {
+    text-align: center;
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 32px;
+    color: #000000;
+    margin-bottom: 66px;
+  }
+
 `
 
 export const HeaderBlock = styled.div`
@@ -98,14 +109,14 @@ export const HeaderLogo = styled.p`
   font-size: 30px;
   color: red;
 `
-export const StyleTitle = styled.p`
-  text-align: center;
-  font-weight: 600;
-  font-size: 26px;
-  line-height: 32px;
-  color: #000000;
-  margin-bottom: 41px;
-`
+// export const StyleTitle = styled.p`
+//   text-align: center;
+//   font-weight: 600;
+//   font-size: 26px;
+//   line-height: 32px;
+//   color: #000000;
+//   margin-bottom: 66px;
+// `
 
 export const StyledWrapperInput = styled.div`
   display: flex;
@@ -141,7 +152,7 @@ export const StyledInputPosition = styled.div`
   label {
     position: absolute;
     padding: 0 5px;
-    top: -22px;
+    top: -9px;
     left: -5px;
     font-style: normal;
     font-size: 13px;
@@ -149,6 +160,7 @@ export const StyledInputPosition = styled.div`
     color: #000000;
     opacity: 0.5;
   }
+
   img {
     position: absolute;
     top: 50%;
@@ -171,7 +183,7 @@ export const StyledForgotPassword = styled.p`
   }
 
 `
-export const Login = styled.div`
+export const StyledWrapperLogin = styled.div`
   display: flex;
   //flex-direction: column;
   align-items: center;
@@ -208,6 +220,128 @@ export const StyledSignUpBlock = styled.div`
   }
 `
 
+////////////////////////Sing Up///////////////////////////
+
+export const StyledWrapperButton = styled.div`
+  display: flex;
+  gap: 36px;
+  justify-content: center;
+  padding-top: 86px;
+`
+////////////////////////Check///////////////////////////
+
+export const StyledWrapperImage = styled.div`
+  text-align: center;
+`
+
+////////////////////////Password///////////////////////////
+export const StyledCreate = styled.div`
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  color: #000000;
+  opacity: 0.5;
+  margin: 30px 0 90px 0;
+`
+////////////////////////Profile///////////////////////////
+export const StyledWrapperProfile = styled.div`
+  width: 413px;
+  background-color: #F9F9FE;
+  border-radius: 8px;
+  padding: 33px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+
+  h2 {
+    padding-bottom: 30px;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 27px;
+    color: #000000;
+  }
 
 
+`
 
+export const StyledWrapperImageProfile = styled.div`
+  text-align: center;
+  width: 96px;
+  height: 96px;
+  border-radius: 100%;
+
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 100%;
+    justify-content: center;
+  }
+`
+// export const StyledImageProfile = styled.img`
+//   width: 100%;
+//   height: 100%;
+//   object-fit: cover;
+//   border-radius: 100%;
+// `
+
+export const StyledWrapperEdit = styled.div`
+  display: flex;
+  gap: 16px;
+  text-align: center;
+  justify-content: center;
+  align-items: baseline;
+  padding-top: 17px;
+
+  p {
+    font-weight: 500;
+    font-size: 20px;
+    color: #000000;
+  }
+`
+export const StyledEmailEdit = styled.div`
+  font-size: 14px;
+  line-height: 2.4;
+  display: flex;
+  align-items: center;
+  color: #000000;
+  opacity: 0.5;
+`
+export const StyledButtonEdit = styled.div`
+  padding-bottom: 37px;
+
+
+  button {
+    padding: 8px 20px 8px 20px;
+    background: #FCFCFC;
+    box-shadow: 0px 2px 10px rgba(109, 109, 109, 0.25), inset 0px 1px 0px rgba(255, 255, 255, 0.3);
+    border-radius: 30px;
+    background: #FCFCFC;
+  }
+`
+export const StyledNavigateProfile = styled.div`
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+
+  img {
+    padding-right: 12px;
+  }
+
+  a {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 171%;
+    display: flex;
+    align-items: center;
+    color: #000000;
+  }
+
+`
+////////////////////////Errors///////////////////////////
+
+export const StyledErrors = styled.div`
+  color: red;
+`

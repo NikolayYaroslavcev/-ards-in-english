@@ -5,6 +5,7 @@ type PropsDefault = {
     type: 'button' | 'submit' | 'reset',
     disabled: boolean
     children: string  | undefined;
+    onClick: ()=>void;
 }
 
 

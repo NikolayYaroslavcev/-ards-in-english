@@ -3,10 +3,20 @@ import editImg from '../../assets/img/Edit.svg'
 import {Navigate, NavLink} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '../../common/hooks/hooks';
 import {logOutTC, newNameTC} from '../auth/auth-reducer';
-import {isLoggedSelector} from "../auth/authSelectors";
+import {isLoggedSelector} from '../auth/authSelectors';
+import avatar from '../../assets/img/minon.jpg'
+import logout from '../../assets/img/logout.svg'
+import arrow from '../../assets/img/arrow.svg'
+import {
+    StyledButtonEdit,
+    StyledEmailEdit, StyledNavigateProfile,
+    StyledWrapperEdit,
+    StyledWrapperForm,
+    StyledWrapperImageProfile,
+    StyledWrapperProfile
+} from '../../common/components/style/сartStyled';
 
 export const Profile = () => {
-
     const isLoggedIn = useAppSelector(isLoggedSelector)
     const userData = useAppSelector(state => state.profile)
     const dispatch = useAppDispatch()
@@ -36,25 +46,31 @@ export const Profile = () => {
 
 
     return (
-        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-            <NavLink to="/">Back to Packs List</NavLink>
-            <h3>Personal Information</h3>
-            <div style={{width: '96px', height: '96px'}}>
-                <img style={{width: '100%', height: '100%', objectFit: 'cover', borderRadius: '100%'}}
-                     src="https://telecomdom.com/wp-content/uploads/2020/02/kartinki-na-telefon-3.jpg" alt="photo"/>
-            </div>
-            <div style={{display: 'flex', columnGap: '10px', alignItems: 'center'}}>
-                {edit ? <input value={newValue} onChange={onChangeHandler} type="text"/> : <p>{userData.name}</p>}
-                <div onClick={onClickHandler}>
-                    {edit ? <button onClick={onClickSaveHandler}> Save</button> : <img src={editImg} alt="editImg"/>}
-                </div>
-            </div>
-            <div>
-                {userData.email}
-            </div>
-
-            <button onClick={onClickLogOut}>Log out</button>
-            {/*<input value={value} onChange={onChangeHandler} type="text"/> <button onClick={onClickHandler}>+</button>*/}
+        <div>
+            <StyledNavigateProfile>
+                <NavLink to="/"><img src={arrow} alt="arrow"/>Back to Packs List</NavLink>
+            </StyledNavigateProfile>
+            <StyledWrapperProfile>
+                <h2>Personal Information</h2>
+                <StyledWrapperImageProfile>
+                    <img src={avatar}
+                         alt="avatar"/>
+                </StyledWrapperImageProfile>
+                <StyledWrapperEdit>
+                    {edit ? <input value={newValue} onChange={onChangeHandler} type="text"/> :
+                        <p>{userData.name}</p>}
+                    <div onClick={onClickHandler}>
+                        {edit ? <button onClick={onClickSaveHandler}> Save</button> :
+                            <img src={editImg} alt="editImg"/>}
+                    </div>
+                </StyledWrapperEdit>
+                <StyledEmailEdit>
+                    {userData.email}
+                </StyledEmailEdit>
+                <StyledButtonEdit>
+                    <button onClick={onClickLogOut}><img src={logout} alt="logout"/> Log out</button>
+                </StyledButtonEdit>
+            </StyledWrapperProfile>
         </div>
     );
 };
