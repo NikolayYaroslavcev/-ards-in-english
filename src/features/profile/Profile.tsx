@@ -46,7 +46,7 @@ export const Profile = () => {
 
 
     return (
-        <div>
+        <>
             <StyledNavigateProfile>
                 <NavLink to="/"><img src={arrow} alt="arrow"/>Back to Packs List</NavLink>
             </StyledNavigateProfile>
@@ -71,7 +71,7 @@ export const Profile = () => {
                     <button onClick={onClickLogOut}><img src={logout} alt="logout"/> Log out</button>
                 </StyledButtonEdit>
             </StyledWrapperProfile>
-        </div>
+        </>
     );
 };
 

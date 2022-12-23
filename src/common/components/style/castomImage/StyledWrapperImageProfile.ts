@@ -7,7 +7,6 @@ export const StyledWrapperImageProfile = styled.div<PropsImageType>`
   height: ${({height}) => height || '96px'};
   border-radius: 100%;
 
-
   img {
     width: 100%;
     height: 100%;
