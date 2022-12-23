@@ -1,5 +1,5 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {ProfileType, RegisterResType} from "../auth/auth-api";
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {ProfileType} from '../auth/auth-api';
 
 const initialState: ProfileType  = {
     email: '',

@@ -33,6 +33,8 @@ export const authAPI = {
     }
 }
 
+
+
 /// types
 export type NewNaneType = {
     name: string
