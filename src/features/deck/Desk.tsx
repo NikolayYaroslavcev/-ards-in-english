@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {deckTC} from './deck-reducer';
+import {deckTC} from './desk-reducer';
 import {logOutTC} from '../auth/auth-reducer';
 import {useAppDispatch, useAppSelector} from '../../common/hooks/hooks';
 

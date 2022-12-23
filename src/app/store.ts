@@ -4,13 +4,13 @@ import thunkMiddleware from 'redux-thunk'
 import {authReducer} from "../features/auth/auth-reducer";
 import {appReducer} from "./app-reducer";
 import {profileReducer} from "../features/profile/profile-reducer";
-import {deckReducer} from '../features/deck/deck-reducer';
+import {deskReducer} from '../features/deck/desk-reducer';
 
 const rootReducer = combineReducers({
     auth: authReducer,
     app: appReducer,
     profile: profileReducer,
-    deck: deckReducer,
+    deck: deskReducer,
 })
 export const store = configureStore({
     reducer: rootReducer,

@@ -9,7 +9,7 @@ export const instance = axios.create({
     withCredentials: true,
 })
 
-export const deckAPI = {
+export const deskApi = {
     desk() {
         return instance.get<'', AxiosResponse<DeckType>, ''>('cards/pack', {
                 params: {

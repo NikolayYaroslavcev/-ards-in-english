@@ -1,6 +1,6 @@
 import {createSlice, Dispatch, PayloadAction} from '@reduxjs/toolkit';
 import {AxiosError} from 'axios';
-import {deckAPI} from './deck-api';
+import {deskApi} from './desk-api';
 
 
 const initialState = {
@@ -21,7 +21,7 @@ const slice = createSlice({
 
 export const deckTC = () => async (dispatch: Dispatch) => {
     try {
-        const res = await deckAPI.desk()
+        const res = await deskApi.desk()
         dispatch(getDeckAC(res.data))
         console.log(res.data)
     } catch (e) {
@@ -33,7 +33,7 @@ export const deckTC = () => async (dispatch: Dispatch) => {
 }
 
 
-export const deckReducer = slice.reducer
+export const deskReducer = slice.reducer
 export const {getDeckAC} = slice.actions
 
 
