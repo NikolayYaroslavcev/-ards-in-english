@@ -3,7 +3,7 @@ import {useAppDispatch, useAppSelector} from '../../common/hooks/hooks';
 import {Navigate} from 'react-router-dom';
 import {logOutTC} from './auth-reducer';
 import {isLoggedSelector} from './authSelectors';
-import {Desk} from '../deck/Desk';
+import {Deck} from '../deck/Deck';
 
 export const Home: React.FC = () => {
     const isLoggedIn = useAppSelector(isLoggedSelector)
@@ -24,7 +24,7 @@ export const Home: React.FC = () => {
     return (
         <div>
             <button onClick={onClickLogOut}>Log out</button>
-            <Desk/>
+            <Deck/>
         </div>
     );
 };
