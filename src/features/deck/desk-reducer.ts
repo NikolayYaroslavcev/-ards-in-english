@@ -74,7 +74,7 @@ export const deskUpdateTC = (newId: string, newName: string): AppThunk => async 
     try {
         const res = await deskApi.deskUpdate(newId, newName)
         console.log(res.data)
-        dispatch(updateDeckAC(res.data.deletedCardsType))
+      //  dispatch(updateDeckAC(res.data.deletedCardsType))
         // dispatch(deleteDeckAC(res.data))
     } catch (e) {
         const err = e as Error | AxiosError
