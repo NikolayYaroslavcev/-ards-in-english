@@ -3,11 +3,11 @@ import {useAppDispatch, useAppSelector} from '../../common/hooks/hooks';
 import polygon from '../../assets/img/Polygon.svg'
 import deleteIcon from '../../assets/img/Delete.svg'
 import edit from '../../assets/img/Edit.svg'
-import {deckTC, deskDeleteTC, deskUpdateTC} from './desk-reducer';
 import {ArrowTableBlock, Table} from './StyledDeck';
-import {Search} from './Search';
 import {useTable} from 'react-table';
 import {log} from 'util';
+import {deckTC, deskDeleteTC, deskUpdateTC} from "./deck-reducer";
+import {SearchCards} from "./SearchCards";
 
 export const Desk = () => {
 
@@ -71,7 +71,7 @@ export const Desk = () => {
 
     return (
         <>
-            <Search/>
+            <SearchCards/>
             <Table {...getTableProps()} >
                 <thead>
                 {headerGroups.map(headerGroup => (
@@ -121,4 +121,3 @@ export const Desk = () => {
         </>
     )
 }
-

@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from '../../common/hooks/hooks';
-import {Navigate} from 'react-router-dom';
+import {Navigate, NavLink, useParams} from 'react-router-dom';
 import {logOutTC} from './auth-reducer';
 import {isLoggedSelector} from './authSelectors';
-import {Desk} from '../deck/Desk';
+import {CardPage} from "../cards/CardPage";
 
 export const Home: React.FC = () => {
     const isLoggedIn = useAppSelector(isLoggedSelector)
@@ -12,6 +12,7 @@ export const Home: React.FC = () => {
     const onClickLogOut = () => {
         dispatch(logOutTC())
     }
+
 
     useEffect(() => {
         if (!isLoggedIn) return
@@ -24,7 +25,15 @@ export const Home: React.FC = () => {
     return (
         <div>
             <button onClick={onClickLogOut}>Log out</button>
-            <Desk/>
+            <div>
+                <NavLink to={'/desks/'}>КАРТОЧКИ ВСЕ</NavLink>
+            </div>
+            <div>
+                <NavLink to={'/cards/'}>КАРТОЧКИ МОИ</NavLink>
+            </div>
+            <div>
+                <NavLink to={'/friendsCards'}>КАРТОЧКИ ДРУЗЕЙ</NavLink>
+            </div>
         </div>
     );
 };

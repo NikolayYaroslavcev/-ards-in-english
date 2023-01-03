@@ -13,5 +13,7 @@ export const StyledWrapperImageProfile = styled.div<PropsImageType>`
     object-fit: cover;
     border-radius: 100%;
     justify-content: center;
+    cursor: ${({cursor}) => cursor || 'auto'};
+    
   }
 `

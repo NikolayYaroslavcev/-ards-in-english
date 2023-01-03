@@ -15,7 +15,7 @@ export const deskApi = {
                 params: {
                     page: 1,
                     pageCount: 10,
-                    user_id: '63a43f963057a514047a9840'
+                   // user_id: '6399b54cfc64ea00041387fb'
                 }
             }
         )

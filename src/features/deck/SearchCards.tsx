@@ -1,8 +1,8 @@
 import React, {ChangeEvent, useState} from 'react';
-import search from '../../assets/img/search.svg'
+import search from '../../assets/img/Search.svg'
 
 
-export const Search = () => {
+export const SearchCards = () => {
 
     // const {setSearchValue} = useContext(SearhContext)
 

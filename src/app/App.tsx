@@ -11,6 +11,9 @@ import {NewPassword} from '../features/auth/NewPassword';
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {Logging} from "../features/auth/Loggin";
+import {CardPage} from "../features/cards/CardPage";
+import {FriendsCards} from "../features/cards/FriendsCards";
+import {Desk} from "../features/deck/Deck";
 
 
 function App() {
@@ -32,6 +35,12 @@ function App() {
         <>
             <Routes>
                 <Route path="/" element={<Home/>}/>
+
+                <Route path="/desks" element={ <Desk/>}/>
+                <Route path="/cards" element={ <CardPage/>}/>
+                <Route path="/friendsCards" element={ <FriendsCards/>}/>
+
+
                 <Route path="/login" element={<Logging/>}/>
                 <Route path="/registration" element={<Registration/>}/>
                 <Route path="/profile" element={<Profile/>}/>
