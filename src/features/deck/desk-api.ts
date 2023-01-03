@@ -14,14 +14,41 @@ export const deskApi = {
         return instance.get<'', AxiosResponse<DeckType>, ''>('cards/pack', {
                 params: {
                     page: 1,
-                    pageCount: 10
+                    pageCount: 10,
+                    user_id: '63a43f963057a514047a9840'
                 }
             }
         )
-    },
+
+    }, deskDelete(newId: string) {
+        console.log(newId)
+        return instance.delete<'', AxiosResponse<DeckType>, ''>('cards/pack', {
+            params: {
+                id: newId,
+                // id: '63aaaf8d8d150d02d4f69aba'
+            }
+        })
+    }, deskUpdate(newId: string, newName: string) {
+        console.log(newId, newName)
+        return instance.put<'', AxiosResponse<UpdateResType>, DeskUpdateType>('cards/pack', {
+            cardsPack: {
+                _id: newId,
+                name: 'NEW NAME',
+            }
+        })
+    }
 }
 
+export type UpdateResType =  {
+    deletedCardsType: DeckPacsType
+}
 
+type DeskUpdateType = {
+    cardsPack: {
+        _id: string,
+        name: string,
+    }
+}
 // axios.get('baseurl/users',  {
 //     params: {
 //         page: 1,
@@ -56,7 +83,7 @@ export const deskApi = {
 
 
 export type DeckType = {
-    cardPacks: CardPacsType[]
+    cardPacks: DeckPacsType[]
     cardPacksTotalCount: number
     // количество колод
     maxCardsCount: number
@@ -65,94 +92,22 @@ export type DeckType = {
     pageCount: number// количество элементов на странице
 }
 
-export type CardPacsType = {
-    _id: string
-    user_id: string
-    name: string
+export type DeckPacsType = {
     cardsCount: number
     created: string
+    grade: number
+    more_id: string
+    name: string
+    path: string
+    private: boolean
+    rating: number
+    shots: number
+    type: string
     updated: string
-
+    user_id: string
+    user_name: string
+    __v: number
+    _id: string
 }
 
-
-//
-// /// types
-// export type NewNaneType = {
-//     name: string
-//     avatar?: string
-// }
-//
-// export type ResponseNewNaneType = {
-//     updatedUser: RegisterResType
-//     error?: string
-// }
-//
-//
-// export type NewPasswordType = {
-//     password: string
-//     resetPasswordToken: string | undefined
-// }
-// type ResponseNewPasswordType = {
-//     info: string
-//     error: string
-// }
-// type MeResponse = {
-//     email: string,
-//     rememberMe: boolean,
-//     name: string,
-//     publicCardPacksCount: number,
-//     created: Date,
-//     updated: Date,
-//     avatar: null
-// }
-// export type LoginResType = {
-//     data: RegisterResType
-// }
-//
-// export type RegisterType = {
-//     email: string,
-//     password: string,
-//     repeatPassword?: string,
-// }
-//
-// type ResponseType = {
-//     addedUser: RegisterResType,
-//     error?: {};
-//     passwordRegExp?: string
-//
-// }
-// export type RegisterResType = {
-//     avatar: string | null
-//     created: string
-//     email: string
-//     isAdmin: boolean
-//     name: string
-//     publicCardPacksCount: number
-//     rememberMe: boolean
-//     token: string
-//     tokenDeathTime: number
-//     updated: string
-//     verified: boolean
-//     __v: number
-//     _id: string
-// }
-//
-// export type ProfileType = Pick<RegisterResType, 'name' | 'email' | 'avatar'>
-//
-// export type LoginType = {
-//     email: string
-//     password: string
-//     rememberMe: boolean
-// }
-//
-//
-// export type ForgotType = {
-//     email: string
-//     from: string
-//     message: string
-// }
-//
-//
-//
-
+export type DeckPropsType = Partial<DeckType>
