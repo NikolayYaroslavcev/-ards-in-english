@@ -4,8 +4,8 @@ import thunkMiddleware from 'redux-thunk'
 import {authReducer} from "../features/auth/auth-reducer";
 import {appReducer} from "./app-reducer";
 import {profileReducer} from "../features/profile/profile-reducer";
-import {deskReducer} from '../features/deck/desk-reducer';
 import {cardsReducer} from "../features/cards/cards-reducer";
+import {deskReducer} from "../features/deck/deck-reducer";
 
 const rootReducer = combineReducers({
     auth: authReducer,

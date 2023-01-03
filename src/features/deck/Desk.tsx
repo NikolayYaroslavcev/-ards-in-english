@@ -6,11 +6,8 @@ export const Desk = () => {
 
 
     const decks = useAppSelector(state => state.deck.cardPacks)
+
     console.log(decks)
-
-
-
-
 
     return (
         <div>
