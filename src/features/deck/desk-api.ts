@@ -11,24 +11,15 @@ export const instance = axios.create({
 
 export const deskApi = {
     desk() {
-        return instance.get<'', AxiosResponse<DeckType>, ''>('cards/pack', {
-                params: {
-                    page: 1,
-                    pageCount: 10,
-                   // user_id: '6399b54cfc64ea00041387fb'
-                }
-            }
-        )
-
-    }, deskDelete(newId: string) {
-        console.log(newId)
-        return instance.delete<'', AxiosResponse<DeckType>, ''>('cards/pack', {
-            params: {
-                id: newId,
-                // id: '63aaaf8d8d150d02d4f69aba'
-            }
-        })
-    }, deskUpdate(newId: string, newName: string) {
+        return instance.get<'', AxiosResponse<DeckType>, ''>('cards/pack')
+    },
+    deskSearch(data: SearchDataType) {
+        return instance.get<'', AxiosResponse<DeckType>, ''>('cards/pack', data)
+    },
+    deskDelete(data: DeleteDataType) {
+        return instance.delete<'', AxiosResponse<DeskDeletedResType>, DeleteDataType>('cards/pack', data)
+    },
+    deskUpdate(newId: string, newName: string) {
         console.log(newId, newName)
         return instance.put<'', AxiosResponse<UpdateResType>, DeskUpdateType>('cards/pack', {
             cardsPack: {
@@ -36,11 +27,50 @@ export const deskApi = {
                 name: 'NEW NAME',
             }
         })
+    },
+    deskAdd(data: AddDeskType) {
+        return instance.post<'', AxiosResponse<AddDeskResType>, AddDeskType>('cards/pack', data)
+    },
+
+}
+export type SearchDataType = Partial<SearchType>
+
+export type SearchType = {
+    params: {
+        packName: string,
+        min: number,
+        max: number,
+        sortPacks: string,
+        page: number,
+        pageCount: number,
+        user_id: string,
+        block: boolean
     }
 }
 
-export type UpdateResType =  {
-    deletedCardsType: DeckPacsType
+export type DeskDeletedResType = {
+    deletedCardsPack: DeckPacsType
+}
+
+export type DeleteDataType = {
+    params: {
+        id: string
+    }
+}
+
+export type AddDeskType = {
+    cardsPack: {
+        name: string,
+        deckCover?: string,
+        private: false
+    }
+}
+export type AddDeskResType = {
+    newCardsPack: {}
+}
+
+export type UpdateResType = {
+    updatedCardsPack: DeckPacsType
 }
 
 type DeskUpdateType = {
@@ -49,35 +79,6 @@ type DeskUpdateType = {
         name: string,
     }
 }
-// axios.get('baseurl/users',  {
-//     params: {
-//         page: 1,
-//         pageCount:10
-//     }
-// )
-
-// register(data: RegisterType) {
-//     return instance.post<'', AxiosResponse<ResponseType>, RegisterType>('auth/register', data)
-// },
-// me() {
-//     return instance.post<RegisterResType>(`auth/me`);
-// },
-// logOut() {
-//     return instance.delete<MeResponse>(`auth/me`);
-// },
-// login(data: LoginType) {
-//     return instance.post<'', AxiosResponse<LoginResType>, LoginType>(`/auth/login`, data);
-// },
-// forgot(data: ForgotType) {
-//     return instance.post<'', AxiosResponse<ResponseType>, ForgotType>(`/auth/forgot`, data)
-// },
-// newPassword(data: NewPasswordType) {
-//     return instance.post<'', AxiosResponse<ResponseNewPasswordType>, NewPasswordType>(`/auth/set-new-password`, data)
-// },
-// newName(data: NewNaneType) {
-//     return instance.put<'', AxiosResponse<ResponseNewNaneType>, NewNaneType>(`/auth/me`, data)
-// }
-
 
 //types
 

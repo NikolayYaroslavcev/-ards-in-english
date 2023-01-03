@@ -4,6 +4,7 @@ import {Navigate, NavLink, useParams} from 'react-router-dom';
 import {logOutTC} from './auth-reducer';
 import {isLoggedSelector} from './authSelectors';
 import {CardPage} from "../cards/CardPage";
+import {Desk} from "../deck/Deck";
 
 export const Home: React.FC = () => {
     const isLoggedIn = useAppSelector(isLoggedSelector)
@@ -25,9 +26,8 @@ export const Home: React.FC = () => {
     return (
         <div>
             <button onClick={onClickLogOut}>Log out</button>
-            <div>
-                <NavLink to={'/desks/'}>КАРТОЧКИ ВСЕ</NavLink>
-            </div>
+            <Desk/>
+
             <div>
                 <NavLink to={'/cards/'}>КАРТОЧКИ МОИ</NavLink>
             </div>

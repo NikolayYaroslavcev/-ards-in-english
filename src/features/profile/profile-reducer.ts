@@ -4,14 +4,15 @@ import {ProfileType} from '../auth/auth-api';
 const initialState: ProfileType  = {
     email: '',
     name: '',
-    avatar: ''
+    avatar: '',
+    _id: ''
 }
 
 const slice = createSlice({
     name: 'profile',
     initialState: initialState,
     reducers: {
-        setUserDataValueAC(state, action: PayloadAction<{}>) {
+        setUserDataValueAC(state, action: PayloadAction<{email: string, name: string, avatar: string | null, _id: string}>) {
             return {...state, ...action.payload}
         }
     }

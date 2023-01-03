@@ -5,9 +5,10 @@ import deleteIcon from '../../assets/img/Delete.svg'
 import edit from '../../assets/img/Edit.svg'
 import {ArrowTableBlock, Table} from './StyledDeck';
 import {useTable} from 'react-table';
-import {log} from 'util';
-import {deckTC, deskDeleteTC, deskUpdateTC} from "./deck-reducer";
-import {SearchCards} from "./SearchCards";
+import {deckTC, deskAddTC, deskDeleteTC, deskUpdateTC} from "./deck-reducer";
+import {CardsHeaderStyle} from "../cards/style-cards";
+import {StyledButton} from "../../common/components/style/Button/StyledButton";
+import {SearchDesk} from "./SearchDesk";
 
 export const Desk = () => {
 
@@ -20,6 +21,10 @@ export const Desk = () => {
     useEffect(() => {
         dispatch(deckTC())
     }, [])
+
+    const onclickHandler = () => {
+        dispatch(deskAddTC())
+    }
 
     const columns = React.useMemo<any>(
         () => [
@@ -47,10 +52,9 @@ export const Desk = () => {
                     return (
                         <div>
                             <img src={edit}
-                                 onClick={() => dispatch(deskUpdateTC(props.row.original._id,''))}
+                                 onClick={() => dispatch(deskUpdateTC(props.row.original._id, ''))}
                                  alt=""/>
                             <img src={deleteIcon} onClick={() => dispatch(deskDeleteTC(props.row.original._id))}
-                                // {/*<img src={deleteIcon} onClick={() => console.log(props.row.original._id)}*/}
                                  alt=""/>
                         </div>
                     )
@@ -71,7 +75,11 @@ export const Desk = () => {
 
     return (
         <>
-            <SearchCards/>
+            <CardsHeaderStyle>
+                <p>Packs list</p>
+                <StyledButton onClick={onclickHandler}>Add new pack</StyledButton>
+            </CardsHeaderStyle>
+            <SearchDesk/>
             <Table {...getTableProps()} >
                 <thead>
                 {headerGroups.map(headerGroup => (

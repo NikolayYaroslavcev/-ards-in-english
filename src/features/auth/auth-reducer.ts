@@ -58,8 +58,9 @@ export const registerTC = (data: RegisterType) => async (dispatch: Dispatch) => 
 export const loginTC = (data: LoginType) => async (dispatch: Dispatch) => {
     try {
         const res = await authAPI.login(data)
+        const {email, name, avatar, _id } = res.data.data
         dispatch(setIsLoggedInAC({value: true}))
-        dispatch(setUserDataValueAC(res.data))
+        dispatch(setUserDataValueAC({email, name, avatar, _id}))
     } catch (e) {
         const err = e as Error | AxiosError<{ error: string }>
         if (axios.isAxiosError(err)) {
@@ -76,8 +77,9 @@ export const loginTC = (data: LoginType) => async (dispatch: Dispatch) => {
 export const meTC = () => async (dispatch: Dispatch) => {
     try {
         const res = await authAPI.me()
+        const {email, name, avatar, _id } = res.data
         dispatch(setIsLoggedInAC({value: true}))
-        dispatch(setUserDataValueAC(res.data))
+        dispatch(setUserDataValueAC({email, name, avatar, _id}))
     } catch (e) {
         const err = e as Error | AxiosError<{ error: string }>
         if (axios.isAxiosError(err)) {

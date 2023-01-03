@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useEffect, useState} from 'react';
+import React, {ChangeEvent, useEffect} from 'react';
 import {MyCards} from "./MyCards";
 import {CardsHeaderStyle, Search, SearchBlock} from "./style-cards";
 import search from '../../assets/img/Search.svg'
@@ -7,7 +7,7 @@ import {StyledWrapperImageProfile} from "../../common/components/style/castomIma
 import editMenu from '../../assets/img/editMenu.svg'
 import {StyledButton} from "../../common/components/style/Button/StyledButton";
 import {addCardTC} from "./cards-reducer";
-import {useLocation, useSearchParams} from "react-router-dom";
+import {useSearchParams} from "react-router-dom";
 import useDebounce from "../../common/hooks/useDebounce";
 
 export const CardPage = () => {
@@ -24,7 +24,7 @@ export const CardPage = () => {
         // console.log(searchAnswer)
     }
     useEffect(() => {
-        console.log(searchAnswer)
+      //  console.log(searchAnswer)
     }, [useDebounce(searchParams)])
 
     const onclickHandler = () => {
