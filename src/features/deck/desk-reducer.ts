@@ -1,6 +1,9 @@
 import {createSlice, Dispatch, PayloadAction} from '@reduxjs/toolkit';
 import {AxiosError} from 'axios';
-import {DeckType, deskApi} from './desk-api';
+import {cardsAPI, CardsResType} from "../cards/cards-api";
+import {DeckType, deskApi} from "./desk-api";
+
+
 
 
 const initialState: InitialStateType = {
@@ -13,8 +16,9 @@ const initialState: InitialStateType = {
 }
 
 type InitialStateType = DeckType
+
 const slice = createSlice({
-    name: 'auth',
+    name: 'desks',
     initialState: initialState,
     reducers: {
         getDeckAC(state, action: PayloadAction<{}>) {

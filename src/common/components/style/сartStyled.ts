@@ -22,7 +22,7 @@ export const StyledHeaderAuth = styled.div`
 
 
 export const StyledContainer = styled.div`
-  max-width: 1100px;
+  max-width: 1010px;
   box-sizing: content-box;
   margin: 0 auto;
   padding: 0 15px;

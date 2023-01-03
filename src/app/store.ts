@@ -5,12 +5,14 @@ import {authReducer} from "../features/auth/auth-reducer";
 import {appReducer} from "./app-reducer";
 import {profileReducer} from "../features/profile/profile-reducer";
 import {deskReducer} from '../features/deck/desk-reducer';
+import {cardsReducer} from "../features/cards/cards-reducer";
 
 const rootReducer = combineReducers({
     auth: authReducer,
     app: appReducer,
     profile: profileReducer,
     deck: deskReducer,
+    cards: cardsReducer
 })
 export const store = configureStore({
     reducer: rootReducer,

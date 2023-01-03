@@ -12,7 +12,7 @@ export const Header = () => {
     const authBlock =
         <StyledHeaderAuth>
             <p>{userData.name}</p>
-            <StyledWrapperImageProfile width={'36px'} height={'36px'}>
+            <StyledWrapperImageProfile width={'36px'} height={'36px'} >
                 <img src={avatar}
                      alt="avatar"/>
             </StyledWrapperImageProfile>
