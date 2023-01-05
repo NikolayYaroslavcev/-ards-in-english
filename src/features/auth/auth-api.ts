@@ -64,9 +64,7 @@ type MeResponse = {
     updated: Date,
     avatar: null
 }
-export type LoginResType = {
-    data: RegisterResType
-}
+export type LoginResType = RegisterResType
 
 export type RegisterType = {
     email: string,

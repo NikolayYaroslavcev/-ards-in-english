@@ -58,7 +58,7 @@ export const registerTC = (data: RegisterType) => async (dispatch: Dispatch) => 
 export const loginTC = (data: LoginType) => async (dispatch: Dispatch) => {
     try {
         const res = await authAPI.login(data)
-        const {email, name, avatar, _id } = res.data.data
+        const {email, name, avatar, _id } = res.data
         dispatch(setIsLoggedInAC({value: true}))
         dispatch(setUserDataValueAC({email, name, avatar, _id}))
     } catch (e) {
@@ -68,6 +68,7 @@ export const loginTC = (data: LoginType) => async (dispatch: Dispatch) => {
             // const error = err.response?.data ? err.response.data.error : err.message
             // toast.error(error)
         } else {
+            console.log(err)
             toast.error(err.message)
         }
     } finally {

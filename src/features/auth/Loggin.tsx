@@ -17,6 +17,7 @@ import {
     StyledWrapperInput,
     StyledWrapperLogin
 } from '../../common/components/style/сartStyled';
+import {log} from "util";
 
 
 export type FormikErrorType = {
@@ -48,7 +49,7 @@ export const Logging = () => {
             } else if (values.password.length < 3) {
                 errors.password = 'password is less than three characters long'
             }
-            return errors
+            return  errors
         },
         onSubmit: values => {
             dispatch(loginTC(formik.values))

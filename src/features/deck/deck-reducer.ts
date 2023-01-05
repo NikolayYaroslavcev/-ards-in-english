@@ -5,16 +5,28 @@ import {AppThunk} from '../../app/store';
 import {CardType} from "../cards/cards-api";
 
 
-type InitialStateType = DeckType
-
+type InitialStateType = DeckType & {
+    min: number | null,
+    max: number | null,
+    sortPacks: '0updated' | '1updated',
+    packName: string,
+    initialize: boolean
+    isMy: boolean
+}
 
 const initialState: InitialStateType = {
+    initialize: false,
     cardPacks: [],
-    minCardsCount: 0,
-    pageCount: 1,
     cardPacksTotalCount: 0,
+    maxCardsCount: 0,
+    minCardsCount: 0,
     page: 1,
-    maxCardsCount: 0
+    pageCount: 1,
+    min: null,
+    max: null,
+    sortPacks: '0updated',
+    packName: '',
+    isMy: false
 }
 
 
@@ -36,20 +48,29 @@ const slice = createSlice({
             addDeskAC(state, action: PayloadAction<{}>) {
                 // state.cardPacks = [...action.payload]
             },
+            setUpdateDeskAC(state, action: PayloadAction<{}>) {
+                return {...state, ...action.payload}
+            }
 
         }
     }
 )
 
 
-export const deckTC = (): AppThunk => async dispatch => {
+export const getDeckTC = (): AppThunk => async (dispatch, getState) => {
+    const {sortPacks, page, pageCount, packName, max, min, isMy} = getState().deck
+    const id = getState().profile._id
+    const user_id = isMy ? id : ''
+
     try {
-        const res = await deskApi.desk()
+        const res = await deskApi.desk({sortPacks, page, pageCount, packName, max, min, user_id})
+        console.log(res.data)
         dispatch(getDeckAC(res.data))
     } catch (e) {
         const err = e as Error | AxiosError
         console.log(err)
     } finally {
+        dispatch(setUpdateDeskAC({initialize: true}))
         //  console.log('finally')
     }
 }
@@ -67,7 +88,7 @@ export const deskAddTC = (): AppThunk => async dispatch => {
     try {
         const res = await deskApi.deskAdd(dataModel)
         console.log(res.data)
-        dispatch(deckTC())
+        dispatch(getDeckTC())
         // dispatch(deleteDeckAC(res.data))
     } catch (e) {
         const err = e as Error | AxiosError
@@ -88,37 +109,6 @@ export const deskDeleteTC = (newId: string): AppThunk => async dispatch => {
         const res = await deskApi.deskDelete(dataModel)
         console.log(res.data)
         dispatch(deleteDeckAC({deletedCardsPack: res.data.deletedCardsPack}))
-        // dispatch(deleteDeckAC(res.data))
-    } catch (e) {
-        const err = e as Error | AxiosError
-        console.log(err)
-    } finally {
-        //  console.log('finally')
-    }
-}
-
-export const deskSearchTC = (domainModel: UpdateDomainDeskModelType): AppThunk => async (dispatch, getState) => {
-    const deskState = getState().deck
-
-    const apiModel: SearchDataType = {
-        params: {
-            packName: '',
-            min: deskState.minCardsCount,
-            max: deskState.maxCardsCount,
-            sortPacks: '0updated',
-            page: deskState.page,
-            pageCount: deskState.pageCount,
-            user_id: '',
-            block: false,
-            ...domainModel
-        }
-    }
-
-    try {
-        const res = await deskApi.deskSearch(apiModel)
-
-        dispatch(getDeckAC(res.data))
-        //  dispatch(deleteDeckAC({deletedCardsPack: res.data.deletedCardsPack}))
         // dispatch(deleteDeckAC(res.data))
     } catch (e) {
         const err = e as Error | AxiosError
@@ -155,7 +145,7 @@ export type UpdateDomainDeskModelType = {
 }
 
 export const deskReducer = slice.reducer
-export const {getDeckAC, updateDeckAC, deleteDeckAC} = slice.actions
+export const {getDeckAC, updateDeckAC, deleteDeckAC, setUpdateDeskAC} = slice.actions
 
 
 

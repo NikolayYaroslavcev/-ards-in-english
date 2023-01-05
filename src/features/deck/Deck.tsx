@@ -5,7 +5,7 @@ import deleteIcon from '../../assets/img/Delete.svg'
 import edit from '../../assets/img/Edit.svg'
 import {ArrowTableBlock, Table} from './StyledDeck';
 import {useTable} from 'react-table';
-import {deckTC, deskAddTC, deskDeleteTC, deskUpdateTC} from "./deck-reducer";
+import {getDeckTC, deskAddTC, deskDeleteTC, deskUpdateTC} from "./deck-reducer";
 import {CardsHeaderStyle} from "../cards/style-cards";
 import {StyledButton} from "../../common/components/style/Button/StyledButton";
 import {SearchDesk} from "./SearchDesk";
@@ -19,7 +19,7 @@ export const Desk = () => {
 
 
     useEffect(() => {
-        dispatch(deckTC())
+      //  dispatch(getDeckTC())
     }, [])
 
     const onclickHandler = () => {
@@ -79,7 +79,9 @@ export const Desk = () => {
                 <p>Packs list</p>
                 <StyledButton onClick={onclickHandler}>Add new pack</StyledButton>
             </CardsHeaderStyle>
+             {/*Search*/}
             <SearchDesk/>
+
             <Table {...getTableProps()} >
                 <thead>
                 {headerGroups.map(headerGroup => (

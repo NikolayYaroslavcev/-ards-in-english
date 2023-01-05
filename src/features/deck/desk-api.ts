@@ -10,11 +10,8 @@ export const instance = axios.create({
 })
 
 export const deskApi = {
-    desk() {
-        return instance.get<'', AxiosResponse<DeckType>, ''>('cards/pack')
-    },
-    deskSearch(data: SearchDataType) {
-        return instance.get<'', AxiosResponse<DeckType>, ''>('cards/pack', data)
+    desk(params: GetDeskParamsType = {}) {
+        return instance.get<'', AxiosResponse<DeckType>, GetDeskParamsType>('cards/pack', {params})
     },
     deskDelete(data: DeleteDataType) {
         return instance.delete<'', AxiosResponse<DeskDeletedResType>, DeleteDataType>('cards/pack', data)
@@ -32,6 +29,17 @@ export const deskApi = {
         return instance.post<'', AxiosResponse<AddDeskResType>, AddDeskType>('cards/pack', data)
     },
 
+}
+
+export type GetDeskParamsType = {
+    packName?: string,
+    min?: number | null,
+    max?: number | null,
+    sortPacks?: string,
+    page?: number,
+    pageCount?: number,
+    user_id?: string,
+    block?: boolean
 }
 export type SearchDataType = Partial<SearchType>
 
