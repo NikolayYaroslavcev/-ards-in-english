@@ -55,3 +55,72 @@ export const ArrowTableBlock = styled.div`
     cursor: pointer;
   }
 `
+
+export const RangeSliderStyle = styled.div`
+  display: flex;
+  align-items: center;
+  column-gap: 12px;
+  input {
+    text-align: center;
+    width: 36px;
+    height: 36px;
+    background: #FFFFFF;
+    border: 1px solid #D9D9D9;
+    border-radius: 2px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    color: #000000;
+  }
+
+  span .MuiSlider-thumb {
+    width: 16px;
+    height: 16px;
+  }
+
+  span .MuiSlider-thumb:after {
+    position: absolute;
+    content: "";
+    background-color: #fff;
+    width: 8px;
+    height: 8px;
+  }
+
+  span .MuiSlider-thumb.Mui-focusVisible {
+    box-shadow: 0px 0px 0px 4px rgba(115, 113, 113, 0.5);
+  }
+`
+
+export const SearchSliderStyle = styled.div`
+  display: flex;
+  column-gap: 25px;
+
+
+  div:first-child {
+    flex: 1 1 auto;
+  }
+`
+export const SearchButtonStyle = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  p {
+    font-size: 17px;
+    line-height: 17px;
+    color: #000000;
+  }
+`
+
+export const RangeSliderCastomStyle = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+
+
+
+`

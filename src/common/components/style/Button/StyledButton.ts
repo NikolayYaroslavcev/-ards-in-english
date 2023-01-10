@@ -15,7 +15,7 @@ export const StyledButton = styled.button<PropsButton>`
   color: ${({colorCustom}) => colorCustom || '#fff'};
   cursor: ${({disabled}) => disabled ? 'not-allowed' : 'pointer'};
   box-shadow: 0 4px 18px rgba(54, 110, 255, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  border-radius: 30px;
+  border-radius: ${({borderRadius}) => borderRadius || '30px'};
   font-size: 16px;
   line-height: 20px;
   letter-spacing: 0.01em;
@@ -23,6 +23,7 @@ export const StyledButton = styled.button<PropsButton>`
 
   &:hover {
     background-color: ${({disabled}) => disabled ? '#104cee' : '#104cee'};
+    color: #fff;
   }
 ;
 

@@ -5,6 +5,8 @@ export type PropsImageDefault = {
     width: string,
     height: string,
     cursor: string
+    borderRadius: string
+    hover: boolean
 }
 
 export type PropsImg = PropsImageDefault;

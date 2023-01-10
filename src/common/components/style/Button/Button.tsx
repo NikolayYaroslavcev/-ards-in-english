@@ -17,6 +17,8 @@ type StyledButton = {
     margin: string
     padding: string
     width:string
+    borderRadius: string
+    isMy: boolean
 }
 
 

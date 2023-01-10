@@ -39,9 +39,9 @@ const slice = createSlice({
                     ...state, ...action.payload
                 }
             },
-            deleteDeckAC(state, action: PayloadAction<{ deletedCardsPack: DeckPacsType }>) {
-                state.cardPacks = state.cardPacks.filter(el => el._id !== action.payload.deletedCardsPack._id)
-            },
+            // deleteDeckAC(state, action: PayloadAction<{ deletedCardsPack: DeckPacsType }>) {
+            //     state.cardPacks = state.cardPacks.filter(el => el._id !== action.payload.deletedCardsPack._id)
+            // },
             updateDeckAC(state, action: PayloadAction<{ updatedCardsPack: DeckPacsType }>) {
                 state.cardPacks = state.cardPacks.map(el => el._id === action.payload.updatedCardsPack._id ? {...el, ...action.payload.updatedCardsPack} : el)
             },
@@ -64,7 +64,6 @@ export const getDeckTC = (): AppThunk => async (dispatch, getState) => {
 
     try {
         const res = await deskApi.desk({sortPacks, page, pageCount, packName, max, min, user_id})
-        console.log(res.data)
         dispatch(getDeckAC(res.data))
     } catch (e) {
         const err = e as Error | AxiosError
@@ -107,8 +106,8 @@ export const deskDeleteTC = (newId: string): AppThunk => async dispatch => {
 
     try {
         const res = await deskApi.deskDelete(dataModel)
-        console.log(res.data)
-        dispatch(deleteDeckAC({deletedCardsPack: res.data.deletedCardsPack}))
+        dispatch(getDeckTC())
+        //dispatch(deleteDeckAC({deletedCardsPack: res.data.deletedCardsPack}))
         // dispatch(deleteDeckAC(res.data))
     } catch (e) {
         const err = e as Error | AxiosError
@@ -145,7 +144,7 @@ export type UpdateDomainDeskModelType = {
 }
 
 export const deskReducer = slice.reducer
-export const {getDeckAC, updateDeckAC, deleteDeckAC, setUpdateDeskAC} = slice.actions
+export const {getDeckAC, updateDeckAC, setUpdateDeskAC} = slice.actions
 
 
 

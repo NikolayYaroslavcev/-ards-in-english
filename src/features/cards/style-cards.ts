@@ -2,18 +2,20 @@ import styled from "styled-components";
 
 
 export const CardsHeaderStyle = styled.div`
-  div{
+  margin-bottom: 34px;
+  div {
     display: flex;
     align-items: center;
     column-gap: 5px;
   }
+
   p {
     font-weight: 600;
     font-size: 22px;
     line-height: 27px;
     color: #000000;
   }
-  
+
   display: flex;
   align-items: center;
   column-gap: 20px;
@@ -26,7 +28,7 @@ export const Table = styled.table`
   width: 100%;
   border-collapse: collapse;
   filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.1)) drop-shadow(-1px -1px 2px rgba(0, 0, 0, 0.1));
-  
+
   thead th {
     background: #EFEFEF;
     text-align: left;
@@ -35,10 +37,10 @@ export const Table = styled.table`
     line-height: 17px;
     color: #000000;
   }
-  
+
   thead th:nth-child(1) {
-    width: 300px ;
-    
+    width: 300px;
+
   }
 
   thead th:nth-child(2) {
@@ -52,17 +54,18 @@ export const Table = styled.table`
   thead th:nth-child(4) {
     width: 155px;
   }
+
   thead th:nth-child(4) {
     width: 109px;
   }
-  
+
   tr {
     background: #FFFFFF;
     border: 1px solid #EFEFEF;
   }
 
   th, td {
-    
+
     padding: 20px;
   }
 `
@@ -70,7 +73,7 @@ export const ArrowTableBlock = styled.div`
   display: flex;
   column-gap: 10px;
   align-items: center;
-  
+
   img {
     cursor: pointer;
   }
@@ -84,22 +87,28 @@ export const ActionBlock = styled.div`
   }
 `
 export const Search = styled.div`
-  margin-bottom: 14px ;
+  margin-bottom: 14px;
+  
+
   p {
     font-size: 17px;
     line-height: 17px;
     color: #000000;
     margin-bottom: 10px;
   }
-  
+
 `
 export const SearchBlock = styled.div`
   position: relative;
- 
+  display: flex;
+  flex-direction: column;
+  
+  
 
   input {
+
     width: 100%;
-    min-height: 30px;
+    max-height: 36px;
     padding: 10px 40px;
     //opacity: 0.5;
     background-color: #FFFFFF;

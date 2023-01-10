@@ -44,7 +44,7 @@ export const CardPage = () => {
             </CardsHeaderStyle>
             <Search>
                 <p>Search</p>
-                <SearchBlock>
+                <SearchBlock >
                     <img src={search} alt="search"/>
                     <input value={searchAnswer} onChange={onChangeHandler} placeholder="Provide your text" type="text"/>
                 </SearchBlock>

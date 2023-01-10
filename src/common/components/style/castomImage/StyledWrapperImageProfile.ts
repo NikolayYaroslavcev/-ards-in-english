@@ -5,15 +5,20 @@ export const StyledWrapperImageProfile = styled.div<PropsImageType>`
   text-align: center;
   width: ${({width}) => width || '96px'};
   height: ${({height}) => height || '96px'};
-  border-radius: 100%;
+  //border-radius: ${({borderRadius}) => borderRadius || '100%'};
+  transition: all 0.3s;
+  
+  :hover {
+    scale: ${({hover}) => hover ? '1.1' : '1'};
+  }
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 100%;
+    border-radius: ${({borderRadius}) => borderRadius || '100%'};
     justify-content: center;
     cursor: ${({cursor}) => cursor || 'auto'};
-    
+
   }
 `
