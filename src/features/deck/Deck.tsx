@@ -1,133 +1,119 @@
-import React, {useEffect, useState} from 'react';
+import React, {ChangeEvent, useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from '../../common/hooks/hooks';
-import polygon from '../../assets/img/Polygon.svg'
-import deleteIcon from '../../assets/img/Delete.svg'
-import edit from '../../assets/img/Edit.svg'
-import {ArrowTableBlock, Table} from './StyledDeck';
-import {useTable} from 'react-table';
-import {getDeckTC, deskAddTC, deskDeleteTC, deskUpdateTC} from "./deck-reducer";
+import {deskAddTC, getDeckTC, setUpdateDeskAC} from "./deck-reducer";
 import {CardsHeaderStyle} from "../cards/style-cards";
 import {StyledButton} from "../../common/components/style/Button/StyledButton";
 import {SearchDesk} from "./SearchDesk";
+import {Pagination} from "@mui/material";
+import {useSearchParams} from "react-router-dom";
+import useDebounce from "../../common/hooks/useDebounce";
+import Table from "./Table";
 
 export const Desk = () => {
-
-    const [searchValue, setSearchValue] = useState('')
-
-    const data = useAppSelector(state => state.deck.cardPacks)
     const dispatch = useAppDispatch()
+    const [searchParams, setSearchParams] = useSearchParams()
+
+    const myId = useAppSelector(state => state.profile._id)
+    const initialize = useAppSelector(state => state.deck.initialize)
+    const isMy = useAppSelector(state => state.deck.isMy)
+    const min = useAppSelector(state => state.deck.min)
+    const max = useAppSelector(state => state.deck.max)
+    const page = useAppSelector(state => state.deck.page)
+    const pageCount = useAppSelector(state => state.deck.pageCount)
+    const searchPackName = useAppSelector(state => state.deck.packName)
+    const maxPage = useAppSelector(state => state.deck.cardPacksTotalCount)
+
+    const debounceSearchDesk = useDebounce<string>(searchPackName, 500)
+
+    useEffect(() => {
+        if (initialize) {
+            dispatch(getDeckTC())
+        }
+        setSearchParams(searchParams)
+    }, [debounceSearchDesk, page, pageCount, min, max, isMy,])
 
 
     useEffect(() => {
-      //  dispatch(getDeckTC())
+        if (!initialize) {
+            let isMyQuery = Boolean(searchParams.get('userId') === 'My')
+            let pageCountQuery = Number(searchParams.get('pageCount') || 4)
+            let pageQuery = Number(searchParams.get('page') || 1)
+            let questionQuery = searchParams.get('packName') || ''
+            let sortPackQuery = (searchParams.get('sortPack') as '0updated' | '1updated') || '0updated'
+            let userIdPackQuery = (searchParams.get('user_id'))
+
+            dispatch(
+                setUpdateDeskAC({
+                    isMy: isMyQuery,
+                    page: pageQuery,
+                    pageCount: pageCountQuery,
+                    packName: questionQuery,
+                    sortPacks: sortPackQuery,
+                })
+            )
+            dispatch(getDeckTC())
+        }
     }, [])
 
-    const onclickHandler = () => {
+    const onChangeInputValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        dispatch(setUpdateDeskAC({packName: e.currentTarget.value}))
+        searchParams.set('packName', e.currentTarget.value)
+    }
+
+    const onclickHandlerMy = () => {
+        dispatch(setUpdateDeskAC({isMy: true}))
+        searchParams.set('userId', "My")
+    }
+    const onclickHandlerAll = () => {
+        dispatch(setUpdateDeskAC({isMy: false}))
+        searchParams.set('userId', '')
+    }
+    const filterReset = () => {
+        searchParams.delete('min')
+        searchParams.delete('max')
+        searchParams.delete('page')
+        searchParams.delete('pageCount')
+        searchParams.delete('userId')
+        searchParams.delete('packName')
+        setSearchParams(searchParams)
+        dispatch(
+            setUpdateDeskAC({
+                min: null,
+                max: null,
+                isMy: false,
+                page: 1,
+                pageCount: 4,
+                sortPacks: '0updated',
+                packName: ''
+            })
+        )
+    }
+
+    const onclickAddDeskHandler = () => {
         dispatch(deskAddTC())
     }
 
-    const columns = React.useMemo<any>(
-        () => [
-            {
-                Header: 'Name',
-                accessor: 'name',
-            },
-            {
-                Header: 'Cards',
-                accessor: 'cardsCount',
-            },
-            {
-                Header: 'Last Updated',
-                accessor: 'updated',
-
-            },
-            {
-                Header: 'Created by',
-                accessor: 'user_name',
-
-            },
-            {
-                Header: 'Actions',
-                Cell: (props: any) => {
-                    return (
-                        <div>
-                            <img src={edit}
-                                 onClick={() => dispatch(deskUpdateTC(props.row.original._id, ''))}
-                                 alt=""/>
-                            <img src={deleteIcon} onClick={() => dispatch(deskDeleteTC(props.row.original._id))}
-                                 alt=""/>
-                        </div>
-                    )
-                },
-            },
-        ],
-        []
-    )
-
-    const {
-        getTableProps,
-        getTableBodyProps,
-        headerGroups,
-        rows,
-        prepareRow,
-    } = useTable({columns, data})
-
+    const onChangePageHandler = (event: React.ChangeEvent<unknown>, page: number) => {
+        dispatch(setUpdateDeskAC({page}))
+        searchParams.set('page', page.toString())
+        setSearchParams(searchParams)
+    }
 
     return (
         <>
             <CardsHeaderStyle>
                 <p>Packs list</p>
-                <StyledButton onClick={onclickHandler}>Add new pack</StyledButton>
+                <StyledButton onClick={onclickAddDeskHandler}>Add new pack</StyledButton>
             </CardsHeaderStyle>
-             {/*Search*/}
-            <SearchDesk/>
-
-            <Table {...getTableProps()} >
-                <thead>
-                {headerGroups.map(headerGroup => (
-                    <tr {...headerGroup.getHeaderGroupProps()}>
-                        {headerGroup.headers.map(column => (
-                            <th
-                                {...column.getHeaderProps()}
-                            >
-                                {
-                                    column.Header === 'Last Updated'
-                                        ? <ArrowTableBlock>
-                                            <p>{column.render('Header')}</p>
-                                            <img
-                                                src={polygon}
-                                                alt="polygon"
-                                                onClick={() => {
-                                                    console.log('asd')
-                                                }}
-                                            />
-                                        </ArrowTableBlock>
-                                        : column.render('Header')
-                                }
-                            </th>
-                        ))}
-                    </tr>
-                ))}
-                </thead>
-                <tbody {...getTableBodyProps()}>
-                {rows.map(row => {
-                    prepareRow(row)
-                    return (
-                        <tr {...row.getRowProps()}>
-                            {row.cells.map(cell => {
-                                return (
-                                    <td
-                                        {...cell.getCellProps()}
-                                    >
-                                        {cell.render('Cell')}
-                                    </td>
-                                )
-                            })}
-                        </tr>
-                    )
-                })}
-                </tbody>
-            </Table>
+            <SearchDesk searchPackName={searchPackName}
+                        isMy={isMy}
+                        filterReset={filterReset}
+                        onclickHandlerAll={onclickHandlerAll}
+                        onChangeInputValueHandler={onChangeInputValueHandler}
+                        onclickHandlerMy={onclickHandlerMy}
+            />
+            <Table myId={myId}/>
+            <Pagination count={10} shape="rounded" onChange={onChangePageHandler}/>
         </>
     )
 }

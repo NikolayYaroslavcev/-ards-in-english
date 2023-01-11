@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
-export const Table = styled.table`
+export const TableStyled = styled.table`
   table-layout: fixed;
   width: 100%;
   border-collapse: collapse;
   filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.1)) drop-shadow(-1px -1px 2px rgba(0, 0, 0, 0.1));
+
 
   thead th {
     background: #EFEFEF;
@@ -16,29 +17,38 @@ export const Table = styled.table`
   }
 
   thead th:nth-child(1) {
-    width: 300px;
-
+    max-width: 250px;
   }
 
   thead th:nth-child(2) {
-    width: 230px;
+    max-width: 230px;
   }
 
   thead th:nth-child(3) {
-    width: 215px;
+    max-width: 215px;
   }
 
   thead th:nth-child(4) {
-    width: 155px;
+    max-width: 155px;
   }
 
   thead th:nth-child(4) {
-    width: 109px;
+    max-width: 109px;
   }
 
   tr {
     background: #FFFFFF;
     border: 1px solid #EFEFEF;
+    transition: all 0.2s;
+
+    :hover {
+      background: rgba(236, 234, 234, 0.44);
+    }
+
+  }
+
+  td {
+    cursor: pointer;
   }
 
   th, td {
@@ -116,11 +126,3 @@ export const SearchButtonStyle = styled.div`
   }
 `
 
-export const RangeSliderCastomStyle = styled.div`
-  display: flex;
-  flex-direction: column;
-  row-gap: 10px;
-
-
-
-`
