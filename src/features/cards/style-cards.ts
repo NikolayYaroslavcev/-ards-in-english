@@ -88,7 +88,7 @@ export const ActionBlock = styled.div`
 `
 export const Search = styled.div`
   margin-bottom: 14px;
-  
+
 
   p {
     font-size: 17px;

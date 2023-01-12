@@ -1,5 +1,5 @@
 import React, {ChangeEvent, useEffect} from 'react';
-import {MyCards} from "./MyCards";
+import {Cards} from "./Cards";
 import {CardsHeaderStyle, Search, SearchBlock} from "./style-cards";
 import search from '../../assets/img/Search.svg'
 import {useAppDispatch} from "../../common/hooks/hooks";
@@ -49,7 +49,7 @@ export const CardPage = () => {
                     <input value={searchAnswer} onChange={onChangeHandler} placeholder="Provide your text" type="text"/>
                 </SearchBlock>
             </Search>
-            <MyCards/>
+            <Cards/>
         </>
 
     );

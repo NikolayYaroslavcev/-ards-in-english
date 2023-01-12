@@ -1,8 +1,7 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {AxiosError} from 'axios';
-import {AddDeskType, DeckPacsType, DeckType, DeleteDataType, deskApi, SearchDataType, UpdateResType} from './desk-api';
+import {AddDeskType, DeckPacsType, DeckType, deskApi} from './desk-api';
 import {AppThunk} from '../../app/store';
-import {CardType} from "../cards/cards-api";
 
 
 type InitialStateType = DeckType & {
@@ -97,15 +96,9 @@ export const deskAddTC = (): AppThunk => async dispatch => {
     }
 }
 
-export const deskDeleteTC = (newId: string): AppThunk => async dispatch => {
-    const dataModel: DeleteDataType = {
-        params: {
-            id: newId
-        }
-    }
-
+export const deskDeleteTC = (id: string): AppThunk => async dispatch => {
     try {
-        const res = await deskApi.deskDelete(dataModel)
+        const res = await deskApi.deskDelete(id)
         dispatch(getDeckTC())
         //dispatch(deleteDeckAC({deletedCardsPack: res.data.deletedCardsPack}))
         // dispatch(deleteDeckAC(res.data))

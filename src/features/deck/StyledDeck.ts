@@ -5,7 +5,7 @@ export const TableStyled = styled.table`
   width: 100%;
   border-collapse: collapse;
   filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.1)) drop-shadow(-1px -1px 2px rgba(0, 0, 0, 0.1));
-
+  margin-bottom: 15px;
 
   thead th {
     background: #EFEFEF;
@@ -29,10 +29,10 @@ export const TableStyled = styled.table`
   }
 
   thead th:nth-child(4) {
-    max-width: 155px;
+    max-width: 200px;
   }
 
-  thead th:nth-child(4) {
+  thead th:nth-child(5) {
     max-width: 109px;
   }
 
@@ -124,5 +124,18 @@ export const SearchButtonStyle = styled.div`
     line-height: 17px;
     color: #000000;
   }
+`
+export const PaginationStyle = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  column-gap: 15px;
+  align-items: center;
+
+  div select {
+    padding-right: 17px;
+    padding-left: 5px;
+  
+  }
+
 `
 

@@ -16,7 +16,7 @@ export const cardsAPI = {
             params: {
                 // cardAnswer: string,
                 //  cardQuestion: string,
-                cardsPack_id: "63a5b1873b88ba2a4459ab4f", // мои
+                cardsPack_id: "63c05632f97a5f1048376a34", // мои
                // cardsPack_id: "63a5ad309d358132a0859cd2", // другие
                 // min: number,
                 // max: number,

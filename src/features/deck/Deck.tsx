@@ -1,13 +1,12 @@
 import React, {ChangeEvent, useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from '../../common/hooks/hooks';
 import {deskAddTC, getDeckTC, setUpdateDeskAC} from "./deck-reducer";
-import {CardsHeaderStyle} from "../cards/style-cards";
-import {StyledButton} from "../../common/components/style/Button/StyledButton";
 import {SearchDesk} from "./SearchDesk";
-import {Pagination} from "@mui/material";
 import {useSearchParams} from "react-router-dom";
 import useDebounce from "../../common/hooks/useDebounce";
 import Table from "./Table";
+import PaginationBlock from "../../common/components/paginationBlock/PaginationBlock";
+import HeaderDesk from "../../common/components/headerDesk/HeaderDesk";
 
 export const Desk = () => {
     const dispatch = useAppDispatch()
@@ -21,7 +20,8 @@ export const Desk = () => {
     const page = useAppSelector(state => state.deck.page)
     const pageCount = useAppSelector(state => state.deck.pageCount)
     const searchPackName = useAppSelector(state => state.deck.packName)
-    const maxPage = useAppSelector(state => state.deck.cardPacksTotalCount)
+    const totalCount = useAppSelector(state => state.deck.cardPacksTotalCount)
+    const totalPages = Math.floor(totalCount / pageCount)
 
     const debounceSearchDesk = useDebounce<string>(searchPackName, 500)
 
@@ -92,6 +92,10 @@ export const Desk = () => {
     const onclickAddDeskHandler = () => {
         dispatch(deskAddTC())
     }
+    const handleChangeSelectValue = (e: ChangeEvent<HTMLSelectElement>) => {
+        dispatch(setUpdateDeskAC({pageCount: e.target.value}))
+        searchParams.set('pageCount', e.target.value)
+    };
 
     const onChangePageHandler = (event: React.ChangeEvent<unknown>, page: number) => {
         dispatch(setUpdateDeskAC({page}))
@@ -101,10 +105,7 @@ export const Desk = () => {
 
     return (
         <>
-            <CardsHeaderStyle>
-                <p>Packs list</p>
-                <StyledButton onClick={onclickAddDeskHandler}>Add new pack</StyledButton>
-            </CardsHeaderStyle>
+            <HeaderDesk onclickAddDeskHandler={onclickAddDeskHandler}/>
             <SearchDesk searchPackName={searchPackName}
                         isMy={isMy}
                         filterReset={filterReset}
@@ -113,7 +114,13 @@ export const Desk = () => {
                         onclickHandlerMy={onclickHandlerMy}
             />
             <Table myId={myId}/>
-            <Pagination count={10} shape="rounded" onChange={onChangePageHandler}/>
+            <PaginationBlock page={page}
+                             onChangePageHandler={onChangePageHandler}
+                             totalPages={totalPages}
+                             pageCount={pageCount}
+                             handleChangeSelectValue={handleChangeSelectValue}
+            />
+
         </>
     )
 }

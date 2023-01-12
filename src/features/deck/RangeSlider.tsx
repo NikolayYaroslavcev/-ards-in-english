@@ -1,17 +1,15 @@
 import * as React from 'react';
-import {useEffect, useState} from 'react';
-import Slider from '@mui/material/Slider';
+import {memo, useEffect, useState} from 'react';
+import {Slider} from '@mui/material';
 import {RangeSliderStyle} from "./StyledDeck";
 import {setUpdateDeskAC} from "./deck-reducer";
 import {useAppDispatch, useAppSelector} from "../../common/hooks/hooks";
 import {useSearchParams} from "react-router-dom";
 
-export const RangeSlider = () => {
-   // const [valueInp, setValueInp] = useState<string>('')
+export const RangeSlider = memo(() => {
     const minCardsCount = useAppSelector(state => state.deck.minCardsCount)
     const maxCardsCount = useAppSelector(state => state.deck.maxCardsCount)
 
-   // const minVal = useAppSelector(state => state.deck.min)
     const [searchParams, setSearchParams] = useSearchParams()
 
 
@@ -20,8 +18,6 @@ export const RangeSlider = () => {
 
     const [value, setValue] = useState<number[]>([min, max])
     const dispatch = useAppDispatch()
-
-   // const debounceSearch = useDebounce<number[]>(value, 500)
 
     useEffect(() => {
         console.log('use')
@@ -33,19 +29,11 @@ export const RangeSlider = () => {
     }
 
     const onChangeCommitted = (event: Event | React.SyntheticEvent, newValue: number[] | number) => {
-        //console.log(newValue[0] as number)
         dispatch(setUpdateDeskAC({min: value[0].toString(), max: value[1].toString()}))
         searchParams.set('min', value[0].toString())
         searchParams.set('max', value[1].toString())
         setSearchParams(searchParams)
     }
-    // const onChangeMinHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    //     dispatch(setUpdateDeskAC({min: e.currentTarget.value}))
-    //     searchParams.set('min', e.currentTarget.value)
-    //     setSearchParams(searchParams)
-    //     setValue([+e.currentTarget.value, max])
-    //
-    // }
 
     return (
         <RangeSliderStyle>
@@ -71,7 +59,7 @@ export const RangeSlider = () => {
             />
         </RangeSliderStyle>
     );
-}
+})
 
 
 //

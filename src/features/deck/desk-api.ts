@@ -13,8 +13,8 @@ export const deskApi = {
     desk(params: GetDeskParamsType = {}) {
         return instance.get<'', AxiosResponse<DeckType>, GetDeskParamsType>('cards/pack', {params})
     },
-    deskDelete(data: DeleteDataType) {
-        return instance.delete<'', AxiosResponse<DeskDeletedResType>, DeleteDataType>('cards/pack', data)
+    deskDelete(id: string) {
+        return instance.delete<AxiosResponse<DeskDeletedResType>>(`cards/pack?id=${id}`)
     },
     deskUpdate(newId: string, newName: string) {
         console.log(newId, newName)
@@ -60,12 +60,6 @@ export type DeskDeletedResType = {
     deletedCardsPack: DeckPacsType
 }
 
-export type DeleteDataType = {
-    params: {
-        id: string
-    }
-}
-
 export type AddDeskType = {
     cardsPack: {
         name: string,
@@ -87,9 +81,6 @@ type DeskUpdateType = {
         name: string,
     }
 }
-
-//types
-
 
 export type DeckType = {
     cardPacks: DeckPacsType[]
@@ -119,4 +110,3 @@ export type DeckPacsType = {
     _id: string
 }
 
-export type DeckPropsType = Partial<DeckType>

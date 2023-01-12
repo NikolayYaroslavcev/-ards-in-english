@@ -6,10 +6,16 @@ import {ActionBlock, ArrowTableBlock, Table} from "./style-cards";
 import polygon from '../../assets/img/Polygon.svg'
 import deleteIcon from '../../assets/img/Delete.svg'
 import edit from '../../assets/img/Edit.svg'
+import { useSearchParams } from "react-router-dom";
 
-export const FriendsCards = (props: any) => {
+export const Cards = (props: any) => {
     const data = useAppSelector(state => state.cards.cards)
     const dispatch = useAppDispatch()
+
+
+    //const params = Object.fromEntries(searchParams)
+   // console.log(params)
+
 
     useEffect(() => {
         dispatch(getCardsTC())
@@ -34,7 +40,20 @@ export const FriendsCards = (props: any) => {
             accessor: 'grade',
 
         },
+        {
+            Header: 'Actions',
+            Cell: (props: any) => {
+                return (
+                    <ActionBlock>
+                        <img src={edit} onClick={() => dispatch(updateCardTC(props.row.original._id, ''))} alt=""/>
+                        <img src={deleteIcon} onClick={() => {
+                            dispatch(deleteCardTC(props.row.original._id))
 
+                        }} alt=""/>
+                    </ActionBlock>
+                )
+            },
+        },
     ], [])
 
     const {
