@@ -1,7 +1,7 @@
 import React, {ChangeEvent, useEffect} from 'react';
 import {Cards} from "./Cards";
 import {CardsHeaderStyle, Search, SearchBlock} from "./style-cards";
-import search from '../../assets/img/Search.svg'
+import search from '../../assets/img/search.svg'
 import {useAppDispatch} from "../../common/hooks/hooks";
 import {StyledWrapperImageProfile} from "../../common/components/style/castomImage/StyledWrapperImageProfile";
 import editMenu from '../../assets/img/editMenu.svg'

@@ -1,5 +1,5 @@
 import React, {ChangeEvent, FC} from 'react';
-import search from '../../assets/img/Search.svg'
+import search from '../../assets/img/search.svg'
 import {RangeSlider} from "./RangeSlider";
 import {Search, SearchBlock} from "../cards/style-cards";
 import {SearchButtonStyle, SearchSliderStyle} from "./StyledDeck";
