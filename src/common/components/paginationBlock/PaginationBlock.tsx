@@ -35,10 +35,9 @@ const PaginationBlock: FC<PaginationBlockPropsType> = (
                     id: 'select page',
                 }}
             >
-
-                <option value={4}>{pageCount === 4 ? pageCount : 4}</option>
-                <option value={8}>{pageCount === 8 ? pageCount : 8}</option>
-                <option value={16}>{pageCount === 16 ? pageCount : 16}</option>
+                <option value={4}>4</option>
+                <option value={8}>8</option>
+                <option value={16}>16</option>
             </NativeSelect>
             <p>Cards per Page</p>
         </PaginationStyle>

@@ -50,7 +50,6 @@ const slice = createSlice({
             setUpdateDeskAC(state, action: PayloadAction<{}>) {
                 return {...state, ...action.payload}
             }
-
         }
     }
 )

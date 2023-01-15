@@ -8,7 +8,7 @@ import deleteIcon from '../../assets/img/Delete.svg'
 import edit from '../../assets/img/Edit.svg'
 import { useSearchParams } from "react-router-dom";
 
-export const Cards = (props: any) => {
+export const CardsTable = (props: any) => {
     const data = useAppSelector(state => state.cards.cards)
     const dispatch = useAppDispatch()
 
