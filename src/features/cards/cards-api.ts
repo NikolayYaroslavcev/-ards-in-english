@@ -11,26 +11,26 @@ export const instance = axios.create({
 })
 
 export const cardsAPI = {
-    getCards() {
-        return instance.get<'', AxiosResponse<CardsResType>, GetTypeGo>('cards/card', {
-            params: {
-                // cardAnswer: string,
-                //  cardQuestion: string,
-                cardsPack_id: "63c05632f97a5f1048376a34", // мои
-               // cardsPack_id: "63a5ad309d358132a0859cd2", // другие
-                // min: number,
-                // max: number,
-                // cortCards: string,
-                //  page: number,
-                //  pageCount: string
-            }
-        })
+    getCards(params: GetTypeGo) {
+        return instance.get<'', AxiosResponse<CardsResType>, GetTypeGo>('cards/card', {params})
     },
+
+    // params: {
+    //     // cardAnswer: string,
+    //     //  cardQuestion: string,
+    //     cardsPack_id: "63c05632f97a5f1048376a34", // мои
+    //     // cardsPack_id: "63a5ad309d358132a0859cd2", // другие
+    //     // min: number,
+    //     // max: number,
+    //     // cortCards: string,
+    //     //  page: number,
+    //     //  pageCount: string
+    // }
     addCard() {
         return instance.post<'', AxiosResponse<AddCardResType>, AddCardType>('cards/card', {
             card: {
                 cardsPack_id: "63a5b1873b88ba2a4459ab4f",
-                answer:'sdfsad',
+                answer: 'sdfsad',
                 question: '124'
             }
         })
@@ -52,7 +52,7 @@ export const cardsAPI = {
     }
 }
 export type AddCardResType = {
-    newCard:{}
+    newCard: {}
 }
 
 export type AddCardType = {
@@ -81,16 +81,14 @@ export type UpdateCardType = {
 }
 export type GetTypeGo = Partial<GetType>
 export type GetType = {
-    params: {
-        cardAnswer: string,
-        cardQuestion: string,
-        cardsPack_id: "63a5b1873b88ba2a4459ab4f",
-        min: number,
-        max: number,
-        cortCards: string,
-        page: number,
-        pageCount: string
-    }
+    cardAnswer: string,
+    cardQuestion: string,
+    cardsPack_id: string,
+    min: number,
+    max: number,
+    cortCards: string,
+    page: number,
+    pageCount: number
 }
 
 export type DeleteResType = {

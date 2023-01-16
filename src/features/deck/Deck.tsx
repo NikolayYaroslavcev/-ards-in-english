@@ -1,14 +1,14 @@
-import React, {ChangeEvent, useEffect} from 'react';
+import React, {ChangeEvent, memo, useCallback, useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from '../../common/hooks/hooks';
 import {deskAddTC, getDeckTC, setUpdateDeskAC} from "./deck-reducer";
 import {SearchDesk} from "./SearchDesk";
 import {useSearchParams} from "react-router-dom";
 import useDebounce from "../../common/hooks/useDebounce";
-import Table from "./Table";
-import PaginationBlock from "../../common/components/paginationBlock/PaginationBlock";
+import {DeskTable} from "./Table";
+import {PaginationBlock} from "../../common/components/paginationBlock/PaginationBlock";
 import HeaderDesk from "../../common/components/headerDesk/HeaderDesk";
 
-export const Desk = () => {
+export const Desk = memo(() => {
     const dispatch = useAppDispatch()
     const [searchParams, setSearchParams] = useSearchParams()
 
@@ -55,20 +55,22 @@ export const Desk = () => {
         }
     }, [])
 
-    const onChangeInputValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    const onChangeInputValueHandler = useCallback ((e: ChangeEvent<HTMLInputElement>) => {
         dispatch(setUpdateDeskAC({packName: e.currentTarget.value}))
         searchParams.set('packName', e.currentTarget.value)
-    }
+    }, [dispatch])
 
-    const onclickHandlerMy = () => {
+    const onclickHandlerMy = useCallback (() => {
         dispatch(setUpdateDeskAC({isMy: true}))
         searchParams.set('userId', "My")
-    }
-    const onclickHandlerAll = () => {
+    }, [dispatch])
+
+    const onclickHandlerAll = useCallback(() => {
         dispatch(setUpdateDeskAC({isMy: false}))
         searchParams.set('userId', '')
-    }
-    const filterReset = () => {
+    }, [dispatch])
+
+    const filterReset = useCallback (() => {
         searchParams.delete('min')
         searchParams.delete('max')
         searchParams.delete('page')
@@ -87,21 +89,22 @@ export const Desk = () => {
                 packName: ''
             })
         )
-    }
+    }, [])
 
-    const onclickAddDeskHandler = () => {
+    const onclickAddDeskHandler = useCallback(() => {
         dispatch(deskAddTC())
-    }
-    const handleChangeSelectValue = (e: ChangeEvent<HTMLSelectElement>) => {
+    }, [dispatch])
+
+    const handleChangeSelectValue = useCallback((e: ChangeEvent<HTMLSelectElement>) => {
         dispatch(setUpdateDeskAC({pageCount: e.target.value}))
         searchParams.set('pageCount', e.target.value)
-    };
+    }, [dispatch])
 
-    const onChangePageHandler = (event: React.ChangeEvent<unknown>, page: number) => {
+    const onChangePageHandler = useCallback((event: React.ChangeEvent<unknown>, page: number) => {
         dispatch(setUpdateDeskAC({page}))
         searchParams.set('page', page.toString())
         setSearchParams(searchParams)
-    }
+    }, [dispatch])
 
     return (
         <>
@@ -113,7 +116,7 @@ export const Desk = () => {
                         onChangeInputValueHandler={onChangeInputValueHandler}
                         onclickHandlerMy={onclickHandlerMy}
             />
-            <Table myId={myId}/>
+            <DeskTable myId={myId}/>
             <PaginationBlock page={page}
                              onChangePageHandler={onChangePageHandler}
                              totalPages={totalPages}
@@ -122,4 +125,4 @@ export const Desk = () => {
             />
         </>
     )
-}
+})

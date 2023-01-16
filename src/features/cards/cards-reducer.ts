@@ -3,17 +3,26 @@ import {AxiosError} from 'axios';
 import {AppThunk} from "../../app/store";
 import {cardsAPI, CardsResType, CardType, GetTypeGo} from "./cards-api";
 
-type InitialStateType = CardsResType
+type InitialStateType = CardsResType & {
+    cardAnswer: string,
+    cardsPack_id: string,
+    initialize: boolean,
+
+
+}
 
 const initialState: InitialStateType = {
+    initialize: false,
     cards: [],
     cardsTotalCount: 0,
     maxGrade: 0,
     minGrade: 0,
-    page: 0,
-    pageCount: 0,
+    page: 1,
+    pageCount: 4,
     packUserId: '',
-    packName: ''
+    packName: '',
+    cardAnswer: '',
+    cardsPack_id: '',
 }
 
 
@@ -28,15 +37,15 @@ const slice = createSlice({
         deleteCardsAC(state, action: PayloadAction<{ deletedCard: CardType }>) {
             // return {...state, cards: state.cards.filter(el => el._id !== action.payload.deletedCard._id), cardsTotalCount: state.cardsTotalCount - 1}
         },
-        updateCardAC(state, action: PayloadAction<{ updatedCard: CardType }>) {
-            state.cards = state.cards.map(el => el._id === action.payload.updatedCard._id ? {...el, ...action.payload.updatedCard} : el)
+        setUpdateCardAC(state, action: PayloadAction<{}>) {
+            return {...state, ...action.payload}
         }
     }
 })
 
 
-export const getCardsTC = (): AppThunk => async dispatch => {
-
+export const getCardsTC = (): AppThunk => async (dispatch, getState) => {
+    const {cardsPack_id, cardAnswer,page, pageCount} = getState().cards
     // const dataModel = {
     //     params: {
     //         cardAnswer: '',
@@ -53,13 +62,13 @@ export const getCardsTC = (): AppThunk => async dispatch => {
 
 
     try {
-        const res = await cardsAPI.getCards()
+        const res = await cardsAPI.getCards({cardsPack_id, cardAnswer, page, pageCount})
         dispatch(getCardsAC(res.data))
     } catch (e) {
         const err = e as Error | AxiosError
         console.log(err)
     } finally {
-        console.log('finally')
+        dispatch(getCardsAC({initialize: true}))
     }
 }
 
@@ -129,7 +138,7 @@ export const updateCardTC = (cardId: string, newValue: string): AppThunk => asyn
         const res = await cardsAPI.updateCard(cardId, newValue)
         //console.log(res.data)
         //console.log(dataModel.params.id)
-        dispatch(updateCardAC({updatedCard: res.data.updatedCard}))
+        dispatch(setUpdateCardAC({updatedCard: res.data.updatedCard}))
 
     } catch (e) {
         const err = e as Error | AxiosError
@@ -139,7 +148,7 @@ export const updateCardTC = (cardId: string, newValue: string): AppThunk => asyn
 
 
 export const cardsReducer = slice.reducer
-export const {getCardsAC, deleteCardsAC, updateCardAC} = slice.actions
+export const {getCardsAC, deleteCardsAC, setUpdateCardAC} = slice.actions
 
 
 

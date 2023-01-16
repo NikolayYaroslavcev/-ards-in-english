@@ -15,7 +15,7 @@ type SearchDeskPropsType = {
     onclickHandlerAll: () => void
     filterReset: () => void
 }
-export const SearchDesk: FC<SearchDeskPropsType> = (
+export const SearchDesk: FC<SearchDeskPropsType> = React.memo ((
     {
         searchPackName,
         onChangeInputValueHandler,
@@ -76,5 +76,5 @@ export const SearchDesk: FC<SearchDeskPropsType> = (
             </SearchButtonStyle>
         </SearchSliderStyle>
     );
-};
+});
 

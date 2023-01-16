@@ -7,26 +7,21 @@ import edit from "../../assets/img/Edit.svg";
 import {deskDeleteTC, deskUpdateTC} from "./deck-reducer";
 import deleteIcon from "../../assets/img/Delete.svg";
 import {useAppDispatch, useAppSelector} from "../../common/hooks/hooks";
-import {getCardsTC} from "../cards/cards-reducer";
-import {Navigate, useNavigate} from "react-router-dom";
+import {getCardsAC} from "../cards/cards-reducer";
+import {useNavigate} from "react-router-dom";
 
 type TablePropsType = {
     myId: string
 }
-const Table: FC<TablePropsType> = (
-    {
-        myId
-    }) => {
-
+export const DeskTable: FC<TablePropsType> = React.memo( ({myId}) => {
     const data = useAppSelector(state => state.deck.cardPacks)
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
 
     const onClickCardsHandler = (deskId: string) => {
+        dispatch(getCardsAC({cardsPack_id: deskId}));
         console.log(deskId)
-        // dispatch(getCardsTC());
-        navigate(`/cards`)
-
+        navigate(`/cards/${deskId}`)
     }
     const columns = React.useMemo<any>(() => [
         {
@@ -109,9 +104,9 @@ const Table: FC<TablePropsType> = (
                     <tr {...row.getRowProps()} >
                         {row.cells.map(cell => {
                             return (
-                                <td onClick = {() => {
-                                        cell.column.Header !== 'Actions' && onClickCardsHandler(cell.row.original._id)
-                                    }}
+                                <td onClick={() => {
+                                    cell.column.Header !== 'Actions' && onClickCardsHandler(cell.row.original._id)
+                                }}
                                     {...cell.getCellProps()}
                                 >
                                     {cell.render('Cell')}
@@ -124,6 +119,5 @@ const Table: FC<TablePropsType> = (
             </tbody>
         </TableStyled>
     );
-};
+})
 
-export default Table;

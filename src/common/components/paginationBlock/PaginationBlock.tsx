@@ -10,7 +10,7 @@ type PaginationBlockPropsType = {
     handleChangeSelectValue: (e: ChangeEvent<HTMLSelectElement>) => void
 }
 
-const PaginationBlock: FC<PaginationBlockPropsType> = (
+export const PaginationBlock: FC<PaginationBlockPropsType> = (
     {
         totalPages,
         page,
@@ -45,4 +45,3 @@ const PaginationBlock: FC<PaginationBlockPropsType> = (
     );
 };
 
-export default PaginationBlock;

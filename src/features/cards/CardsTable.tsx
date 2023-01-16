@@ -6,21 +6,12 @@ import {ActionBlock, ArrowTableBlock, Table} from "./style-cards";
 import polygon from '../../assets/img/Polygon.svg'
 import deleteIcon from '../../assets/img/Delete.svg'
 import edit from '../../assets/img/Edit.svg'
-import { useSearchParams } from "react-router-dom";
+import {useSearchParams} from "react-router-dom";
+import {Rating} from "@mui/material";
 
 export const CardsTable = (props: any) => {
     const data = useAppSelector(state => state.cards.cards)
     const dispatch = useAppDispatch()
-
-
-    //const params = Object.fromEntries(searchParams)
-   // console.log(params)
-
-
-    useEffect(() => {
-        dispatch(getCardsTC())
-    }, [])
-
 
     const columns = React.useMemo<any>(() => [
         {
@@ -34,11 +25,16 @@ export const CardsTable = (props: any) => {
         {
             Header: 'Last Updated',
             accessor: 'updated',
+
         },
         {
             Header: 'Grade',
             accessor: 'grade',
-
+            Cell: (props: any) => {
+                return (
+                    <Rating name="read-only" value={props.row.original.grade} readOnly/>
+                )
+            }
         },
         {
             Header: 'Actions',

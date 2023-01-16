@@ -1,20 +1,17 @@
 import React, {FC} from 'react';
 import {StyledButton} from "../style/Button/StyledButton";
-import {CardsHeaderStyle} from "../../../features/cards/style-cards";
+import {HeaderStyle} from "../../../features/cards/style-cards";
 
 type HeaderDeskPropsType = {
     onclickAddDeskHandler: () => void
 }
-const HeaderDesk: FC<HeaderDeskPropsType> = (
-    {
-        onclickAddDeskHandler
-    }) => {
+const HeaderDesk: FC<HeaderDeskPropsType> = React.memo( ({onclickAddDeskHandler}) => {
     return (
-        <CardsHeaderStyle>
+        <HeaderStyle>
             <p>Packs list</p>
             <StyledButton onClick={onclickAddDeskHandler}>Add new pack</StyledButton>
-        </CardsHeaderStyle>
+        </HeaderStyle>
     );
-};
+})
 
 export default HeaderDesk;

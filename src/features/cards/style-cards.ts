@@ -1,7 +1,21 @@
 import styled from "styled-components";
 
 
-export const CardsHeaderStyle = styled.div`
+export const CardsHeaderBack = styled.div`
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+  margin-bottom: 25px;
+
+  :hover {
+
+    img {
+      transform: translateX(5px);
+    }
+  }
+`
+
+export const HeaderStyle = styled.div`
   margin-bottom: 34px;
   div {
     display: flex;
@@ -28,6 +42,7 @@ export const Table = styled.table`
   width: 100%;
   border-collapse: collapse;
   filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.1)) drop-shadow(-1px -1px 2px rgba(0, 0, 0, 0.1));
+  margin-bottom: 15px;
 
   thead th {
     background: #EFEFEF;

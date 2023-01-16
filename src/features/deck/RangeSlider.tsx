@@ -1,12 +1,12 @@
 import * as React from 'react';
-import {memo, useEffect, useState} from 'react';
+import {useCallback, useEffect, useState} from 'react';
 import {Slider} from '@mui/material';
 import {RangeSliderStyle} from "./StyledDeck";
 import {setUpdateDeskAC} from "./deck-reducer";
 import {useAppDispatch, useAppSelector} from "../../common/hooks/hooks";
 import {useSearchParams} from "react-router-dom";
 
-export const RangeSlider = memo(() => {
+export const RangeSlider = React.memo(() => {
     const minCardsCount = useAppSelector(state => state.deck.minCardsCount)
     const maxCardsCount = useAppSelector(state => state.deck.maxCardsCount)
 
@@ -24,7 +24,7 @@ export const RangeSlider = memo(() => {
         setValue([min, max])
     }, [min, max])
 
-    const handleChange = (event: any, newValue: number[] | number) => {
+    const handleChange =  (event: any, newValue: number[] | number) => {
         setValue(newValue as number[])
     }
 
