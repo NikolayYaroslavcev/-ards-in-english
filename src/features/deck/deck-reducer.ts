@@ -2,6 +2,7 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {AxiosError} from 'axios';
 import {AddDeskType, DeckPacsType, DeckType, deskApi} from './desk-api';
 import {AppThunk} from '../../app/store';
+import {setAppStatusAC} from "../../app/app-reducer";
 
 
 type InitialStateType = DeckType & {
@@ -56,6 +57,7 @@ const slice = createSlice({
 
 
 export const getDeckTC = (): AppThunk => async (dispatch, getState) => {
+    dispatch(setAppStatusAC({status: 'loading'}))
     const {sortPacks, page, pageCount, packName, max, min, isMy} = getState().deck
     const id = getState().profile._id
     const user_id = isMy ? id : ''
@@ -68,6 +70,7 @@ export const getDeckTC = (): AppThunk => async (dispatch, getState) => {
         console.log(err)
     } finally {
         dispatch(setUpdateDeskAC({initialize: true}))
+        dispatch(setAppStatusAC({status: 'idle'}))
         //  console.log('finally')
     }
 }

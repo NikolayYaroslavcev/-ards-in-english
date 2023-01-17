@@ -4,14 +4,16 @@ import {deskAddTC, getDeckTC, setUpdateDeskAC} from "./deck-reducer";
 import {SearchDesk} from "./SearchDesk";
 import {useSearchParams} from "react-router-dom";
 import useDebounce from "../../common/hooks/useDebounce";
-import {DeskTable} from "./Table";
+import {DeskTable} from "./DeskTable";
 import {PaginationBlock} from "../../common/components/paginationBlock/PaginationBlock";
 import HeaderDesk from "../../common/components/headerDesk/HeaderDesk";
+import {SkeletonLoaded} from "../../common/components/skeleton/SkeletonLoaded";
 
 export const Desk = memo(() => {
     const dispatch = useAppDispatch()
     const [searchParams, setSearchParams] = useSearchParams()
 
+    const statusLoading = useAppSelector(state => state.app.status)
     const myId = useAppSelector(state => state.profile._id)
     const initialize = useAppSelector(state => state.deck.initialize)
     const isMy = useAppSelector(state => state.deck.isMy)
@@ -40,7 +42,6 @@ export const Desk = memo(() => {
             let pageQuery = Number(searchParams.get('page') || 1)
             let questionQuery = searchParams.get('packName') || ''
             let sortPackQuery = (searchParams.get('sortPack') as '0updated' | '1updated') || '0updated'
-            let userIdPackQuery = (searchParams.get('user_id'))
 
             dispatch(
                 setUpdateDeskAC({
@@ -55,22 +56,22 @@ export const Desk = memo(() => {
         }
     }, [])
 
-    const onChangeInputValueHandler = useCallback ((e: ChangeEvent<HTMLInputElement>) => {
+    const onChangeInputValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
         dispatch(setUpdateDeskAC({packName: e.currentTarget.value}))
         searchParams.set('packName', e.currentTarget.value)
-    }, [dispatch])
+    }
 
-    const onclickHandlerMy = useCallback (() => {
+    const onclickHandlerMy = () => {
         dispatch(setUpdateDeskAC({isMy: true}))
         searchParams.set('userId', "My")
-    }, [dispatch])
+    }
 
-    const onclickHandlerAll = useCallback(() => {
+    const onclickHandlerAll = () => {
         dispatch(setUpdateDeskAC({isMy: false}))
         searchParams.set('userId', '')
-    }, [dispatch])
+    }
 
-    const filterReset = useCallback (() => {
+    const filterReset = useCallback(() => {
         searchParams.delete('min')
         searchParams.delete('max')
         searchParams.delete('page')
@@ -91,20 +92,22 @@ export const Desk = memo(() => {
         )
     }, [])
 
-    const onclickAddDeskHandler = useCallback(() => {
+    const onclickAddDeskHandler = () => {
         dispatch(deskAddTC())
-    }, [dispatch])
+    }
 
-    const handleChangeSelectValue = useCallback((e: ChangeEvent<HTMLSelectElement>) => {
+    const handleChangeSelectValue = (e: ChangeEvent<HTMLSelectElement>) => {
         dispatch(setUpdateDeskAC({pageCount: e.target.value}))
         searchParams.set('pageCount', e.target.value)
-    }, [dispatch])
+    }
 
-    const onChangePageHandler = useCallback((event: React.ChangeEvent<unknown>, page: number) => {
+    const onChangePageHandler = (event: React.ChangeEvent<unknown>, page: number) => {
         dispatch(setUpdateDeskAC({page}))
         searchParams.set('page', page.toString())
         setSearchParams(searchParams)
-    }, [dispatch])
+    }
+
+    if (statusLoading === 'loading') return <SkeletonLoaded/>
 
     return (
         <>

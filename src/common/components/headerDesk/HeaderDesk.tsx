@@ -6,6 +6,7 @@ type HeaderDeskPropsType = {
     onclickAddDeskHandler: () => void
 }
 const HeaderDesk: FC<HeaderDeskPropsType> = React.memo( ({onclickAddDeskHandler}) => {
+
     return (
         <HeaderStyle>
             <p>Packs list</p>

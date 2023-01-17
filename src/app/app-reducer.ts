@@ -1,9 +1,9 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
-const initialState = {
-    isInitialized: false
+const initialState: initialStateStateType = {
+    isInitialized: false,
+    status: 'idle'
 }
-
 
 const slice = createSlice({
     name: 'app',
@@ -11,9 +11,18 @@ const slice = createSlice({
     reducers: {
         setIsInitializedAC(state, action: PayloadAction<{ value: boolean }>) {
             state.isInitialized = action.payload.value
+        },
+        setAppStatusAC (state, action: PayloadAction<{status: RequestStatusType}>) {
+            state.status = action.payload.status
         }
     }
 })
 
+type initialStateStateType = {
+    isInitialized: boolean,
+    status: RequestStatusType
+}
+
+export type RequestStatusType = 'idle' | 'loading'
 export const appReducer = slice.reducer
-export const {setIsInitializedAC} = slice.actions
+export const {setIsInitializedAC, setAppStatusAC} = slice.actions

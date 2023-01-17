@@ -5,11 +5,16 @@ import editMenu from "../../assets/img/editMenu.svg";
 import {StyledButton} from "../../common/components/style/Button/StyledButton";
 import {useAppDispatch, useAppSelector} from "../../common/hooks/hooks";
 import {addCardTC} from "./cards-reducer";
-import {NavLink} from "react-router-dom";
+import {NavLink, useParams} from "react-router-dom";
 import Back from '../../assets/img/Back.svg'
 
 export const CardsHeader = () => {
     const dispatch = useAppDispatch()
+    const isMy = useAppSelector(state => state.deck.isMy)
+    const myId = useAppSelector(state => state.profile._id)
+    const userId = useParams().deskId
+    // console.log(`my Id: ${myId}`)
+    // console.log(userId)
 
     const pakName = useAppSelector(state => state.cards.packName)
     const onclickHandler = () => {
@@ -32,7 +37,11 @@ export const CardsHeader = () => {
                         <img src={editMenu} alt="edit"/>
                     </StyledWrapperImageProfile>
                 </div>
-                <StyledButton onClick={onclickHandler}>Add new card</StyledButton>
+                {
+                    isMy
+                        ? <StyledButton onClick={onclickHandler}>Add new card</StyledButton>
+                        : <StyledButton>Learn</StyledButton>
+                }
             </HeaderStyle>
         </>
 

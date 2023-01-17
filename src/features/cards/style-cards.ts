@@ -13,6 +13,10 @@ export const CardsHeaderBack = styled.div`
       transform: translateX(5px);
     }
   }
+  a:hover {
+    transition: all 0.3s;
+    border-bottom: 1px solid #000;
+  }
 `
 
 export const HeaderStyle = styled.div`

@@ -13,11 +13,18 @@ import 'react-toastify/dist/ReactToastify.css';
 import {Logging} from "../features/auth/Loggin";
 import {CardPage} from "../features/cards/CardPage";
 import {Desk} from "../features/deck/Deck";
+import {CircularProgress} from "@mui/material";
 
 
 function App() {
-    const isInitialized = useAppSelector<boolean>(state => state.app.isInitialized)
+    const isInitialized = useAppSelector(state => state.app.isInitialized)
     const dispatch = useAppDispatch()
+    const circularProgressStyle = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)'
+    }
 
     useEffect(() => {
         dispatch(meTC())
@@ -25,9 +32,7 @@ function App() {
 
     if (!isInitialized) {
         return (
-            <div>
-                КРУТИЛКА
-            </div>
+            <CircularProgress disableShrink sx={circularProgressStyle}/>
         )
     }
     return (

@@ -14,29 +14,11 @@ export const cardsAPI = {
     getCards(params: GetTypeGo) {
         return instance.get<'', AxiosResponse<CardsResType>, GetTypeGo>('cards/card', {params})
     },
-
-    // params: {
-    //     // cardAnswer: string,
-    //     //  cardQuestion: string,
-    //     cardsPack_id: "63c05632f97a5f1048376a34", // мои
-    //     // cardsPack_id: "63a5ad309d358132a0859cd2", // другие
-    //     // min: number,
-    //     // max: number,
-    //     // cortCards: string,
-    //     //  page: number,
-    //     //  pageCount: string
-    // }
-    addCard() {
-        return instance.post<'', AxiosResponse<AddCardResType>, AddCardType>('cards/card', {
-            card: {
-                cardsPack_id: "63a5b1873b88ba2a4459ab4f",
-                answer: 'sdfsad',
-                question: '124'
-            }
-        })
+    addCard(data: AddCardType) {
+        return instance.post<'', AxiosResponse<AddCardResType>, AddCardType>('cards/card', data)
     },
-    deleteCard(data: DeleteCardType) {
-        return instance.delete<'', AxiosResponse<DeleteResType>, DeleteCardType>('cards/card', data)
+    deleteCard(id:string) {
+        return instance.delete<AxiosResponse<DeleteResType>>(`cards/card?id=${id}`)
     },
     // updateCard(data: UpdateCardType) {
     //     return instance.put<'', AxiosResponse<DeleteResType>, UpdateCardType>('cards/card', data)
@@ -51,9 +33,26 @@ export const cardsAPI = {
         })
     }
 }
+
+// card: {
+//     cardsPack_id: "63c2b7a9a6492326e49fe868",
+//     answer: 'sdfsad',
+//     question: '124'
+// }
 export type AddCardResType = {
     newCard: {}
 }
+// export type AddCardType = {
+//     cardsPack_id: string,
+//     answer?: string,
+//     question?: string,
+//     grade?: number,
+//     shots?: number,
+//     answerImg?: string,
+//     questionImg?: string,
+//     questionVideo?: string,
+//     answerVideo?: string
+// }
 
 export type AddCardType = {
     card: {

@@ -50,11 +50,11 @@ export const CardPage = () => {
     }, [])
 
 
-    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        let cardAnswer = e.currentTarget.value
-        dispatch(setUpdateCardAC({cardAnswer}))
-        searchParams.set('cardAnswer', cardAnswer)
-    }
+    // const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    //     let cardAnswer = e.currentTarget.value
+    //     dispatch(setUpdateCardAC({cardAnswer}))
+    //     searchParams.set('cardAnswer', cardAnswer)
+    // }
 
 
     const onChangePageHandler = (event: React.ChangeEvent<unknown>, page: number) => {

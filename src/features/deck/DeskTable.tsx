@@ -9,6 +9,7 @@ import deleteIcon from "../../assets/img/Delete.svg";
 import {useAppDispatch, useAppSelector} from "../../common/hooks/hooks";
 import {getCardsAC} from "../cards/cards-reducer";
 import {useNavigate} from "react-router-dom";
+import Learn from '../../assets/img/Learn.svg'
 
 type TablePropsType = {
     myId: string
@@ -20,7 +21,6 @@ export const DeskTable: FC<TablePropsType> = React.memo( ({myId}) => {
 
     const onClickCardsHandler = (deskId: string) => {
         dispatch(getCardsAC({cardsPack_id: deskId}));
-        console.log(deskId)
         navigate(`/cards/${deskId}`)
     }
     const columns = React.useMemo<any>(() => [
@@ -52,13 +52,19 @@ export const DeskTable: FC<TablePropsType> = React.memo( ({myId}) => {
                 const isMyDesk = userId === myId
 
                 return (
-                    <StyledActions isMyDesk={isMyDesk}>
-                        <img src={edit}
-                             onClick={() => isMyDesk && dispatch(deskUpdateTC(deskId, ''))}
-                             alt="edit"/>
-                        <img src={deleteIcon} onClick={() => isMyDesk && dispatch(deskDeleteTC(deskId))}
-                             alt="deleteIcon"/>
-                    </StyledActions>
+                  <>
+                      <StyledActions isMyDesk={isMyDesk}>
+                          <img src={Learn}
+                              // onClick={() => {}}
+                               alt="Learn"/>
+                          <img src={edit}
+                               onClick={() => isMyDesk && dispatch(deskUpdateTC(deskId, ''))}
+                               alt="edit"/>
+                          <img src={deleteIcon} onClick={() => isMyDesk && dispatch(deskDeleteTC(deskId))}
+                               alt="deleteIcon"/>
+                      </StyledActions>
+                  </>
+
                 )
             },
         },

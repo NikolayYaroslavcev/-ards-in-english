@@ -20,7 +20,6 @@ export const RangeSlider = React.memo(() => {
     const dispatch = useAppDispatch()
 
     useEffect(() => {
-        console.log('use')
         setValue([min, max])
     }, [min, max])
 

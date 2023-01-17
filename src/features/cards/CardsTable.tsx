@@ -41,11 +41,8 @@ export const CardsTable = (props: any) => {
             Cell: (props: any) => {
                 return (
                     <ActionBlock>
-                        <img src={edit} onClick={() => dispatch(updateCardTC(props.row.original._id, ''))} alt=""/>
-                        <img src={deleteIcon} onClick={() => {
-                            dispatch(deleteCardTC(props.row.original._id))
-
-                        }} alt=""/>
+                        <img src={edit} onClick={() => dispatch(updateCardTC(props.row.original._id, ''))} alt="edit"/>
+                        <img src={deleteIcon} onClick={() => {dispatch(deleteCardTC(props.row.original._id))}} alt="deleteIcon"/>
                     </ActionBlock>
                 )
             },
