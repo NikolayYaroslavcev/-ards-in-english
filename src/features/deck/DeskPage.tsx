@@ -9,7 +9,7 @@ import {PaginationBlock} from "../../common/components/paginationBlock/Paginatio
 import HeaderDesk from "../../common/components/headerDesk/HeaderDesk";
 import {SkeletonLoaded} from "../../common/components/skeleton/SkeletonLoaded";
 
-export const Desk = memo(() => {
+export const DeskPage = memo(() => {
     const dispatch = useAppDispatch()
     const [searchParams, setSearchParams] = useSearchParams()
 

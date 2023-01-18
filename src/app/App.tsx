@@ -12,8 +12,8 @@ import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {Logging} from "../features/auth/Loggin";
 import {CardPage} from "../features/cards/CardPage";
-import {Desk} from "../features/deck/Deck";
 import {CircularProgress} from "@mui/material";
+import {DeskPage} from "../features/deck/DeskPage";
 
 
 function App() {
@@ -40,7 +40,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home/>}/>
 
-                <Route path="/desks" element={<Desk/>}/>
+                <Route path="/desks" element={<DeskPage/>}/>
                 <Route path="/cards/:deskId" element={<CardPage/>}/>
 
                 <Route path="/login" element={<Logging/>}/>
