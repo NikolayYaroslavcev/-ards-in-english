@@ -1,26 +1,25 @@
-import React, {FC} from 'react';
-import {ArrowTableBlock, TableStyled} from "./StyledDeck";
-import polygon from "../../assets/img/Polygon.svg";
-import {useTable} from "react-table";
-import {StyledActions} from "../../common/components/style/Action/StyledActions";
-import edit from "../../assets/img/Edit.svg";
-import {deskDeleteTC, deskUpdateTC} from "./deck-reducer";
-import deleteIcon from "../../assets/img/Delete.svg";
-import {useAppDispatch, useAppSelector} from "../../common/hooks/hooks";
-import {getCardsTC} from "../cards/cards-reducer";
-import {Navigate, useNavigate} from "react-router-dom";
+import React, {FC, useState} from 'react';
+import {ArrowTableBlock, TableStyled} from './StyledDeck';
+import polygon from '../../assets/img/Polygon.svg';
+import {useTable} from 'react-table';
+import {StyledActions} from '../../common/components/style/Action/StyledActions';
+import edit from '../../assets/img/Edit.svg';
+import {deskDeleteTC, deskUpdateTC, getDeckTC, setUpdateDeskAC} from './deck-reducer';
+import deleteIcon from '../../assets/img/Delete.svg';
+import {useAppDispatch, useAppSelector} from '../../common/hooks/hooks';
+import {getCardsTC} from '../cards/cards-reducer';
+import {Navigate, useNavigate, useSearchParams} from 'react-router-dom';
 
 type TablePropsType = {
     myId: string
+    sortPack:(packName:string,sortPacsBull:boolean)=> void
 }
-const Table: FC<TablePropsType> = (
-    {
-        myId
-    }) => {
+const Table: FC<TablePropsType> = ({myId, sortPack}) => {
 
     const data = useAppSelector(state => state.deck.cardPacks)
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
+    const [sortPacsBull, setSortPacsBull] = useState(false)
 
     const onClickCardsHandler = (deskId: string) => {
         console.log(deskId)
@@ -76,6 +75,11 @@ const Table: FC<TablePropsType> = (
         rows,
         prepareRow,
     } = useTable({columns, data})
+    const onClickHandler = (id: string) => {
+        setSortPacsBull(!sortPacsBull)
+        sortPack(id,sortPacsBull)
+        console.log(id)
+    }
     return (
         <TableStyled {...getTableProps()} >
             <thead>
@@ -91,9 +95,7 @@ const Table: FC<TablePropsType> = (
                                     <img
                                         src={polygon}
                                         alt="polygon"
-                                        onClick={() => {
-                                            console.log(column.id)
-                                        }}
+                                        onClick={() => onClickHandler(column.id)}
                                     />
                                 </ArrowTableBlock>
                             }
@@ -109,9 +111,9 @@ const Table: FC<TablePropsType> = (
                     <tr {...row.getRowProps()} >
                         {row.cells.map(cell => {
                             return (
-                                <td onClick = {() => {
-                                        cell.column.Header !== 'Actions' && onClickCardsHandler(cell.row.original._id)
-                                    }}
+                                <td onClick={() => {
+                                    cell.column.Header !== 'Actions' && onClickCardsHandler(cell.row.original._id)
+                                }}
                                     {...cell.getCellProps()}
                                 >
                                     {cell.render('Cell')}

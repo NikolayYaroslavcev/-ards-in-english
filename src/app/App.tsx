@@ -10,9 +10,9 @@ import {CheckEmail} from '../features/auth/CheckEmail';
 import {NewPassword} from '../features/auth/NewPassword';
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {Logging} from "../features/auth/Loggin";
-import {CardPage} from "../features/cards/CardPage";
-import {Desk} from "../features/deck/Deck";
+import {Logging} from '../features/auth/Loggin';
+import {CardPage} from '../features/cards/CardPage';
+import {Desk} from '../features/deck/Deck';
 
 
 function App() {

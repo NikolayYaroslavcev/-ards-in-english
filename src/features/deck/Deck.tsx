@@ -1,16 +1,21 @@
 import React, {ChangeEvent, useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from '../../common/hooks/hooks';
-import {deskAddTC, getDeckTC, setUpdateDeskAC} from "./deck-reducer";
-import {SearchDesk} from "./SearchDesk";
-import {useSearchParams} from "react-router-dom";
-import useDebounce from "../../common/hooks/useDebounce";
-import Table from "./Table";
-import PaginationBlock from "../../common/components/paginationBlock/PaginationBlock";
-import HeaderDesk from "../../common/components/headerDesk/HeaderDesk";
+import {deskAddTC, getDeckTC, setUpdateDeskAC} from './deck-reducer';
+import {SearchDesk} from './SearchDesk';
+import {useSearchParams} from 'react-router-dom';
+import useDebounce from '../../common/hooks/useDebounce';
+import Table from './Table';
+import PaginationBlock from '../../common/components/paginationBlock/PaginationBlock';
+import HeaderDesk from '../../common/components/headerDesk/HeaderDesk';
+import {AddModal} from '../../common/modals/AddModal';
+import {DeleteModal} from '../../common/modals/DeleteModal';
 
 export const Desk = () => {
     const dispatch = useAppDispatch()
     const [searchParams, setSearchParams] = useSearchParams()
+
+    // const [sortPacs, setSortPacs] = useState(false)
+
 
     const myId = useAppSelector(state => state.profile._id)
     const initialize = useAppSelector(state => state.deck.initialize)
@@ -22,15 +27,16 @@ export const Desk = () => {
     const searchPackName = useAppSelector(state => state.deck.packName)
     const totalCount = useAppSelector(state => state.deck.cardPacksTotalCount)
     const totalPages = Math.floor(totalCount / pageCount)
-
+    const sortPack = useAppSelector(state => state.deck.sortPacks)
     const debounceSearchDesk = useDebounce<string>(searchPackName, 500)
+
 
     useEffect(() => {
         if (initialize) {
             dispatch(getDeckTC())
         }
         setSearchParams(searchParams)
-    }, [debounceSearchDesk, page, pageCount, min, max, isMy,])
+    }, [debounceSearchDesk, page, pageCount, min, max, isMy, sortPack])
 
 
     useEffect(() => {
@@ -62,7 +68,7 @@ export const Desk = () => {
 
     const onclickHandlerMy = () => {
         dispatch(setUpdateDeskAC({isMy: true}))
-        searchParams.set('userId', "My")
+        searchParams.set('userId', 'My')
     }
     const onclickHandlerAll = () => {
         dispatch(setUpdateDeskAC({isMy: false}))
@@ -103,8 +109,21 @@ export const Desk = () => {
         setSearchParams(searchParams)
     }
 
+    const sortPackHandler = (packName: string, sortPacsBull: boolean) => {
+        if (packName === 'updated' && sortPacsBull) {
+            dispatch(setUpdateDeskAC({sortPacks: '1updated'}))
+            searchParams.set('sortPacks', '1updated')
+        } else if (packName === 'updated' && !sortPacsBull) {
+            dispatch(setUpdateDeskAC({sortPacks: '0updated'}))
+            searchParams.set('sortPacks', '0updated')
+        }
+    }
+
+
     return (
         <>
+            <AddModal />
+            <DeleteModal/>
             <HeaderDesk onclickAddDeskHandler={onclickAddDeskHandler}/>
             <SearchDesk searchPackName={searchPackName}
                         isMy={isMy}
@@ -113,7 +132,7 @@ export const Desk = () => {
                         onChangeInputValueHandler={onChangeInputValueHandler}
                         onclickHandlerMy={onclickHandlerMy}
             />
-            <Table myId={myId}/>
+            <Table myId={myId} sortPack={sortPackHandler}/>
             <PaginationBlock page={page}
                              onChangePageHandler={onChangePageHandler}
                              totalPages={totalPages}
@@ -124,3 +143,4 @@ export const Desk = () => {
         </>
     )
 }
+

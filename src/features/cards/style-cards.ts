@@ -103,7 +103,6 @@ export const SearchBlock = styled.div`
   display: flex;
   flex-direction: column;
   
-  
 
   input {
 
