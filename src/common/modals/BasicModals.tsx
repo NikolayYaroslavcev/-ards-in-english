@@ -35,7 +35,7 @@ export const BasicModal: FC<PropsType> = ({children}) => {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                    {children}
+                    {children }
                 </Box>
             </Modal>
         </div>
